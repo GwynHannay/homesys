@@ -1,0 +1,8 @@
+---
+kubernetes:
+  children:
+    master:
+      hosts:
+        gwyn:
+          ansible_user: gwyn
+          ansible_host: 10.172.30.39
