@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: bitsofinfo-kubernetes-acme-dns-registrar
-  namespace: flux-system
-spec:
-  interval: 1h
-  url: https://raw.githubusercontent.com/bitsofinfo/kubernetes-acme-dns-registrar/main/helm/repo
