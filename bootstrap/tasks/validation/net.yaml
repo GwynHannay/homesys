@@ -116,7 +116,7 @@
       [
         bootstrap_internal_ingress_addr,
         bootstrap_kube_vip_addr
-      ] | unique | length == 4
+      ] | unique | length == 2
     success_msg: All IP addresses are unique.
     fail_msg: All IP addresses are not unique.
 
