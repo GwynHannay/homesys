@@ -5,6 +5,8 @@ metadata:
   name: cluster-apps-postgresql
   namespace: database
 spec:
+  dependsOn:
+    - name: cluster-apps-openebs
   path: ./kubernetes/apps/database/postgresql/app
   prune: true
   sourceRef:
