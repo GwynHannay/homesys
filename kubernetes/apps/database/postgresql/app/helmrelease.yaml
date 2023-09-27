@@ -31,8 +31,7 @@ spec:
     global:
       postgresql:
         auth:
-          postgresPassword: "$POSTGRES_PASSWORD"
-          existingSecret: "pg-creds"
+          postgresPassword: ${POSTGRES_PASSWORD}
     audit:
       logTimezone: "Australia/Perth"
     primary:
