@@ -1,0 +1,38 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app redis
+  namespace: database
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: redis
+      version: 18.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    architecture: standalone
+    auth:
+      enabled: false
+      sentinel: false
+    master:
+      persistence:
+        existingClaim: local-volume
+        subPath: redis
+      service:
+        type: LoadBalancer
+        loadBalancerIP: 10.172.90.31
