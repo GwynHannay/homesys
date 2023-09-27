@@ -12,7 +12,7 @@ spec:
       version: 1.6.0
       sourceRef:
         kind: HelmRepository
-        name: openebs
+        name: openebs-charts
         namespace: flux-system
   maxHistory: 2
   install:
