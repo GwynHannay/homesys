@@ -5,4 +5,4 @@ kubernetes:
       hosts:
         gwyn:
           ansible_user: gwyn
-          ansible_host: 10.172.30.39
+          ansible_host: 10.172.90.5

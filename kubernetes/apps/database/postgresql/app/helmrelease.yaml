@@ -1,0 +1,47 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app postgresql
+  namespace: database
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: postgresql
+      version: 12.5.8
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: 
+      namespace: 
+  values:
+    global:
+      postgresql:
+        auth:
+          postgresPassword: "$POSTGRES_PASSWORD"
+          existingSecret: "pg-creds"
+    audit:
+      logTimezone: "Australia/Perth"
+    primary:
+      service:
+        type: LoadBalancer
+        loadBalancerIP: 10.172.90.81
+      persistence:
+        enabled: true
+        existingClaim: postgresql
+      resources:
+        requests:
+          cpu: "50m"
