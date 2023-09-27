@@ -20,3 +20,11 @@ spec:
   storageClassName: local-storage
   local:
     path: /home/gwyn
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - gwyn
