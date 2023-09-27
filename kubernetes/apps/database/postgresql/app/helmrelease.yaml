@@ -37,4 +37,5 @@ spec:
         loadBalancerIP: 10.172.90.30
       persistence:
         enabled: true
-        existingClaim: postgresql-data
+        existingClaim: local-volume
+        subPath: postgresql
