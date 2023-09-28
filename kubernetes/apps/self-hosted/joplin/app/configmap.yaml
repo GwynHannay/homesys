@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: joplin-config
+  namespace: self-hosted
+  labels:
+    app.kubernetes.io/name: joplin
+data:
+  TZ: "Australia/Perth"
+  MAX_TIME_DRIFT: '0'
+  DB_CLIENT: pg
+  POSTGRES_HOST: "${POSTGRES_HOST}"
+  POSTGRES_DB: joplin
+  POSTGRES_PORT: '5432'
+  APP_PORT: '80'
+  APP_BASE_URL: "https://joplin.${SECRET_DOMAIN}"

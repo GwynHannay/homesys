@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app joplin
+  namespace: self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      replicas: 1
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: joplin/server
+      tag: latest
+    podSecurityContext:
+      fsGroup: 1001
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Encrypted Notes
+          gethomepage.dev/group: homesys links
+          gethomepage.dev/icon: joplin.png
+          gethomepage.dev/name: Joplin
+        hosts:
+          - host: &host "joplin.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    envFrom:
+      - secretRef:
+          name: joplin-secrets
+      - configMapRef:
+          name: joplin-config

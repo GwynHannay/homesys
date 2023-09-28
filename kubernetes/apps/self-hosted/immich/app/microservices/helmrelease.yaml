@@ -50,15 +50,9 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: local-self-hosted-volume
+        existingClaim: local-volume-self-hosted
         mountPath: /usr/src/app/upload
         subPath: immich/upload
-      external:
-        enabled: true
-        existingClaim: ext-self-hosted-volume
-        mountPath: /mnt/media
-        subPath: immich/external
-        readOnly: true
     resources:
       requests:
         cpu: 5m

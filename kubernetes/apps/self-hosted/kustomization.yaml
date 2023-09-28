@@ -4,5 +4,11 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  # - ./immich/ks.yaml
+  - ./ghostfolio/ks.yaml
+  - ./homebox/ks.yaml
+  - ./homepage/ks.yaml
+  - ./homer/ks.yaml
+  - ./immich/ks.yaml
+  - ./joplin/ks.yaml
   - ./paperless/ks.yaml
+  - ./wallabag/ks.yaml

@@ -5,7 +5,7 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  TIMEZONE: "Australia/West"
+  TIMEZONE: "Australia/Perth"
   COREDNS_ADDR: "10.43.0.10"
   KUBE_VIP_ADDR: "10.172.90.10"
   CLUSTER_CIDR: "10.42.0.0/16"

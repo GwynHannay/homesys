@@ -46,8 +46,16 @@ spec:
         enabled: true
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Documents
+          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/icon: paperless-ngx.png
+          gethomepage.dev/name: Paperless-NGX
+          gethomepage.dev/widget.type: paperlessngx
+          gethomepage.dev/widget.url: "https://paperless.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PAPERLESS}}"
         hosts:
-          - host: &host "docs.${SECRET_DOMAIN}"
+          - host: &host "paperless.${SECRET_DOMAIN}"
             paths:
               - path: /
         tls:
@@ -61,12 +69,12 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: local-self-hosted-volume
+        existingClaim: local-volume-self-hosted
         mountPath: /library
         subPath: *app
       nfs:
         enabled: true
-        existingClaim: nfs-self-hosted-volume
+        existingClaim: nfs-volume-self-hosted
         mountPath: /nfs
         subPath: *app
     resources:

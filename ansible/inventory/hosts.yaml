@@ -3,6 +3,6 @@ kubernetes:
   children:
     master:
       hosts:
-        gwyn:
-          ansible_user: gwyn
+        homesys:
+          ansible_user: homesys
           ansible_host: 10.172.90.5

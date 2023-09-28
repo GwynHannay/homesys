@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app homer
+  namespace: self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    image:
+      repository: b4bz/homer
+      tag: latest
+    podSecurityContext:
+      fsGroup: 1001
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: 10.172.90.50
+        ports:
+          http:
+            port: 80
+            targetPort: 8080
+    env:
+      - name: TZ
+        value: "Australia/Perth"
+      - name: INIT_ASSETS
+        value: 0
+    persistence:
+      assets:
+        enabled: true
+        existingClaim: local-volume-self-hosted
+        mountPath: /www/assets
+        subPath: *app

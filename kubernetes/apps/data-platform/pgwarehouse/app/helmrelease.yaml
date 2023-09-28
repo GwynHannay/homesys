@@ -1,0 +1,44 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app pgwarehouse
+  namespace: data-platform
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: *app
+      version: 12.12.9
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      postgresql:
+        auth:
+          postgresPassword: ${DW_POSTGRES_PASSWORD}
+    audit:
+      logTimezone: "Australia/Perth"
+    primary:
+      service:
+        type: LoadBalancer
+        loadBalancerIP: 10.172.90.40
+      persistence:
+        enabled: true
+        existingClaim: local-volume-data-platform
+        subPath: *app
+      resources:
+        requests:
+          cpu: "50m"

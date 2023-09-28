@@ -52,20 +52,14 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: local-self-hosted-volume
+        existingClaim: local-volume-self-hosted
         mountPath: /usr/src/app/upload
         subPath: immich/upload
       fileserver:
         enabled: true
-        existingClaim: nfs-self-hosted-volume
+        existingClaim: nfs-volume-self-hosted
         mountPath: /nfs
-        subPath: immich/nfs
-        readOnly: true
-      external:
-        enabled: true
-        existingClaim: ext-self-hosted-volume
-        mountPath: /mnt/media
-        subPath: immich/external
+        subPath: *app
         readOnly: true
     resources:
       requests:

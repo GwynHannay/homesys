@@ -31,7 +31,7 @@ spec:
       sentinel: false
     master:
       persistence:
-        existingClaim: local-database-volume
+        existingClaim: local-volume-database
         subPath: *app
       service:
         type: LoadBalancer

@@ -37,5 +37,5 @@ spec:
         loadBalancerIP: 10.172.90.30
       persistence:
         enabled: true
-        existingClaim: local-database-volume
+        existingClaim: local-volume-database
         subPath: *app

@@ -51,7 +51,7 @@ spec:
     persistence:
       cache:
         enabled: true
-        existingClaim: local-self-hosted-volume
+        existingClaim: local-volume-self-hosted
         mountPath: /cache
         subPath: immich/models
     resources:

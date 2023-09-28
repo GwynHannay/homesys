@@ -1,0 +1,81 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app mage
+  namespace: data-platform
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      replicas: 1
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: mageai/mageai
+      tag: latest
+    podSecurityContext:
+      fsGroup: 1001
+    serviceAccount: mage-user
+    service:
+      main:
+        ports:
+          http:
+            port: 6789
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Data Orchestration
+          gethomepage.dev/group: homesys links
+          gethomepage.dev/icon: /icons/mage.png
+          gethomepage.dev/name: Mage
+        hosts:
+          - host: &host "mage.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    env:
+      - name: KUBE_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+    envFrom:
+      - secretRef:
+          name: mage-secrets
+      - configMapRef:
+          name: mage-config
+    persistence:
+      local:
+        enabled: true
+        existingClaim: local-volume-data-platform
+        mountPath: /home/src
+        subPath: *app
+      nfs:
+        enabled: true
+        existingClaim: nfs-volume-data-platform
+        mountPath: /home/nfs
+        subPath: *app

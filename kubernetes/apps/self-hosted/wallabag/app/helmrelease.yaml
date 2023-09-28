@@ -1,0 +1,69 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app wallabag
+  namespace: self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      replicas: 1
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: wallabag/wallabag
+      tag: latest
+    podSecurityContext:
+      fsGroup: 1001
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Bookmarked Articles
+          gethomepage.dev/group: homesys links
+          gethomepage.dev/icon: wallabag.png
+          gethomepage.dev/name: Wallabag
+        hosts:
+          - host: &host "wallabag.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    envFrom:
+      - secretRef:
+          name: wallabag-secrets
+      - configMapRef:
+          name: wallabag-config
+    persistence:
+      images:
+        enabled: true
+        existingClaim: local-volume-self-hosted
+        subPath: *app

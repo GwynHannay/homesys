@@ -27,7 +27,7 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: immich-typesense
+    - name: immich-server
   values:
     controller:
       replicas: 1
@@ -51,8 +51,16 @@ spec:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Photos
+          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/icon: immich.png
+          gethomepage.dev/name: Immich
+          gethomepage.dev/widget.type: immich
+          gethomepage.dev/widget.url: "https://immich.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_IMMICH}}"
         hosts:
-          - host: &host "piccies.${SECRET_DOMAIN}"
+          - host: &host "immich.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix

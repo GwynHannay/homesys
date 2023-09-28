@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ghostfolio-config
+  namespace: self-hosted
+  labels:
+    app.kubernetes.io/name: ghostfolio
+data:
+  TZ: "Australia/Perth"
+  NODE_ENV: production
+  REDIS_HOST: "${REDIS_HOST}"

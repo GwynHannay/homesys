@@ -10,8 +10,10 @@ data:
   TZ: "Australia/Perth"
   NODE_ENV: "production"
   LOG_LEVEL: "verbose"
+  DB_HOSTNAME: "${POSTGRES_HOST}"
   DB_DATABASE_NAME: immich
   DB_PORT: '5432'
+  REDIS_HOSTNAME: "${REDIS_HOST}"
   IMMICH_WEB_URL: http://immich-web.self-hosted.svc.cluster.local:3000
   IMMICH_SERVER_URL: http://immich-server.self-hosted.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.self-hosted.svc.cluster.local:3003
