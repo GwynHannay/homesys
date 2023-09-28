@@ -55,7 +55,7 @@ spec:
         subPath: immich/upload
       external:
         enabled: true
-        existingClaim: *claim
+        existingClaim: ext-self-hosted-volume
         mountPath: /mnt/media
         subPath: immich/external
         readOnly: true

@@ -57,13 +57,13 @@ spec:
         subPath: immich/upload
       fileserver:
         enabled: true
-        existingClaim: *claim
+        existingClaim: nfs-self-hosted-volume
         mountPath: /nfs
         subPath: immich/nfs
         readOnly: true
       external:
         enabled: true
-        existingClaim: *claim
+        existingClaim: ext-self-hosted-volume
         mountPath: /mnt/media
         subPath: immich/external
         readOnly: true
