@@ -44,26 +44,27 @@ spec:
           http:
             port: 3000
     ingress:
-      enabled: true
-      className: internal
-      annotations:
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          rewrite /api/(.*) /$1 break;
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
-      hosts:
-        - &host "piccies.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-            - path: /api
-              pathType: Prefix
-              service:
-                name: immich-server
-                port: 3001
-      tls:
-        - hosts:
-            - *host
-          secretName: immich-tls
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/configuration-snippet: |
+            rewrite /api/(.*) /$1 break;
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - &host "piccies.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+              - path: /api
+                pathType: Prefix
+                service:
+                  name: immich-server
+                  port: 3001
+        tls:
+          - hosts:
+              - *host
+            secretName: immich-tls
     envFrom:
       - secretRef:
           name: immich-secrets
