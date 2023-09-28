@@ -50,7 +50,7 @@ spec:
     persistence:
       library:
         enabled: true
-        existingClaim: &claim local-self-hosted-volume
+        existingClaim: local-self-hosted-volume
         mountPath: /usr/src/app/upload
         subPath: immich/upload
       external:
