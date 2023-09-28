@@ -5,7 +5,7 @@ metadata:
   name: &app immich-microservices
   namespace: self-hosted
 spec:
-  interval: 15m
+  interval: 30m
   chart:
     spec:
       chart: app-template
@@ -15,18 +15,8 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
   dependsOn:
+    - name: immich-server
     - name: immich-typesense
   values:
     controller:
