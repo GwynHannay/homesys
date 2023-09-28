@@ -59,7 +59,7 @@ spec:
         enabled: true
         existingClaim: nfs-volume-self-hosted
         mountPath: /nfs
-        subPath: *app
+        subPath: immich
         readOnly: true
     resources:
       requests:
