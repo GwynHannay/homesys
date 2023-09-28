@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: *app
+      chart: postgresql
       version: 12.12.9
       sourceRef:
         kind: HelmRepository
