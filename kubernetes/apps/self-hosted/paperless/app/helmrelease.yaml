@@ -1,0 +1,89 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app paperless
+  namespace: self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controller:
+      replicas: 1
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/paperless-ngx/paperless-ngx
+      tag: latest
+    podSecurityContext:
+      fsGroup: 1001
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        hosts:
+          - host: &host "docs.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    envFrom:
+      - secretRef:
+          name: paperless-secrets
+      - configMapRef:
+          name: paperless-config
+    persistence:
+      library:
+        enabled: true
+        existingClaim: local-self-hosted-volume
+        mountPath: /library
+        subPath: *app
+      nfs:
+        enabled: true
+        existingClaim: nfs-self-hosted-volume
+        mountPath: /nfs
+        subPath: *app
+    resources:
+      requests:
+        cpu: 5m
+        memory: 300Mi
+      limits:
+        cpu: 2500m
+        memory: 2000Mi
+    sidecars:
+      gotenberg:
+        name: gotenberg
+        image: docker.io/gotenberg/gotenberg:7.8
+        command:
+          - gotenberg
+          - --chromium-disable-javascript=true
+          - --chromium-allow-list=file:///tmp/.*
+      tika:
+        name: tika
+        image: ghcr.io/paperless-ngx/tika:latest
