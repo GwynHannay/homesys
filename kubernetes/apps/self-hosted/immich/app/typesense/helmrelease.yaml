@@ -52,7 +52,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: local-volume
+        existingClaim: local-self-hosted-volume
         mountPath: /config
         subPath: immich/typesense
     resources:

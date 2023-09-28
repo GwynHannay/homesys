@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: local-volume
+  name: local-database-volume
   namespace: database
 spec:
   accessModes:
