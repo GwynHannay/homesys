@@ -7,4 +7,4 @@ resources:
   - ./datasette/ks.yaml
   # - ./mage/ks.yaml
   # - ./pgadmin/ks.yaml
-  - ./pgwarehouse/ks.yaml
+  # - ./pgwarehouse/ks.yaml
