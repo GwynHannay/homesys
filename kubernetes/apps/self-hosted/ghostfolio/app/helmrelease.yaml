@@ -44,6 +44,7 @@ spec:
     ingress:
       main:
         enabled: true
+        ingressClassName: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Finance Dashboard

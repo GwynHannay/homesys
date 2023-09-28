@@ -43,6 +43,7 @@ spec:
             port: 3000
     ingress:
       main:
+        ingressClassName: internal
         enabled: true
         hosts:
           - host: &host "home.${SECRET_DOMAIN}"
