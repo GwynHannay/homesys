@@ -1,0 +1,248 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homepage-config
+  namespace: self-hosted
+  labels:
+    app.kubernetes.io/name: homepage
+data:
+  bookmarks.yaml: |
+    - Stuff:
+        - GitHub Repo:
+            - abbr: GH
+              href: https://github.com/GwynHannay/homesys
+  kubernetes.yaml: |
+    mode: cluster
+  settings.yaml: |
+    title: Home
+    headerStyle: boxed
+    quicklaunch:
+      searchDescriptions: true
+    layout:
+      homesys widgets:
+        icon: mdi-widgets
+        style: row
+        columns: 3
+      homesys links:
+        icon: mdi-server-network
+        style: row
+        columns: 3
+      Hosts:
+        icon: mdi-wan
+      Documents:
+        icon: mdi-file-document
+      Web Stuff:
+        icon: mdi-web
+      Mediarr:
+        icon: mdi-projector
+        style: row
+        columns: 3
+      Mediarr Files:
+        icon: mdi-folder
+        style: row
+        columns: 3
+      Banking:
+        icon: mdi-credit-card
+      Shopping:
+        icon: mdi-basket
+      Health:
+        icon: mdi-heart-pulse
+  services.yaml: |
+    ---
+    - homesys links:
+        - Homer:
+            icon: homer.png
+            href: {{HOMEPAGE_VAR_HOMER_URL}}
+            description: Old Home Page
+    - Hosts:
+        - Home Assistant:
+            icon: home-assistant.png
+            href: {{HOMEPAGE_VAR_HOMEASSISTANT_URL}}
+            description: Home Automation
+        - Brother Printer:
+            icon: brother.png
+            href: {{HOMEPAGE_VAR_PRINTER_URL}}
+            description: Printer & Scanner
+        - EliteDesk:
+            icon: vmware-esxi.png
+            href: {{HOMEPAGE_VAR_ESXI_URL}}
+            description: homesys ESXi
+        - RouterOS:
+            icon: mikrotik.png
+            href: {{HOMEPAGE_VAR_ROUTER_URL}}
+            description: Router
+        - UniFi Admin:
+            icon: unifi.png
+            href: {{HOMEPAGE_VAR_WIFI_URL}}
+            description: WiFi
+    - Documents:
+        - Online Orders:
+            icon: mdi-mailbox-#34A853
+            href: {{HOMEPAGE_VAR_ORDERS_URL}}
+            description: Tracking Orders
+        - Inventory:
+            icon: mdi-archive-#F99A66
+            href: {{HOMEPAGE_VAR_INVENTORY_URL}}
+            description: Catalogue of Garage Boxes, Linen Drawers, etc.
+        - Family Info:
+            icon: mdi-account-multiple-#E10A0A
+            href: {{HOMEPAGE_VAR_FAMILY_URL}}
+            description: Medical, Assets, End of Life, etc.
+        - Fileserver Media:
+            icon: mdi-play-network-#3930D8
+            href: {{HOMEPAGE_VAR_SERVERMEDIA_URL}}
+            description: TV Shows and Movies to Keep
+        - Web Domains:
+            icon: mdi-domain-#00B5E2
+            href: {{HOMEPAGE_VAR_DOMAINS_URL}}
+            description: Our Web Domains, Hosting
+    - Mediarr:
+        - NZBGet:
+            icon: nzbget.png
+            href: {{HOMEPAGE_VAR_NZBGET_URL}}
+            description: UseNet Downloads
+            widget:
+              type: nzbget
+              url: {{HOMEPAGE_VAR_NZBGET_URL}}
+        - Sonarr:
+            icon: sonarr.png
+            href: {{HOMEPAGE_VAR_SONARR_URL}}
+            description: TV Shows
+            widget:
+              type: sonarr
+              url: {{HOMEPAGE_VAR_SONARR_URL}}
+              key: {{HOMEPAGE_VAR_SONARR}}
+        - Radarr:
+            icon: radarr.png
+            href: {{HOMEPAGE_VAR_RADARR_URL}}
+            description: Movies
+            widget:
+              type: radarr
+              url: {{HOMEPAGE_VAR_RADARR_URL}}
+              key: {{HOMEPAGE_VAR_RADARR}}
+        - Readarr:
+            icon: readarr.png
+            href: {{HOMEPAGE_VAR_READARR_URL}}
+            description: Books
+            widget:
+              type: readarr
+              url: {{HOMEPAGE_VAR_READARR_URL}}
+              key: {{HOMEPAGE_VAR_READARR}}
+        - Bazarr:
+            icon: bazarr.png
+            href: {{HOMEPAGE_VAR_BAZARR_URL}}
+            description: Subtitles
+            widget:
+              type: bazarr
+              url: {{HOMEPAGE_VAR_BAZARR_URL}}
+              key: {{HOMEPAGE_VAR_BAZARR}}
+    - Mediarr Files:
+        - Cloud:
+            icon: mdi-cloud
+            href: {{HOMEPAGE_VAR_AUTO_URL}}
+            description: Cloud Auto Files
+        - MBS:
+            icon: mdi-cloud
+            href: {{HOMEPAGE_VAR_MBS_URL}}
+            description: MBS Files
+        - Odd Bird Media:
+            icon: mdi-cloud
+            href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
+            description: Media Files
+    - Banking:
+        - ING Bank:
+            icon: /icons/ing.png
+            href: {{HOMEPAGE_VAR_ING_URL}}
+            description: Main Bank
+        - Bankwest:
+            icon: /icons/bankwest.png
+            href: {{HOMEPAGE_VAR_BANKWEST_URL}}
+            description: Credit Card
+        - UBank:
+            icon: /icons/ubank.png
+            href: {{HOMEPAGE_VAR_UBANK_URL}}
+            description: Emergency Savings
+        - CMC Markets:
+            icon: /icons/cmc.png
+            href: {{HOMEPAGE_VAR_CMC_URL}}
+            description: Investment
+        - NAB:
+            icon: /icons/nab.png
+            href: {{HOMEPAGE_VAR_NAB_URL}}
+            description: Physical Branch
+    - Shopping:
+        - Discounts:
+            icon: google-sheets.png
+            href: {{HOMEPAGE_VAR_DISCOUNTS_URL}}
+            description: List of Discounts
+        - Bupa Life Rewards:
+            icon: /icons/life.png
+            href: {{HOMEPAGE_VAR_LIFEREWARDS_URL}}
+            description: Discounts/eCards from Bupa
+        - PA Member Advantage:
+            icon: /icons/pa.png
+            href: {{HOMEPAGE_VAR_MEMBERADVANTAGE_URL}}
+            description: Professionals Australia Discounts
+        - Woolworths Everyday Rewards:
+            icon: /icons/everydayrewards.png
+            href: {{HOMEPAGE_VAR_EVERYDAYREWARDS_URL}}
+            description: Points, Discounts, etc.
+    - Web Stuff:
+        - Hostinger:
+            icon: /icons/hostinger.png
+            href: {{HOMEPAGE_VAR_HOSTINGER_URL}}
+            description: Current Web Host
+        - Synergy Wholesale:
+            icon: /icons/synergy-wholesale.png
+            href: {{HOMEPAGE_VAR_SYNERGY_URL}}
+            description: Current Domain Registrar
+        - VentraIP:
+            icon: /icons/ventraip.png
+            href: {{HOMEPAGE_VAR_VENTRA_URL}}
+            description: Old Domain Registrar
+        - Dreamhost:
+            icon: /icons/dreamhost.png
+            href: {{HOMEPAGE_VAR_DREAMHOST_URL}}
+            description: Outgoing Domain Registrar
+    - Health:
+        - Medicare:
+            icon: /icons/medicare.png
+            href: {{HOMEPAGE_VAR_MEDICARE_URL}}
+            description: Healthcare (via myGov)
+        - Bupa:
+            icon: /icons/bupa.png
+            href: {{HOMEPAGE_VAR_BUPA_URL}}
+            description: Private Health Insurance
+        - CSIRO Recipes:
+            icon: /icons/csiro.png
+            href: {{HOMEPAGE_VAR_RECIPES_URL}}
+            description: Static Recipes Page
+  widgets.yaml: |
+    - search:
+        provider: duckduckgo
+        target: _blank
+    - kubernetes:
+        cluster:
+          show: false
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          expanded: true
+    - resources:
+        disk: /tera
+        expanded: true
+        label: host
+    - resources:
+        disk: /nfs
+        expanded: true
+        label: fileserver
+    - openmeteo:
+        label: {{HOMEPAGE_VAR_METEO_LABEL}}
+        latitude: {{HOMEPAGE_VAR_METEO_LATITUDE}}
+        longitude: {{HOMEPAGE_VAR_METEO_LONGITUDE}}
+        timezone: Australia/Perth
+        units: metric
+  docker.yaml: |
+    ---
