@@ -11,3 +11,29 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: local-storage
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-self-hosted-volume
+  namespace: self-hosted
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-storage
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ext-self-hosted-volume
+  namespace: self-hosted
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: local-storage
