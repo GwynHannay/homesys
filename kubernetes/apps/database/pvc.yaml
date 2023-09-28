@@ -33,4 +33,5 @@ spec:
   resources:
     requests:
       storage: 930Gi
+  volumeName: local-volume-database
   storageClassName: local-storage

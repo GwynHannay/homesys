@@ -56,6 +56,7 @@ spec:
   resources:
     requests:
       storage: 930Gi
+  volumeName: local-volume-data-platform
   storageClassName: local-storage
 ---
 kind: PersistentVolumeClaim
@@ -69,4 +70,5 @@ spec:
   resources:
     requests:
       storage: 900Gi
+  volumeName: nfs-volume-data-platform
   storageClassName: local-storage
