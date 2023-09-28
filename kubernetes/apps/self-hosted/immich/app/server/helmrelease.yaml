@@ -55,12 +55,6 @@ spec:
         existingClaim: local-volume-self-hosted
         mountPath: /usr/src/app/upload
         subPath: immich/upload
-      fileserver:
-        enabled: true
-        existingClaim: nfs-volume-self-hosted
-        mountPath: /nfs
-        subPath: immich
-        readOnly: true
     resources:
       requests:
         cpu: 5m
