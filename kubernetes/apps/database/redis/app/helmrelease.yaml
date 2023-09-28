@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: redis
+      chart: *app
       version: 18.1.0
       sourceRef:
         kind: HelmRepository
@@ -32,7 +32,7 @@ spec:
     master:
       persistence:
         existingClaim: local-volume
-        subPath: redis
+        subPath: *app
       service:
         type: LoadBalancer
         loadBalancerIP: 10.172.90.31

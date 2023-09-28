@@ -8,7 +8,7 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: postgresql
+      chart: *app
       version: 12.12.9
       sourceRef:
         kind: HelmRepository
@@ -38,4 +38,4 @@ spec:
       persistence:
         enabled: true
         existingClaim: local-volume
-        subPath: postgresql
+        subPath: *app

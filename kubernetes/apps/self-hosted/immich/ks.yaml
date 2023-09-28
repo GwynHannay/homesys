@@ -2,15 +2,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-openebs
+  name: cluster-apps-immich
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/storage/openebs/app
+  dependsOn:
+    - name: cluster-apps-postgresql
+  path: ./kubernetes/apps/self-hosted/immich/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m

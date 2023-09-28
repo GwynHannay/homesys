@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app immich-microservices
+  namespace: self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: immich-typesense
+  values:
+    controller:
+      replicas: 1
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: ghcr.io/immich-app/immich-server
+      tag: v1.79.1
+    args: ["start.sh", "microservices"]
+    podSecurityContext:
+      fsGroup: 1001
+    service:
+      main:
+        enabled: false
+    envFrom:
+      - secretRef:
+          name: immich-secrets
+      - configMapRef:
+          name: immich-config
+    persistence:
+      library:
+        enabled: true
+        existingClaim: local-volume
+        mountPath: /usr/src/app/upload
+        subPath: immich/upload
+      external:
+        enabled: true
+        existingClaim: local-volume
+        mountPath: /mnt/media
+        subPath: immich/external
+        readOnly: true
+    resources:
+      requests:
+        cpu: 5m
+        memory: 250Mi
