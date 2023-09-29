@@ -59,15 +59,6 @@ data:
             href: {{HOMEPAGE_VAR_HOMER_URL}}
             description: Old Home Page
     - Host Widgets:
-        - RouterOS:
-            icon: mikrotik.png
-            href: {{HOMEPAGE_VAR_ROUTER_URL}}
-            description: Router
-            widget:
-              type: mikrotik
-              url: {{HOMEPAGE_VAR_ROUTER_URL}}
-              username: {{HOMEPAGE_VAR_ROUTER_USER}}
-              password: {{HOMEPAGE_VAR_ROUTER_PASS}}
     - Hosts:
         - Home Assistant:
             icon: home-assistant.png
@@ -81,6 +72,10 @@ data:
             icon: vmware-esxi.png
             href: {{HOMEPAGE_VAR_ESXI_URL}}
             description: homesys ESXi
+        - RouterOS:
+            icon: mikrotik.png
+            href: {{HOMEPAGE_VAR_ROUTER_URL}}
+            description: Router
         - UniFi Admin:
             icon: unifi.png
             href: {{HOMEPAGE_VAR_WIFI_URL}}
