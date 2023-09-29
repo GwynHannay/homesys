@@ -47,11 +47,6 @@ spec:
         tls:
           - hosts:
               - *host
-    env:
-      - name: KUBE_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
     envFrom:
       - secretRef:
           name: pgadmin-secrets
