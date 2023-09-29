@@ -58,7 +58,6 @@ data:
             icon: homer.png
             href: {{HOMEPAGE_VAR_HOMER_URL}}
             description: Old Home Page
-    - Host Widgets:
     - Hosts:
         - Home Assistant:
             icon: home-assistant.png
