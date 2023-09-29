@@ -33,7 +33,11 @@ spec:
       enabled: true
       className: internal
       annotations:
-        hajimari.io/icon: mdi:kubernetes
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Dashboard
+        gethomepage.dev/group: homesys links
+        gethomepage.dev/icon: kubernetes-dashboard.png
+        gethomepage.dev/name: Kubernetes Dashboard
       hosts:
         - &host "kubernetes.${SECRET_DOMAIN}"
       tls:
