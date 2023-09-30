@@ -26,7 +26,6 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: nginx-internal
-    allowSnippetAnnotations: true
     controller:
       replicaCount: 1
       service:
@@ -34,6 +33,7 @@ spec:
           external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           io.cilium/lb-ipam-ips: "10.172.90.20"
         externalTrafficPolicy: Cluster
+      allowSnippetAnnotations: true
       ingressClassResource:
         name: internal
         default: true
