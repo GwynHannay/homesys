@@ -26,6 +26,7 @@ spec:
     keepHistory: false
   values:
     fullnameOverride: nginx-internal
+    allowSnippetAnnotations: true
     controller:
       replicaCount: 1
       service:
