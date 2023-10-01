@@ -22,7 +22,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: dpage/pgadmin4
-      tag: latest
+      tag: 7.7
     podSecurityContext:
       fsGroup: 1001
     service:
