@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: b4bz/homer
-      tag: latest
+      tag: v23.09.1
     podSecurityContext:
       fsGroup: 1001
     service:

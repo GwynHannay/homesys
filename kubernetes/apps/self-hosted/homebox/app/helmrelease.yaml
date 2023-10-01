@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/hay-kot/homebox
-      tag: latest
+      tag: v0.9.2
     podSecurityContext:
       fsGroup: 1001
     service:

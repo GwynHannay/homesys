@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: joplin/server
-      tag: latest
+      tag: 2.13.1-beta
     podSecurityContext:
       fsGroup: 1001
     service:
