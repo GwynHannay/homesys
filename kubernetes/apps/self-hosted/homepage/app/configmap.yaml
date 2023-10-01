@@ -106,6 +106,16 @@ data:
             href: {{HOMEPAGE_VAR_DOMAINS_URL}}
             description: Our Web Domains, Hosting
     - Mediarr:
+        - Calendar:
+            widget:
+              type: calendar
+              integrations:
+                - type: sonarr
+                  service_group: Mediarr
+                  service_name: Sonarr
+                - type: radarr
+                  service_group: Mediarr
+                  service_name: Radarr
         - NZBGet:
             icon: nzbget.png
             href: {{HOMEPAGE_VAR_NZBGET_URL}}
