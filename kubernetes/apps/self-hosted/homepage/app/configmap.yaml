@@ -12,7 +12,7 @@ data:
             - abbr: GH
               href: https://github.com/GwynHannay/homesys
   kubernetes.yaml: |
-    mode: cluster
+    mode: default
   settings.yaml: |
     title: Home
     headerStyle: boxed
@@ -53,12 +53,6 @@ data:
         icon: mdi-heart-pulse
   services.yaml: |
     ---
-    - homesys widgets:
-        - Immich:
-            icon: immich.png
-            href: https://immich.${SECRET_DOMAIN}
-            namespace: self-hosted
-            app: immich-web
     - homesys links:
         - Kubernetes Dashboard:
             icon: kubernetes-dashboard.png
