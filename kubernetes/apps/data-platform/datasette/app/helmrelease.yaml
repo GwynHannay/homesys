@@ -29,7 +29,7 @@ spec:
   values:
     image:
       repository: datasetteproject/datasette
-      tag: latest
+      tag: 0.64.4
     command:
       - "datasette"
     args:
