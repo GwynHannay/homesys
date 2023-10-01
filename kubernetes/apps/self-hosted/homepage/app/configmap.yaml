@@ -53,6 +53,12 @@ data:
         icon: mdi-heart-pulse
   services.yaml: |
     ---
+    - homesys widgets:
+        - Immich:
+            icon: immich.png
+            href: https://immich.${SECRET_DOMAIN}
+            namespace: self-hosted
+            app: immich-web
     - homesys links:
         - Homer:
             icon: homer.png
