@@ -68,4 +68,4 @@ spec:
         enabled: true
         existingClaim: local-volume-self-hosted
         subPath: *app
-        mountPath: /var/www/html/web/assets
+        mountPath: /var/www/wallabag/web/assets
