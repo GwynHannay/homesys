@@ -17,3 +17,5 @@ data:
   SYMFONY__ENV__DOMAIN_NAME: "https://wallabag.${SECRET_DOMAIN}"
   SYMFONY__ENV__SERVER_NAME: Wallabag
   POPULATE_DATABASE: 'false'
+  USER_UID: '1001'
+  USER_GID: '1001'
