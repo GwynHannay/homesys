@@ -30,6 +30,9 @@ spec:
       tag: latest
     podSecurityContext:
       fsGroup: 1001
+    service:
+      main:
+        enabled: false
     persistence:
       files:
         enabled: true
