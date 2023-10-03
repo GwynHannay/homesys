@@ -28,6 +28,7 @@ spec:
     args:
       - server
       - start
+      - --insecure
       - --address
       - 0.0.0.0:80
       - --without-password
