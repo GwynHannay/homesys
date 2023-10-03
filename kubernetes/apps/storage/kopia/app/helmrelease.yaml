@@ -60,3 +60,6 @@ spec:
       snapshots:
         enabled: true
         existingClaim: nfs-volume
+      vols:
+        enabled: true
+        existingClaim: local-volume-files
