@@ -27,7 +27,7 @@ spec:
     command: kopia
     args:
       - server
-      - --insecure
+      - start
       - --address
       - 0.0.0.0:80
       - --without-password
