@@ -59,4 +59,4 @@ spec:
     persistence:
       snapshots:
         enabled: true
-        existingClaim: local-volume-files
+        existingClaim: nfs-volume
