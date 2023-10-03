@@ -31,6 +31,7 @@ spec:
     podSecurityContext:
       fsGroup: 1001
     command:
+      - /bin/bash
       - rsync
     service:
       main:
