@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghostfolio/ghostfolio
-      tag: 2.7.0
+      tag: 2.8.0
     podSecurityContext:
       fsGroup: 1001
     service:
