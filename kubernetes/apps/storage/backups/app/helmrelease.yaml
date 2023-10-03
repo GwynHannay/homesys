@@ -30,6 +30,8 @@ spec:
       tag: latest
     podSecurityContext:
       fsGroup: 1001
+    command:
+      - rsync
     service:
       main:
         enabled: false
