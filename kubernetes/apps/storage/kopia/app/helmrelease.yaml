@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app kopia
+  namespace: storage
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  values:
+    controller:
+      annotations:
+        reloader.stakater.com/auto: "true"
+    image:
+      repository: docker.io/kopia/kopia
+      tag: v0.14.1
+    env:
+      TZ: "${TIMEZONE}"
+      KOPIA_PASSWORD: "none"
+    command: kopia
+    args:
+      - server
+      - --insecure
+      - --address
+      - 0.0.0.0:80
+      - --without-password
+      - --log-level
+      - debug
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Backups
+          gethomepage.dev/group: homesys links
+          gethomepage.dev/icon: kopia.png
+          gethomepage.dev/name: Kopia
+        hosts:
+          - host: &host "kopia.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      snapshots:
+        enabled: true
+        existingClaim: local-volume-files
