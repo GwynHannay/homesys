@@ -20,7 +20,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: kopia/kopia
-      tag: v0.14.1
+      tag: 20230926.0.183147
     env:
       TZ: "${TIMEZONE}"
       KOPIA_PASSWORD: "none"
