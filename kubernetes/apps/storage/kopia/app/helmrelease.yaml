@@ -19,7 +19,7 @@ spec:
       annotations:
         reloader.stakater.com/auto: "true"
     image:
-      repository: docker.io/kopia/kopia
+      repository: kopia/kopia
       tag: v0.14.1
     env:
       TZ: "${TIMEZONE}"
