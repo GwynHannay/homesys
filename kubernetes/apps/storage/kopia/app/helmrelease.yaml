@@ -62,7 +62,7 @@ spec:
         type: configMap
         name: *app
         subPath: repository.config
-        mountPath: /config/repository.config
+        mountPath: /app/config/repository.config
         readOnly: true
       snapshots:
         enabled: true
@@ -70,3 +70,4 @@ spec:
       vols:
         enabled: true
         existingClaim: local-volume
+        readOnly: true
