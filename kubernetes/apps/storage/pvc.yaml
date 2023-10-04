@@ -42,7 +42,7 @@ metadata:
   name: nfs-volume
 spec:
   capacity:
-    storage: 930Gi
+    storage: 900Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
@@ -69,6 +69,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 930Gi
+      storage: 900Gi
   volumeName: nfs-volume
   storageClassName: local-storage
