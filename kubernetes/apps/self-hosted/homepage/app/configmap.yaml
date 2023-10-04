@@ -54,11 +54,6 @@ data:
   services.yaml: |
     ---
     - homesys links:
-        - Kubernetes Dashboard:
-            icon: kubernetes-dashboard.png
-            href: https://kubernetes.${SECRET_DOMAIN}/#/event?namespace=_all
-            namespace: monitoring
-            app: kubernetes-dashboard
         - Homer:
             icon: homer.png
             href: {{HOMEPAGE_VAR_HOMER_URL}}
