@@ -57,9 +57,16 @@ spec:
           - hosts:
               - *host
     persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: repository.config
+        mountPath: /config/repository.config
+        readOnly: true
       snapshots:
         enabled: true
         existingClaim: nfs-volume
       vols:
         enabled: true
-        existingClaim: local-volume-files
+        existingClaim: local-volume

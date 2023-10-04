@@ -4,3 +4,9 @@ kind: Kustomization
 namespace: storage
 resources:
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: kopia
+    files:
+      - /config/repository.config
+generatorOptions:
+  disableNameSuffixHash: true
