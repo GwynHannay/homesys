@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: storage
 resources:
   - ./helmrelease.yaml
+  - ./kopia-secrets.sops.yaml
 configMapGenerator:
   - name: kopia
     files:
