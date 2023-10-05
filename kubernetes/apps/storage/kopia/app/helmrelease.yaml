@@ -23,7 +23,6 @@ spec:
       tag: 20230926.0.183147
     env:
       TZ: "${TIMEZONE}"
-      KOPIA_PASSWORD: "none"
     command: kopia
     args:
       - server
@@ -49,6 +48,10 @@ spec:
           gethomepage.dev/group: homesys links
           gethomepage.dev/icon: kopia.png
           gethomepage.dev/name: Kopia
+          gethomepage.dev/widget.type: kopia
+          gethomepage.dev/widget.url: "https://kopia.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.username: "{{KOPIA_USERNAME}}"
+          gethomepage.dev/widget.password: "{{KOPIA_PASSWORD}}"
         hosts:
           - host: &host "kopia.${SECRET_DOMAIN}"
             paths:
@@ -56,14 +59,17 @@ spec:
         tls:
           - hosts:
               - *host
+    envFrom:
+      - secretRef:
+          name: kopia-secrets
     persistence:
-      # config:
-      #   enabled: true
-      #   type: configMap
-      #   name: *app
-      #   subPath: repository.config
-      #   mountPath: /app/config/repository.config
-      #   readOnly: true
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        subPath: repository.config
+        mountPath: /app/config/repository.config
+        readOnly: true
       snapshots:
         enabled: true
         existingClaim: nfs-volume
