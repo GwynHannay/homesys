@@ -33,6 +33,7 @@ spec:
       - --without-password
       - --log-level
       - debug
+      - --disable-csrf-token-checks
     service:
       main:
         ports:
