@@ -33,8 +33,10 @@ spec:
     command:
       - "datasette"
     args:
+      - "serve"
       - "-h"
       - "0.0.0.0"
+      - "/mnt/duplicates-ver3_2023-08-07.db"
     podSecurityContext:
       fsGroup: 1001
     service:
