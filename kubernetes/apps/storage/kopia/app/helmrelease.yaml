@@ -50,8 +50,8 @@ spec:
           gethomepage.dev/name: Kopia
           gethomepage.dev/widget.type: kopia
           gethomepage.dev/widget.url: "https://kopia.${SECRET_DOMAIN}"
-          gethomepage.dev/widget.username: "{{KOPIA_USERNAME}}"
-          gethomepage.dev/widget.password: "{{KOPIA_PASSWORD}}"
+          # gethomepage.dev/widget.username: "{{KOPIA_USERNAME}}"
+          # gethomepage.dev/widget.password: "{{KOPIA_PASSWORD}}"
         hosts:
           - host: &host "kopia.${SECRET_DOMAIN}"
             paths:
