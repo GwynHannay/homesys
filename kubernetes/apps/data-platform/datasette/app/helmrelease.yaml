@@ -36,7 +36,7 @@ spec:
       - "serve"
       - "-h"
       - "0.0.0.0"
-      - "/mnt/duplicates-ver3_2023-08-07.db"
+      - "/nfs/duplicates-ver3_2023-08-07.db"
     podSecurityContext:
       fsGroup: 1001
     service:
