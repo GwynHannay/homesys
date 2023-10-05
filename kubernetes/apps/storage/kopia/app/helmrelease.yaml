@@ -46,7 +46,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Backups
-          gethomepage.dev/group: homesys links
+          gethomepage.dev/group: homesys widgets
           gethomepage.dev/icon: kopia.png
           gethomepage.dev/name: Kopia
           gethomepage.dev/widget.type: kopia
