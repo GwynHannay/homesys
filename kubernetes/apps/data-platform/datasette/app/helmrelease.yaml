@@ -65,3 +65,8 @@ spec:
         existingClaim: local-volume-data-platform
         mountPath: /mnt
         subPath: *app
+      nfs:
+        enabled: true
+        existingClaim: nfs-volume-data-platform
+        mountPath: /nfs
+        subPath: *app
