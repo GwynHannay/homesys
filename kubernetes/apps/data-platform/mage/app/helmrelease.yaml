@@ -33,7 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: mageai/mageai
-      tag: 0.9.28
+      tag: 0.9.32
     podSecurityContext:
       fsGroup: 1001
     serviceAccount: mage-user
