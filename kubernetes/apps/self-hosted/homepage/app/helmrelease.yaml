@@ -22,7 +22,7 @@ spec:
         reloader.stakater.com/auto: "true"
     image:
       repository: ghcr.io/gethomepage/homepage
-      tag: v0.7.0
+      tag: v0.7.3
     podSecurityContext:
       fsGroup: 1001
     service:
