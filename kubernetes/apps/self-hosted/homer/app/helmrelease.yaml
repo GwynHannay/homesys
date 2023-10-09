@@ -9,29 +9,31 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+
   values:
-    image:
-      repository: b4bz/homer
-      tag: v23.09.1
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: b4bz/homer
+              tag: v23.09.1
+            env:
+              - name: TZ
+                value: "Australia/Perth"
+              - name: INIT_ASSETS
+                value: 0
+
     service:
       main:
         type: LoadBalancer
@@ -40,14 +42,11 @@ spec:
           http:
             port: 80
             targetPort: 8080
-    env:
-      - name: TZ
-        value: "Australia/Perth"
-      - name: INIT_ASSETS
-        value: 0
+
     persistence:
       assets:
         enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /www/assets
-        subPath: *app
+        globalMounts:
+          - path: /www/assets
+            subPath: *app
