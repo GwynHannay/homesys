@@ -9,42 +9,43 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: wallabag/wallabag
-      tag: 2.6.7
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: wallabag/wallabag
+              tag: 2.6.7
+            envFrom:
+              - secretRef:
+                  name: wallabag-secrets
+              - configMapRef:
+                  name: wallabag-config
+
     service:
       main:
         ports:
           http:
             port: 80
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Bookmarked Articles
@@ -55,17 +56,17 @@ spec:
           - host: &host "wallabag.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - secretRef:
-          name: wallabag-secrets
-      - configMapRef:
-          name: wallabag-config
+
     persistence:
       images:
         enabled: true
         existingClaim: local-volume-self-hosted
-        subPath: *app
-        mountPath: /var/www/wallabag/web/assets
+        globalMounts:
+          - path: /var/www/wallabag/web/assets
+            subPath: *app
