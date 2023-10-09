@@ -35,7 +35,7 @@ spec:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Dashboard
         gethomepage.dev/group: homesys links
-        gethomepage.dev/icon: superset.png
+        gethomepage.dev/icon: /icons/superset.png
         gethomepage.dev/name: Superset
       hosts:
         - &host "superset.${SECRET_DOMAIN}"
