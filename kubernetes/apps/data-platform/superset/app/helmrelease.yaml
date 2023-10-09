@@ -24,9 +24,6 @@ spec:
       connections:
         redis_host: "${REDIS_HOST}"
         db_host: "${DW_POSTGRES_HOST}"
-        db_user: "${DW_USER}"
-        db_pass: "${DW_PASS}"
-        db_name: "${DW_DBNAME}"
 
     ingress:
       enabled: true
