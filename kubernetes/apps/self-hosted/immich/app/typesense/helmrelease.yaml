@@ -74,6 +74,7 @@ spec:
 
     persistence:
       config:
+        enabled: true
         existingClaim: local-volume-self-hosted
         globalMounts:
           - path: /config
