@@ -74,13 +74,11 @@ spec:
 
     persistence:
       local:
-        enabled: true
         existingClaim: local-volume-data-platform
         globalMounts:
           - path: /home/src
             subPath: *app
       nfs:
-        enabled: true
         existingClaim: nfs-volume-data-platform
         globalMounts:
           - path: /home/nfs

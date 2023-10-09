@@ -93,13 +93,11 @@ spec:
 
     persistence:
       library:
-        enabled: true
         existingClaim: local-volume-self-hosted
         globalMounts:
           - path: /library
             subPath: *app
       nfs:
-        enabled: true
         existingClaim: nfs-volume-self-hosted
         globalMounts:
           - path: /nfs

@@ -65,7 +65,6 @@ spec:
 
     persistence:
       images:
-        enabled: true
         existingClaim: local-volume-self-hosted
         globalMounts:
           - path: /var/www/wallabag/web/assets

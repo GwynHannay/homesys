@@ -45,7 +45,6 @@ spec:
 
     persistence:
       assets:
-        enabled: true
         existingClaim: local-volume-self-hosted
         globalMounts:
           - path: /www/assets
