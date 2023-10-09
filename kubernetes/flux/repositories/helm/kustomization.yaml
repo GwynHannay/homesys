@@ -14,7 +14,8 @@ resources:
   - ./jetstack.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
-  - ./openebs.yaml
+  # - ./openebs.yaml
   - ./prometheus-community.yaml
   - ./stakater.yaml
+  - ./superset.yaml
   - ./weave-gitops.yaml

@@ -8,3 +8,4 @@ resources:
   - ./mage/ks.yaml
   - ./pgadmin/ks.yaml
   - ./pgwarehouse/ks.yaml
+  - ./superset/ks.yaml
