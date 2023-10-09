@@ -9,40 +9,49 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
-    controller:
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: kopia/kopia
-      tag: 20230926.0.183147
-    env:
-      TZ: "${TIMEZONE}"
-    command: kopia
-    args:
-      - server
-      - start
-      - --insecure
-      - --address
-      - 0.0.0.0:80
-      - --without-password
-      - --log-level
-      - debug
-      - --disable-csrf-token-checks
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: kopia/kopia
+              tag: 20230926.0.183147
+            command: kopia
+            args:
+              - server
+              - start
+              - --insecure
+              - --address
+              - 0.0.0.0:80
+              - --without-password
+              - --log-level
+              - debug
+              - --disable-csrf-token-checks
+            env:
+              TZ: "${TIMEZONE}"
+            envFrom:
+              - secretRef:
+                  name: kopia-secrets
+
     service:
       main:
         ports:
           http:
             port: 80
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Backups
@@ -51,30 +60,28 @@ spec:
           gethomepage.dev/name: Kopia
           gethomepage.dev/widget.type: kopia
           gethomepage.dev/widget.url: "https://kopia.${SECRET_DOMAIN}"
-          # gethomepage.dev/widget.username: "{{KOPIA_USERNAME}}"
-          # gethomepage.dev/widget.password: "{{KOPIA_PASSWORD}}"
         hosts:
           - host: &host "kopia.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - secretRef:
-          name: kopia-secrets
+
     persistence:
       config:
         enabled: true
+        readOnly: true
         type: configMap
         name: *app
-        subPath: repository.config
-        mountPath: /app/config/repository.config
-        readOnly: true
+        globalMounts:
+          - path: /app/config/repository.config
+            subPath: repository.config
       snapshots:
-        enabled: true
         existingClaim: nfs-volume
       vols:
-        enabled: true
-        existingClaim: local-volume
         readOnly: true
+        existingClaim: local-volume
