@@ -25,7 +25,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: mage-user # Name of the ServiceAccount
-  namespace: default
+  namespace: data-platform
 roleRef:
   kind: Role # This must be Role or ClusterRole
   name: job-manager # This must match the name of the Role or ClusterRole you wish to bind to
