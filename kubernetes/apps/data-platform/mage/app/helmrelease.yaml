@@ -54,7 +54,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: "ingress-nginx"
+        className: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Data Orchestration
