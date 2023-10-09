@@ -9,32 +9,67 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
-    controller:
-      replicas: 1
-      type: statefulset
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/paperless-ngx/paperless-ngx
-      tag: 1.17.4
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 1.17.4
+            envFrom:
+              - secretRef:
+                  name: paperless-secrets
+              - configMapRef:
+                  name: paperless-config
+            resources:
+              requests:
+                cpu: 5m
+                memory: 300Mi
+              limits:
+                cpu: 2500m
+                memory: 2000Mi
+
+          gotenberg:
+            name: gotenberg
+            image:
+              repository: docker.io/gotenberg/gotenberg
+              tag: 7.9.2
+            command:
+              - gotenberg
+              - --chromium-disable-javascript=true
+              - --chromium-allow-list=file:///tmp/.*
+
+          tika:
+            name: tika
+            image:
+              repository: ghcr.io/paperless-ngx/tika
+              tag: 2.9.0-full
+
     service:
       main:
         ports:
           http:
             port: 8000
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           gethomepage.dev/enabled: "true"
@@ -49,40 +84,23 @@ spec:
           - host: &host "paperless.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - secretRef:
-          name: paperless-secrets
-      - configMapRef:
-          name: paperless-config
+
     persistence:
       library:
         enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /library
-        subPath: *app
+        globalMounts:
+          - path: /library
+            subPath: *app
       nfs:
         enabled: true
         existingClaim: nfs-volume-self-hosted
-        mountPath: /nfs
-        subPath: *app
-    resources:
-      requests:
-        cpu: 5m
-        memory: 300Mi
-      limits:
-        cpu: 2500m
-        memory: 2000Mi
-    sidecars:
-      gotenberg:
-        name: gotenberg
-        image: docker.io/gotenberg/gotenberg:7.9
-        command:
-          - gotenberg
-          - --chromium-disable-javascript=true
-          - --chromium-allow-list=file:///tmp/.*
-      tika:
-        name: tika
-        image: ghcr.io/paperless-ngx/tika:latest
+        globalMounts:
+          - path: /nfs
+            subPath: *app
