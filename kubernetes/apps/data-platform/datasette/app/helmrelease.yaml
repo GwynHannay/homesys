@@ -67,10 +67,12 @@ spec:
       data:
         enabled: true
         existingClaim: local-volume-data-platform
-        mountPath: /mnt
-        subPath: *app
+        globalMounts:
+          - path: /mnt
+            subPath: *app
       nfs:
         enabled: true
         existingClaim: nfs-volume-data-platform
-        mountPath: /nfs
-        subPath: *app
+        globalMounts:
+          - path: /nfs
+            subPath: *app

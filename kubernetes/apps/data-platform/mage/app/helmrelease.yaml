@@ -76,10 +76,12 @@ spec:
       local:
         enabled: true
         existingClaim: local-volume-data-platform
-        mountPath: /home/src
-        subPath: *app
+        globalMounts:
+          - path: /home/src
+            subPath: *app
       nfs:
         enabled: true
         existingClaim: nfs-volume-data-platform
-        mountPath: /home/nfs
-        subPath: *app
+        globalMounts:
+          - path: /home/nfs
+            subPath: *app
