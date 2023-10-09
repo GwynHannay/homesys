@@ -9,42 +9,41 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
-  install:
-    createNamespace: true
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
-  uninstall:
-    keepHistory: false
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/hay-kot/homebox
-      tag: v0.9.2
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/hay-kot/homebox
+              tag: v0.9.2
+            envFrom:
+              - configMapRef:
+                  name: homebox-config
+
     service:
       main:
         ports:
           http:
             port: 7745
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: House Inventory
@@ -55,15 +54,17 @@ spec:
           - host: &host "homebox.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - configMapRef:
-          name: homebox-config
+
     persistence:
       data:
         enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /data
-        subPath: *app
+        globalMounts:
+          - path: /data
+            subPath: *app
