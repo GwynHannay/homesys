@@ -9,31 +9,42 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: dpage/pgadmin4
-      tag: 7.7
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: dpage/pgadmin4
+              tag: 7.7
+            envFrom:
+              - secretRef:
+                  name: pgadmin-secrets
+
     service:
       main:
         ports:
           http:
             port: 80
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: PostgreSQL GUI
@@ -44,15 +55,17 @@ spec:
           - host: &host "pgadmin.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - secretRef:
-          name: pgadmin-secrets
+
     persistence:
       config:
         enabled: true
         existingClaim: local-volume-data-platform
-        mountPath: /var/lib/pgadmin
-        subPath: *app
+        globalMounts:
+          - path: /var/lib/pgadmin
+            subPath: *app
