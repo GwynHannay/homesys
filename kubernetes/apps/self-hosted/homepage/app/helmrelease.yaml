@@ -9,49 +9,61 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/gethomepage/homepage
-      tag: v0.7.3
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/gethomepage/homepage
+              tag: v0.7.3
+            envFrom:
+              - secretRef:
+                  name: homepage-secrets
+
+    serviceAccount:
+      create: true
+
     service:
       main:
         ports:
           http:
             port: 3000
+
     ingress:
       main:
-        ingressClassName: internal
-        enabled: true
+        className: internal
         hosts:
           - host: &host "home.${SECRET_DOMAIN}"
             paths:
               - path: /
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    envFrom:
-      - secretRef:
-          name: homepage-secrets
+
     persistence:
       icons:
-        enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /app/public
-        subPath: *app
+        globalMounts:
+          - path: /app/public
+            subPath: *app
       config:
-        enabled: true
         type: custom
         volumeSpec:
           configMap:
@@ -70,16 +82,14 @@ spec:
           - path: widgets.yaml
             mountPath: /app/config/widgets.yaml
       host:
-        enabled: true
+        readOnly: true
         type: hostPath
-        mountPath: /tera
         hostPath: /mnt/tera
-        readOnly: true
+        globalMounts:
+          - path: /tera
       nfs:
-        enabled: true
-        type: hostPath
-        mountPath: /nfs
-        hostPath: /mnt/fileserver
         readOnly: true
-    serviceAccount:
-      create: true
+        type: hostPath
+        hostPath: /mnt/fileserver
+        globalMounts:
+          - path: /nfs
