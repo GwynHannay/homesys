@@ -9,65 +9,72 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: docker.io/typesense/typesense
-      tag: 0.25.1
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: docker.io/typesense/typesense
+              tag: 0.25.1
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  failureThreshold: 30
+                  periodSeconds: 5
+                  successThreshold: 1
+                  timeoutSeconds: 1
+            envFrom:
+              - configMapRef:
+                  name: immich-config
+              - secretRef:
+                  name: immich-secrets
+            resources:
+              requests:
+                cpu: 5m
+                memory: 250Mi
+              limits:
+                memory: 1443Mi
+
     service:
       main:
         ports:
           http:
             port: &port 8108
-    probes:
-      liveness: &probes
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: *port
-          initialDelaySeconds: 0
-          periodSeconds: 10
-          timeoutSeconds: 1
-          failureThreshold: 3
-      readiness: *probes
-      startup:
-        enabled: true
-        custom: true
-        spec:
-          httpGet:
-            path: /health
-            port: *port
-          failureThreshold: 30
-          periodSeconds: 5
-          successThreshold: 1
-          timeoutSeconds: 1
-    envFrom:
-      - configMapRef:
-          name: immich-config
-      - secretRef:
-          name: immich-secrets
+
     persistence:
       config:
-        enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /config
-        subPath: immich/typesense
-    resources:
-      requests:
-        cpu: 5m
-        memory: 250Mi
-      limits:
-        memory: 1443Mi
+        globalMounts:
+          - path: /config
+            subPath: immich/typesense

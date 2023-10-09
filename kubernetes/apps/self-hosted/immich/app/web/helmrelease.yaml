@@ -9,33 +9,50 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   dependsOn:
     - name: immich-server
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/immich-app/immich-web
-      tag: v1.81.1
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-web
+              tag: v1.81.1
+            envFrom:
+              - secretRef:
+                  name: immich-secrets
+              - configMapRef:
+                  name: immich-config
+            resources:
+              requests:
+                cpu: 5m
+                memory: 250Mi
+
     service:
       main:
         ports:
           http:
             port: 3000
+
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         annotations:
           nginx.ingress.kubernetes.io/configuration-snippet: |
             rewrite /api/(.*) /$1 break;
@@ -53,6 +70,9 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
+                  port: http
               - path: /api
                 pathType: Prefix
                 service:
@@ -62,12 +82,3 @@ spec:
           - hosts:
               - *host
             secretName: immich-tls
-    envFrom:
-      - secretRef:
-          name: immich-secrets
-      - configMapRef:
-          name: immich-config
-    resources:
-      requests:
-        cpu: 5m
-        memory: 250Mi

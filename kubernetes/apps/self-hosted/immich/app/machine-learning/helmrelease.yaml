@@ -9,41 +9,49 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   dependsOn:
     - name: immich-server
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/immich-app/immich-machine-learning
-      tag: v1.81.1
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v1.81.1
+            envFrom:
+              - secretRef:
+                  name: immich-secrets
+              - configMapRef:
+                  name: immich-config
+            resources:
+              requests:
+                cpu: 15m
+                memory: 250Mi
+
     service:
       main:
         ports:
           http:
             port: 3003
-    envFrom:
-      - secretRef:
-          name: immich-secrets
-      - configMapRef:
-          name: immich-config
+
     persistence:
       cache:
-        enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /cache
-        subPath: immich/models
-    resources:
-      requests:
-        cpu: 15m
-        memory: 250Mi
+        globalMounts:
+          - path: /cache
+            subPath: immich/models

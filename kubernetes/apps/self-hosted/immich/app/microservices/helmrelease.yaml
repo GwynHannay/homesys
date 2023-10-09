@@ -9,41 +9,49 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 1.5.1
+      version: 2.0.3
       interval: 30m
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   dependsOn:
     - name: immich-server
     - name: immich-typesense
+
   values:
-    controller:
-      replicas: 1
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: ghcr.io/immich-app/immich-server
-      tag: v1.81.1
-    args: ["start.sh", "microservices"]
-    podSecurityContext:
-      fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v1.81.1
+            args: ["start.sh", "microservices"]
+            envFrom:
+              - secretRef:
+                  name: immich-secrets
+              - configMapRef:
+                  name: immich-config
+            resources:
+              requests:
+                cpu: 5m
+                memory: 250Mi
+
     service:
       main:
         enabled: false
-    envFrom:
-      - secretRef:
-          name: immich-secrets
-      - configMapRef:
-          name: immich-config
+
     persistence:
       library:
-        enabled: true
         existingClaim: local-volume-self-hosted
-        mountPath: /usr/src/app/upload
-        subPath: immich/upload
-    resources:
-      requests:
-        cpu: 5m
-        memory: 250Mi
+        globalMounts:
+          - path: /usr/src/app/upload
+            subPath: immich/upload
