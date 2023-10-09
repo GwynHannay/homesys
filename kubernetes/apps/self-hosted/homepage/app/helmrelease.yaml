@@ -65,6 +65,7 @@ spec:
           - path: /app/public
             subPath: *app
       config:
+        enabled: true
         type: configMap
         name: homepage-config
         globalMounts:
