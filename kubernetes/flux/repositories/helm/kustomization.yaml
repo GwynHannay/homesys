@@ -6,16 +6,16 @@ resources:
   - ./bjw-s.yaml
   - ./cilium.yaml
   - ./coredns.yaml
-  - ./csi-driver-nfs.yaml
+  # - ./csi-driver-nfs.yaml
   - ./external-dns.yaml
-  - ./grafana.yaml
-  - ./hajimari.yaml
+  # - ./grafana.yaml
+  # - ./hajimari.yaml
   - ./ingress-nginx.yaml
   - ./jetstack.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
-  # - ./openebs.yaml
-  - ./prometheus-community.yaml
+  - ./nextcloud.yaml
+  # - ./prometheus-community.yaml
   - ./stakater.yaml
   - ./superset.yaml
   - ./weave-gitops.yaml
