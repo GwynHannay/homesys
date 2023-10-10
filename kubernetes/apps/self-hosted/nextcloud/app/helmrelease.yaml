@@ -86,8 +86,7 @@ spec:
 
     persistence:
       enabled: true
-      existingClaim: nfs-volume-self-hosted
-      subPath: *app
+      existingClaim: nextcloud-local
       nextcloudData:
         enabled: true
         existingClaim: local-volume-self-hosted
