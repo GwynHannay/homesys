@@ -19,11 +19,9 @@ spec:
   values:
     runAsUser: 1000
     envFromSecret: superset-secrets
-
-    supersetNode:
-      connections:
-        redis_host: "${REDIS_HOST}"
-        db_host: "${DW_POSTGRES_HOST}"
+    extraEnv:
+      REDIS_HOST: "${REDIS_HOST}"
+      DB_HOST: "${DW_POSTGRES_HOST}"
 
     ingress:
       enabled: true
