@@ -33,6 +33,8 @@ spec:
       datadir: /var/www/data
       securityContext:
         fsGroup: 1001
+      podSecurityContext:
+        fsGroup: 1001
 
     internalDatabase:
       enabled: false
