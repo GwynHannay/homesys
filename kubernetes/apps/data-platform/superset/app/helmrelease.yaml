@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: apache/superset
-    runAsUser: 1000
+    # runAsUser: 1000
     envFromSecret: superset-secrets
     extraEnv:
       REDIS_HOST: "${REDIS_HOST}"
