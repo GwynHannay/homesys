@@ -21,7 +21,7 @@ spec:
       enabled: true
 
     nextcloud:
-      host: *host
+      host: &host "cloud.${SECRET_DOMAIN}"
       existingSecret:
         enabled: true
         secretName: &secrets nextcloud-secrets
@@ -59,7 +59,7 @@ spec:
         gethomepage.dev/icon: nextcloud.png
         gethomepage.dev/name: Nextcloud
       hosts:
-        - host: &host "cloud.${SECRET_DOMAIN}"
+        - host: *host
           paths:
             - path: /
               service:
