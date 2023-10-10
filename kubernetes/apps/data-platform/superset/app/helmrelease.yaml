@@ -17,6 +17,8 @@ spec:
         namespace: flux-system
 
   values:
+    image:
+      repository: apache/superset
     runAsUser: 1000
     envFromSecret: superset-secrets
     extraEnv:
