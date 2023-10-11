@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: superset-config
+    name: superset-new-config
     namespace: data-platform
     labels:
         app.kubernetes.io/name: superset
@@ -24,8 +24,8 @@ sops:
             R3lONUowN2d0ck9XUlFwVkwvcDhXeUEKkNTMQxKNMxZfNmBtgfAnvzZ76ZAgNPQQ
             +1KaDGrvI8hnBWElBV9atBRfVFqAKWuQEcQYgIQzIHs1k2tQyJba6A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-11T01:40:41Z"
-    mac: ENC[AES256_GCM,data:L1pvJaXB4RYn7mW4FRLQTagKWC5U4VDKtV9irh0Gtd0dJyoYTXYyFN/zZQcWN5sb2AJFirfxzuJMpCUxU73FnM5aP4AL/fW8eMx9mCfii60FSGKrrUP893or7YbTdsByatyidpOxeojQVpeSKU/K1W9QV7NWt6jyxRxK2klwUKM=,iv:e58IM+JE2Iobl1Q68/N4QzpdhP9lqu7e7obxuimrGdk=,tag:5Fdx23irZTGtr7PR6nDXKQ==,type:str]
+    lastmodified: "2023-10-11T01:48:10Z"
+    mac: ENC[AES256_GCM,data:JfoWE0hHBx4UYtPUoJg6A44XQf5Ql5b2QjNXymmp0k0WOFFim3FHAfeqXdumLAm93jFw3+6taQh0q68O4NOPslpI6Vo5NOOq+McVZ0oUYOKGpYhJqgVbd5uRBiG9ExXOLLT+mx8ESsGtAeV1r/+LYKDvPQ7wTH0m+M2vUfq+OXc=,iv:zo0RCsecF02Xxo0Ii/3zDEkSzBiY0w3GBSPM+nOaaA0=,tag:1oy51e4m0Bjj1pNb7HB1wQ==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.8.0
