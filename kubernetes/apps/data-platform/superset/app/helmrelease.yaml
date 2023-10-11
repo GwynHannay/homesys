@@ -21,9 +21,6 @@ spec:
     runAsUser: 1000
     envFromSecret: superset-secrets
     configFromSecret: superset-new-config
-    extraEnv:
-      REDIS_HOST: "${REDIS_HOST}"
-      DB_HOST: "${DW_POSTGRES_HOST}"
 
     ingress:
       enabled: true
