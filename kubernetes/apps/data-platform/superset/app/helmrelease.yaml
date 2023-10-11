@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: *app
-      version: 0.10.5
+      version: 0.10.9
       sourceRef:
         kind: HelmRepository
         name: superset
@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: apache/superset
-    # runAsUser: 1000
+    runAsUser: 1000
     envFromSecret: superset-secrets
     extraEnv:
       REDIS_HOST: "${REDIS_HOST}"
@@ -43,10 +43,3 @@ spec:
       enabled: false
     redis:
       enabled: false
-
-    bootstrapScript: |
-      #!/bin/bash
-      rm -rf /var/lib/apt/lists/* && \
-      pip install \
-        psycopg2-binary==2.9.1
-      if [ ! -f ~/bootstrap ]; then echo "Running Superset with uid {{ .Values.runAsUser }}" > ~/bootstrap; fi
