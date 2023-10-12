@@ -8,11 +8,6 @@ metadata:
     app.kubernetes.io/name: mage
 data:
   TZ: "Australia/Perth"
-  # GIT_REPO_LINK: git@github.com:GwynHannay/mage.git
-  # GIT_REPO_PATH: /home/src/magerepo
-  # GIT_USERNAME: GwynHannay
-  # GIT_EMAIL: "${SECRET_ACME_EMAIL}"
-  # GIT_AUTH_TYPE: ssh
   MAGE_PUBLIC_HOST: "https://mage.${SECRET_DOMAIN}"
-  USER_CODE_PATH: /home/src/magerepo
+  USER_CODE_PATH: /home/src/repo
   DW_HOST: "${DW_POSTGRES_HOST}"
