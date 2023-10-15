@@ -55,7 +55,6 @@ spec:
           gethomepage.dev/name: Glances
           gethomepage.dev/widget.type: glances
           gethomepage.dev/widget.url: "https://glances.${SECRET_DOMAIN}"
-          gethomepage.dev/widget.metric: "memory"
         hosts:
           - host: &host "glances.${SECRET_DOMAIN}"
             paths:
