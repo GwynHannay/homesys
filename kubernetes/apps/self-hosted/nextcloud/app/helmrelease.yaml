@@ -20,6 +20,8 @@ spec:
       flavor: fpm-alpine
     nginx:
       enabled: true
+      securityContext:
+        runAsUser: 1001
 
     nextcloud:
       host: &host "cloud.${SECRET_DOMAIN}"
@@ -32,16 +34,16 @@ spec:
         - name: REDIS_HOST_PORT
           value: "6379"
       datadir: /var/www/data
-      # configs:
-      #   proxy.config.php: |-
-      #     <?php
-      #     $CONFIG = array (
-      #       'trusted_proxies' => array(
-      #         0 => '127.0.0.1',
-      #         1 => '10.0.0.0/8',
-      #       ),
-      #       'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
-      #     );
+      configs:
+        proxy.config.php: |-
+          <?php
+          $CONFIG = array (
+            'trusted_proxies' => array(
+              0 => '127.0.0.1',
+              1 => '10.0.0.0/8',
+            ),
+            'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+          );
       # securityContext:
       #   fsGroup: 1001
       podSecurityContext:
@@ -65,6 +67,8 @@ spec:
         nginx.ingress.kubernetes.io/proxy-body-size: "10G"
         nginx.ingress.kubernetes.io/proxy-buffering: "off"
         nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/enable-cors: "true"
+        nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
           proxy_hide_header X-Powered-By;
