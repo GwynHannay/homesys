@@ -36,7 +36,7 @@ spec:
           value: "${REDIS_HOST}"
         - name: REDIS_HOST_PORT
           value: "6379"
-      datadir: /var/www/data
+      # datadir: /var/www/data
       configs:
         proxy.config.php: |-
           <?php
@@ -49,8 +49,8 @@ spec:
           );
       # securityContext:
       #   fsGroup: 1001
-      podSecurityContext:
-        fsGroup: 1001
+      # podSecurityContext:
+      #   fsGroup: 1001
 
     internalDatabase:
       enabled: false
@@ -114,10 +114,6 @@ spec:
     persistence:
       enabled: true
       existingClaim: nextcloud-local
-      nextcloudData:
-        enabled: true
-        existingClaim: nfs-volume-self-hosted
-        subPath: *app
 
     # this seems to be required for nextcloud initialization which takes a long time
     startupProbe:
