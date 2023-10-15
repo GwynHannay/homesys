@@ -31,8 +31,9 @@ spec:
         gethomepage.dev/group: homesys links
         gethomepage.dev/icon: /icons/superset.png
         gethomepage.dev/name: Superset
+        gethomepage.dev/href: &host "superset.${SECRET_DOMAIN}"
       hosts:
-        - &host "superset.${SECRET_DOMAIN}"
+        - *host
       tls:
         - hosts:
             - *host
