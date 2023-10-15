@@ -32,7 +32,7 @@ spec:
               tag: 3.4.0.3
             env:
               TZ: "${TIMEZONE}"
-              GLANCES_OPT: "-C /glances/conf/glances.conf -w"
+              GLANCES_OPT: "--config /glances/conf/glances.conf --webserver --light"
             # envFrom:
             #   - secretRef:
             #       name: glances-secrets

@@ -259,5 +259,14 @@ data:
         longitude: {{HOMEPAGE_VAR_METEO_LONGITUDE}}
         timezone: Australia/Perth
         units: metric
+    - glances:
+        url: https://glances.${SECRET_DOMAIN}
+        expanded: true
+        uptime: true
+        label: homesys
+        disk:
+          - /
+          - /mnt/tera
+          - /mnt/fileserver
   docker.yaml: |
     ---
