@@ -33,9 +33,9 @@ spec:
             env:
               TZ: "${TIMEZONE}"
               GLANCES_OPT: "-C /glances/conf/glances.conf -w"
-            envFrom:
-              - secretRef:
-                  name: glances-secrets
+            # envFrom:
+            #   - secretRef:
+            #       name: glances-secrets
 
     service:
       main:
