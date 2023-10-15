@@ -17,12 +17,14 @@ spec:
 
   values:
     image:
-      flavor: fpm-alpine
+      flavor: fpm
     nginx:
       enabled: true
       securityContext:
         runAsUser: 1001
+        runAsGroup: 1001
         runAsNonRoot: true
+        readOnlyRootFilesystem: true
 
     nextcloud:
       host: &host "cloud.${SECRET_DOMAIN}"
