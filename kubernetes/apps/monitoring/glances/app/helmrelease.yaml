@@ -73,3 +73,18 @@ spec:
           - subPath: glances.conf
             path: /glances/conf/glances.conf
             readOnly: true
+      local:
+        existingClaim: local-volume-monitoring
+        globalMounts:
+          - path: /local
+            readOnly: true
+      nfs:
+        existingClaim: nfs-volume-monitoring
+        globalMounts:
+          - path: /nfs
+            readOnly: true
+      host:
+        existingClaim: host-volume-monitoring
+        globalMounts:
+          - path: /host
+            readOnly: true

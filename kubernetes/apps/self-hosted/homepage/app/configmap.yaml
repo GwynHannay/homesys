@@ -240,19 +240,19 @@ data:
         cluster:
           show: false
         nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-          expanded: true
-    - resources:
-        disk: /tera
-        expanded: true
-        label: host
-    - resources:
-        disk: /nfs
-        expanded: true
-        label: fileserver
+          show: false
+    #       cpu: true
+    #       memory: true
+    #       showLabel: true
+    #       expanded: true
+    # - resources:
+    #     disk: /tera
+    #     expanded: true
+    #     label: host
+    # - resources:
+    #     disk: /nfs
+    #     expanded: true
+    #     label: fileserver
     - openmeteo:
         label: {{HOMEPAGE_VAR_METEO_LABEL}}
         latitude: {{HOMEPAGE_VAR_METEO_LATITUDE}}
@@ -265,8 +265,8 @@ data:
         uptime: true
         label: homesys
         disk:
-          - /
-          - /mnt/tera
-          - /mnt/fileserver
+          - /host
+          - /local
+          - /nfs
   docker.yaml: |
     ---
