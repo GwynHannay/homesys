@@ -23,34 +23,45 @@ data:
         icon: mdi-widgets
         style: row
         columns: 3
+        tab: First
       homesys links:
         icon: mdi-server-network
         style: row
         columns: 3
-      Mediarr:
-        icon: mdi-projector
-        style: row
-        columns: 3
+        tab: First
       Host Widgets:
         icon: mdi-chart-box
         style: row
         columns: 3
+        tab: First
+      Mediarr:
+        icon: mdi-projector
+        style: row
+        columns: 3
+        tab: Second
       Hosts:
         icon: mdi-wan
+        tab: Second
       Documents:
         icon: mdi-file-document
+        tab: Second
       Web Stuff:
         icon: mdi-web
+        tab: Second
       Mediarr Files:
         icon: mdi-folder
         style: row
         columns: 3
+        tab: Second
       Banking:
         icon: mdi-credit-card
+        tab: Second
       Shopping:
         icon: mdi-basket
+        tab: Second
       Health:
         icon: mdi-heart-pulse
+        tab: Second
   services.yaml: |
     ---
     - Host Widgets:
@@ -89,12 +100,6 @@ data:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/local
-              chart: false
-        - Top Processes:
-            widget:
-              type: glances
-              url: https://glances.${SECRET_DOMAIN}
-              metric: process
               chart: false
     - homesys links:
         - Homer:
