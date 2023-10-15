@@ -19,6 +19,8 @@ data:
     quicklaunch:
       searchDescriptions: true
     layout:
+      Stuff:
+        tab: First
       homesys widgets:
         icon: mdi-widgets
         style: row
@@ -269,17 +271,17 @@ data:
             icon: /icons/csiro.png
             href: {{HOMEPAGE_VAR_RECIPES_URL}}
             description: Static Recipes Page
-    - Stuff:
-        - Calendar:
-            widget:
-              type: calendar
-              integrations:
-                - type: sonarr
-                  service_group: Mediarr
-                  service_name: Sonarr
-                - type: radarr
-                  service_group: Mediarr
-                  service_name: Radarr
+    # - Stuff:
+    #     - Calendar:
+    #         widget:
+    #           type: calendar
+    #           integrations:
+    #             - type: sonarr
+    #               service_group: Mediarr
+    #               service_name: Sonarr
+    #             - type: radarr
+    #               service_group: Mediarr
+    #               service_name: Radarr
   widgets.yaml: |
     - search:
         provider: duckduckgo
@@ -293,14 +295,14 @@ data:
     #       memory: true
     #       showLabel: true
     #       expanded: true
-    - resources:
-        disk: /tera
-        expanded: true
-        label: NMVe
-    - resources:
-        disk: /nfs
-        expanded: true
-        label: Files
+    # - resources:
+    #     disk: /tera
+    #     expanded: true
+    #     label: NMVe
+    # - resources:
+    #     disk: /nfs
+    #     expanded: true
+    #     label: Files
     - openmeteo:
         label: {{HOMEPAGE_VAR_METEO_LABEL}}
         latitude: {{HOMEPAGE_VAR_METEO_LATITUDE}}
