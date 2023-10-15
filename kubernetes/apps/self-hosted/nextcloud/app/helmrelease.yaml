@@ -100,6 +100,10 @@ spec:
         - hosts:
             - *host
 
+    phpClientHttpsFix:
+      enabled: true
+      protocol: https
+
     persistence:
       enabled: true
       existingClaim: nextcloud-local
