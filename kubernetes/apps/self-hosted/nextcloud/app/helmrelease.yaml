@@ -9,19 +9,17 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 4.3.2
+      version: 4.3.3
       sourceRef:
         kind: HelmRepository
         name: nextcloud
         namespace: flux-system
+
   values:
     image:
       flavor: fpm-alpine
     nginx:
       enabled: true
-      image:
-        repository: nginx
-        tag: 1.25-alpine
 
     nextcloud:
       host: &host "cloud.${SECRET_DOMAIN}"
@@ -69,27 +67,35 @@ spec:
         nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
-          location ^~ /.well-known {
-            location = /.well-known/carddav { return 301 /remote.php/dav/; }
-            location = /.well-known/caldav { return 301 /remote.php/dav/; }
-            location = /.well-known/acme-challenge { try_files $uri $uri/ =404; }
-            location = /.well-known/pki-validation { try_files $uri $uri/ =404; }
-            return 301 /index.php$request_uri;
+          proxy_hide_header X-Powered-By;
+
+          rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+          location = /.well-known/carddav {
+            return 301 $scheme://$host/remote.php/dav;
           }
-          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
-          location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
+          location = /.well-known/caldav {
+            return 301 $scheme://$host/remote.php/dav;
+          }
+          location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+            deny all;
+          }
+          location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+            deny all;
+          }
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Self-Hosted Cloud
         gethomepage.dev/group: homesys links
         gethomepage.dev/icon: nextcloud.png
         gethomepage.dev/name: Nextcloud
-      hosts:
-        - host: *host
-          paths:
-            - path: /
-              service:
-                name: main
-                port: http
+      path: /
+      pathType: Prefix
       tls:
         - hosts:
             - *host
@@ -99,7 +105,7 @@ spec:
       existingClaim: nextcloud-local
       nextcloudData:
         enabled: true
-        existingClaim: local-volume-self-hosted
+        existingClaim: nfs-volume-self-hosted
         subPath: *app
 
     # this seems to be required for nextcloud initialization which takes a long time
