@@ -296,11 +296,11 @@ data:
     - resources:
         disk: /tera
         expanded: true
-        label: host
+        label: NMVe
     - resources:
         disk: /nfs
         expanded: true
-        label: fileserver
+        label: Files
     - openmeteo:
         label: {{HOMEPAGE_VAR_METEO_LABEL}}
         latitude: {{HOMEPAGE_VAR_METEO_LATITUDE}}
@@ -313,5 +313,6 @@ data:
         uptime: true
         cputemp: true
         disk: /host
+        label: homesys
   docker.yaml: |
     ---
