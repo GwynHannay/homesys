@@ -53,6 +53,42 @@ data:
         icon: mdi-heart-pulse
   services.yaml: |
     ---
+    - homesys widgets:
+        - Info:
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: info
+        - CPU Usage:
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: cpu
+        - Memory Usage:
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: memory
+        - Network Usage:
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: network:eth0
+        - Disk Usage (Host):
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: fs:/host
+        - Disk Usage (NVMe):
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: fs:/local
+        - Disk Usage (Fileserver):
+            widget:
+              type: glances
+              url: https://glances.${SECRET_DOMAIN}
+              metric: fs:/nfs
     - homesys links:
         - Homer:
             icon: homer.png
@@ -263,10 +299,9 @@ data:
         url: https://glances.${SECRET_DOMAIN}
         expanded: true
         uptime: true
-        label: homesys
+        cputemp: true
         disk:
           - /host
           - /local
-          - /nfs
   docker.yaml: |
     ---
