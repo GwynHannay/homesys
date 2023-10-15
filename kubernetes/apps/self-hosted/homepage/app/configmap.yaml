@@ -53,12 +53,12 @@ data:
       Hosts:
         icon: mdi-wan
         style: row
-        columns: 3
+        columns: 5
         tab: House
       Documents:
         icon: mdi-file-document
         style: row
-        columns: 3
+        columns: 5
         tab: House
       Mediarr Files:
         icon: mdi-folder
@@ -68,16 +68,22 @@ data:
       Health:
         icon: mdi-heart-pulse
         style: row
-        columns: 3
+        columns: 5
         tab: Links
       Web Stuff:
         icon: mdi-web
+        style: row
+        columns: 5
         tab: Links
       Banking:
         icon: mdi-credit-card
+        style: row
+        columns: 5
         tab: Links
       Shopping:
         icon: mdi-basket
+        style: row
+        columns: 5
         tab: Links
   services.yaml: |
     ---
