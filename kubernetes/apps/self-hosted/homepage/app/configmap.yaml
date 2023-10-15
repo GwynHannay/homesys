@@ -59,36 +59,43 @@ data:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: info
+              chart: false
         - CPU Usage:
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: cpu
+              chart: false
         - Memory Usage:
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: memory
+              chart: false
         - Network Usage:
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: network:eth0
+              chart: false
         - Disk Usage (Host):
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/host
+              chart: false
         - Disk Usage (NVMe):
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/local
+              chart: false
         - Disk Usage (Fileserver):
             widget:
               type: glances
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/nfs
+              chart: false
     - homesys links:
         - Homer:
             icon: homer.png
