@@ -29,50 +29,56 @@ data:
       Bookmarks:
         style: row
         columns: 3
-        tab: First
+        tab: Main
       homesys widgets:
         icon: mdi-widgets
         style: row
         columns: 3
-        tab: First
+        tab: Main
       homesys links:
         icon: mdi-server-network
         style: row
         columns: 3
-        tab: First
+        tab: Main
       Host Widgets:
         icon: mdi-chart-box
         style: row
         columns: 3
-        tab: First
+        tab: Main
       Mediarr:
         icon: mdi-projector
         style: row
         columns: 3
-        tab: Second
+        tab: House
       Hosts:
         icon: mdi-wan
-        tab: Second
+        style: row
+        columns: 3
+        tab: House
       Documents:
         icon: mdi-file-document
-        tab: Second
-      Web Stuff:
-        icon: mdi-web
-        tab: Second
+        style: row
+        columns: 3
+        tab: House
       Mediarr Files:
         icon: mdi-folder
         style: row
         columns: 3
-        tab: Second
-      Banking:
-        icon: mdi-credit-card
-        tab: Second
-      Shopping:
-        icon: mdi-basket
-        tab: Second
+        tab: House
       Health:
         icon: mdi-heart-pulse
-        tab: Second
+        style: row
+        columns: 3
+        tab: Links
+      Web Stuff:
+        icon: mdi-web
+        tab: Links
+      Banking:
+        icon: mdi-credit-card
+        tab: Links
+      Shopping:
+        icon: mdi-basket
+        tab: Links
   services.yaml: |
     ---
     - Host Widgets:
