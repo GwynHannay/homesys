@@ -293,14 +293,14 @@ data:
     #       memory: true
     #       showLabel: true
     #       expanded: true
-    # - resources:
-    #     disk: /tera
-    #     expanded: true
-    #     label: host
-    # - resources:
-    #     disk: /nfs
-    #     expanded: true
-    #     label: fileserver
+    - resources:
+        disk: /tera
+        expanded: true
+        label: host
+    - resources:
+        disk: /nfs
+        expanded: true
+        label: fileserver
     - openmeteo:
         label: {{HOMEPAGE_VAR_METEO_LABEL}}
         latitude: {{HOMEPAGE_VAR_METEO_LATITUDE}}
@@ -312,8 +312,6 @@ data:
         expanded: true
         uptime: true
         cputemp: true
-        disk:
-          - /host
-          - /local
+        disk: /host
   docker.yaml: |
     ---
