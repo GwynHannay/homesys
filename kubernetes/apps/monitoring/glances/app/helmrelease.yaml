@@ -50,11 +50,9 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: System Resources
-          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/group: homesys links
           gethomepage.dev/icon: glances.png
           gethomepage.dev/name: Glances
-          gethomepage.dev/widget.type: glances
-          gethomepage.dev/widget.url: "https://glances.${SECRET_DOMAIN}"
         hosts:
           - host: &host "glances.${SECRET_DOMAIN}"
             paths:
