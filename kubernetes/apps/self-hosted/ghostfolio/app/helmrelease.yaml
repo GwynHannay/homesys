@@ -29,7 +29,7 @@ spec:
           main:
             image:
               repository: ghostfolio/ghostfolio
-              tag: 2.11.0
+              tag: 2.14.0
             envFrom:
               - secretRef:
                   name: ghostfolio-secrets
