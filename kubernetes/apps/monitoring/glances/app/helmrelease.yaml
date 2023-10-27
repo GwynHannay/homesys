@@ -29,13 +29,10 @@ spec:
           main:
             image:
               repository: nicolargo/glances
-              tag: 3.6.1.2
+              tag: 3.4.0.3
             env:
               TZ: "${TIMEZONE}"
               GLANCES_OPT: "--config /glances/conf/glances.conf --webserver"
-            # envFrom:
-            #   - secretRef:
-            #       name: glances-secrets
 
     service:
       main:
