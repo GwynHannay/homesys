@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: &app calibre
+  name: &app calibre-web
   namespace: media
 spec:
   interval: 15m
@@ -29,8 +29,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/linuxserver/calibre
-              tag: version-v7.0.0
+              repository: ghcr.io/linuxserver/calibre-web
+              tag: 0.6.21
             env:
               TZ: "${TIMEZONE}"
 
@@ -38,7 +38,7 @@ spec:
       main:
         ports:
           http:
-            port: 8080
+            port: 8083
 
     ingress:
       main:
@@ -46,12 +46,16 @@ spec:
         className: internal
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: eBook Library
-          gethomepage.dev/group: homesys links
-          gethomepage.dev/icon: calibre.png
+          gethomepage.dev/description: eBook GUI
+          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/icon: calibre-web.png
           gethomepage.dev/name: Calibre
+          gethomepage.dev/widget.type: calibreweb
+          gethomepage.dev/widget.url: "https://books.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_CALIBRE_USER}}"
+          gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_CALIBRE_PASS}}"
         hosts:
-          - host: &host "calibre.${SECRET_DOMAIN}"
+          - host: &host "books.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -66,7 +70,7 @@ spec:
         enabled: true
         existingClaim: local-volume-media
         globalMounts:
-          - path: calibre
-            subPath: calibre/core
-          - path: library
+          - path: /config
+            subPath: calibre/web
+          - path: /books
             subPath: calibre/library
