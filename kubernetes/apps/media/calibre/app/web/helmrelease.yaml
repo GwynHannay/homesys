@@ -32,6 +32,8 @@ spec:
               tag: 0.6.21
             env:
               TZ: "${TIMEZONE}"
+              GID: 1001
+              UID: 1001
 
     service:
       main:
