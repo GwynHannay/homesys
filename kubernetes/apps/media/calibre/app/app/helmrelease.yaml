@@ -33,8 +33,8 @@ spec:
               tag: version-v7.0.0
             env:
               TZ: "${TIMEZONE}"
-              GID: 1001
-              UID: 1001
+              PGID: 1001
+              PUID: 1001
 
     service:
       main:
