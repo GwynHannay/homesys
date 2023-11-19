@@ -70,3 +70,7 @@ spec:
             subPath: calibre/core
           - path: library
             subPath: calibre/library
+      uploads:
+        existingClaim: nfs-volume-media
+        globalMounts:
+          - subPath: *app
