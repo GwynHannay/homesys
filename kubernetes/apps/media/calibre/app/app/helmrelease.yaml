@@ -67,6 +67,6 @@ spec:
         existingClaim: local-volume-media
         globalMounts:
           - path: calibre
-            subPath: *app/core
+            subPath: calibre/core
           - path: library
-            subPath: *app/library
+            subPath: calibre/library
