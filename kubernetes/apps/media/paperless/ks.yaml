@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-apps-postgresql
-  path: ./kubernetes/apps/self-hosted/paperless/app
+  path: ./kubernetes/apps/media/paperless/app
   prune: true
   sourceRef:
     kind: GitRepository

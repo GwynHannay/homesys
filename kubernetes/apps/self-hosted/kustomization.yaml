@@ -11,5 +11,4 @@ resources:
   - ./immich/ks.yaml
   - ./joplin/ks.yaml
   # - ./nextcloud/ks.yaml
-  - ./paperless/ks.yaml
   - ./wallabag/ks.yaml

@@ -5,3 +5,4 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   - ./calibre/ks.yaml
+  - ./paperless/ks.yaml
