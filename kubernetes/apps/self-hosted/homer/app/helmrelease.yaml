@@ -35,9 +35,6 @@ spec:
                 value: "${TIMEZONE}"
               - name: INIT_ASSETS
                 value: 0
-            envFrom:
-              - secretRef:
-                  name: homer-secrets
 
     service:
       main:
@@ -51,8 +48,8 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMap
-        name: homer-config
+        type: secret
+        secretName: homer-secret-config
         globalMounts:
           - subPath: config.yml
             path: /www/assets/config.yml
