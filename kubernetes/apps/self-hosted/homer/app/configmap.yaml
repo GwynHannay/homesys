@@ -273,7 +273,7 @@ data:
             logo: "assets/tools/readarr.png"
             subtitle: "Books"
             url: "${READARR_URL}"
-            url: "${API_READARR}"
+            apikey: "${API_READARR}"
           - name: "Bazarr"
             logo: "assets/tools/bazarr.png"
             subtitle: "Subtitles"
