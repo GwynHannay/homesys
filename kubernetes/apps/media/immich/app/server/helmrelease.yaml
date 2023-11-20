@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app immich-server
-  namespace: self-hosted
+  namespace: media
 spec:
   interval: 30m
   chart:
@@ -81,7 +81,7 @@ spec:
 
     persistence:
       library:
-        existingClaim: local-volume-self-hosted
+        existingClaim: local-volume-media
         globalMounts:
           - path: /usr/src/app/upload
             subPath: immich/upload

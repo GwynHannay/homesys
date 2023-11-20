@@ -8,7 +8,7 @@ spec:
   dependsOn:
     - name: cluster-apps-postgresql
     - name: cluster-apps-redis
-  path: ./kubernetes/apps/self-hosted/immich/app
+  path: ./kubernetes/apps/media/immich/app
   prune: true
   sourceRef:
     kind: GitRepository

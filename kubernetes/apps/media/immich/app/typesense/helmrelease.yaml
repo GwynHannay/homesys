@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app immich-typesense
-  namespace: self-hosted
+  namespace: media
 spec:
   interval: 30m
   chart:
@@ -75,7 +75,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: local-volume-self-hosted
+        existingClaim: local-volume-media
         globalMounts:
           - path: /config
             subPath: immich/typesense
