@@ -1,0 +1,355 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homer-config
+  namespace: self-hosted
+  labels:
+    app.kubernetes.io/name: homer
+data:
+  config.yml: |
+    ---
+    # Homepage configuration
+    # See https://fontawesome.com/v5/search for icons options
+
+    title: "Homer Server"
+    subtitle: "mmmm... donuts"
+    logo: "logo.png"
+    # icon: "fas fa-skull-crossbones" # Optional icon
+
+    header: true
+    # footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
+    footer: false
+
+    # Optional theme customization
+    theme: default
+    colors:
+      light:
+        highlight-primary: "#3367d6"
+        highlight-secondary: "#4285f4"
+        highlight-hover: "#5a95f5"
+        background: "#f5f5f5"
+        card-background: "#ffffff"
+        text: "#363636"
+        text-header: "#ffffff"
+        text-title: "#303030"
+        text-subtitle: "#424242"
+        card-shadow: rgba(0, 0, 0, 0.1)
+        link: "#3273dc"
+        link-hover: "#363636"
+      dark:
+        highlight-primary: "#3367d6"
+        highlight-secondary: "#4285f4"
+        highlight-hover: "#5a95f5"
+        background: "#131313"
+        card-background: "#2b2b2b"
+        text: "#eaeaea"
+        text-header: "#ffffff"
+        text-title: "#fafafa"
+        text-subtitle: "#f5f5f5"
+        card-shadow: rgba(0, 0, 0, 0.4)
+        link: "#3273dc"
+        link-hover: "#ffdd57"
+
+    # Optional message
+    message: ~
+      # url: https://github.com/GwynHannay/homesys
+      # style: "is-info" # See https://bulma.io/documentation/components/message/#colors for styling options.
+      # title: "Home Page!"
+      # icon: "fa fa-grin"
+      # content: "This is our new landing page."
+
+    # Optional navbar
+    # links: [] # Allows for navbar (dark mode, layout, and search) without any links
+    links:
+      - name: "Home"
+        icon: "fas fa-home"
+        url: "#"
+      # this will link to a second homer page that will load config from additional-page.yml and keep default config values as in config.yml file
+      # see url field and assets/additional-page.yml.dist used in this example:
+      - name: "Mediarr"
+        icon: "fas fa-skull-crossbones"
+        url: "#mediarr"
+      - name: "Money"
+        icon: "fas fa-credit-card"
+        url: "#money"
+      - name: "Documents"
+        icon: "fas fa-folder-tree"
+        url: "#docs"
+      - name: "Useful Links"
+        icon: "fas fa-link"
+        url: "#links"
+      - name: "Server Source"
+        icon: "fab fa-github"
+        url: "https://github.com/GwynHannay/homesys"
+        target: "_blank" # optional html a tag target attribute
+
+    # Services
+    # First level array represent a group.
+    # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+    services:
+      - name: "Applications"
+        icon: "fas fa-cloud"
+        items:
+          - name: "Homepage"
+            logo: ""
+            subtitle: "Home Page for homesys"
+            url: "https://home.${SECRET_DOMAIN}"
+          - name: "Home Assistant"
+            logo: "assets/tools/home-assistant.png"
+            subtitle: "Home Automation and Control"
+            url: "${HOMEASSISTANT_URL}"
+          - name: "Paperless-ngx"
+            type: "PaperlessNG"
+            logo: "assets/tools/paperless-ngx.png"
+            subtitle: "Documents"
+            url: "https://paperless.${SECRET_DOMAIN}"
+            apikey: "${API_PAPERLESS}"
+          - name: "Immich"
+            type: "Immich"
+            logo: "assets/tools/immich.png"
+            subtitle: "Google Photos replacement"
+            url: "https://immich.${SECRET_DOMAIN}"
+            apikey: "${API_IMMICH}"
+          - name: "Wallabag"
+            logo: "assets/tools/wallabag.png"
+            subtitle: "Bookmarked Articles"
+            url: "https://wallabag.${SECRET_DOMAIN}"
+          - name: "Joplin"
+            logo: "assets/tools/joplin.png"
+            subtitle: "Notes"
+            url: "https://joplin.${SECRET_DOMAIN}"
+          - name: "HomeBox"
+            logo: "assets/tools/homebox.png"
+            subtitle: "Home Inventory"
+            url: "https://homebox.${SECRET_DOMAIN}"
+      - name: "Hosts"
+        icon: "fas fa-network-wired"
+        items:
+          - name: "RouterOS"
+            logo: "assets/tools/routeros.png"
+            subtitle: "Router"
+            url: "${ROUTER_URL}"
+          - name: "UniFi Admin"
+            logo: "assets/tools/unifi.png"
+            subtitle: "WiFi"
+            url: "${WIFI_URL}"
+          - name: "homesys ESXi"
+            logo: "assets/tools/esxi.png"
+            subtitle: "HP Elite"
+            url: "${ESXI_URL}"
+          - name: "Printer"
+            logo: "assets/tools/brother.png"
+            subtitle: "Brother Printer"
+            url: "${PRINTER_URL}"
+      - name: "Inactive Apps & Hosts"
+        icon: "fas fa-times-circle"
+        items:
+          - name: "Wayback Proxy (not active)"
+            logo: "assets/tools/txt.png"
+            subtitle: "${WAYBACK_URL}"
+  docs.yml: |
+    ---
+    # Additional page configuration
+
+    # Additional configurations are loaded using its file name, minus the extension, as an anchor (https://<mydashboad>#<config>).
+    # `config.yml` is still used as a base configuration, and all values here will overwrite it, so you don't have to re-defined everything
+
+    # See https://fontawesome.com/v5/search for icons options
+    subtitle: "docs & stuff"
+
+    # This overwrites message config. Setting it to empty to remove message from this page and keep it only in the main one:
+    message: ~
+
+    # as we want to include a differente link here (so we can get back to home page), we need to replicate all links or they will be revome when overwriting the links field:
+    # links:
+    #   - name: "Home"
+    #     icon: "fas fa-home"
+    #     url: "#"
+    #   - name: "Server Source"
+    #     icon: "fab fa-github"
+    #     url: "https://github.com/GwynHannay/homesys"
+    #     target: "_blank"
+
+    services:
+      - name: "Folders"
+        icon: "fas fa-folder-plus"
+        items:
+          - name: "Shared Drive"
+            logo: "assets/tools/drive.png"
+            subtitle: "Our Shared Items"
+            url: "${GDRIVE_URL}"
+      - name: "Home Stuff"
+        icon: "fas fa-house-user"
+        items:
+          - name: "Online Orders"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "Tracking Online"
+            url: "${ORDERS_URL}"
+          - name: "Garage / Items"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "Catalogue of Garage Boxes, Linen Drawers, etc."
+            url: "${INVENTORY_URL}"
+          - name: "Family Info"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "End of Life / Medical / Assets, etc."
+            url: "${FAMILY_URL}"
+          - name: "Fileserver Things"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "TV Shows and Movies to Keep"
+            url: "${SERVERMEDIA_URL}"
+          - name: "Domains"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "Our web domains / hosting"
+            url: "${DOMAINS_URL}"
+      - name: "Food"
+        icon: "fas fa-utensils"
+        items:
+          - name: "Recipes"
+            logo: "assets/tools/csiro.png"
+            subtitle: "Static recipes page"
+            url: "${RECIPES_URL}"
+  links.yml: |
+    ---
+    subtitle: "a whole wide web"
+    message: ~
+
+    services:
+      - name: "Health"
+        icon: "fas fa-heartbeat"
+        items:
+          - name: "Medicare"
+            logo: "assets/tools/medicare.png"
+            subtitle: "Healthcare (via myGov)"
+            url: "${MEDICARE_URL}"
+          - name: "Bupa"
+            logo: "assets/tools/bupa.png"
+            subtitle: "Private Health Insurance"
+            url: "${BUPA_URL}"
+      - name: "Web Stuff"
+        icon: "fa-solid fa-globe"
+        items:
+          - name: "Hostinger"
+            logo: "assets/tools/hostinger.png"
+            subtitle: "Current Web Host"
+            url: "${HOSTINGER_URL}"
+          - name: "Synergy Wholesale"
+            logo: "assets/tools/synergy-wholesale.png"
+            subtitle: "Current Domain Registrar"
+            url: "${SYNERGY_URL}"
+          - name: "VentraIP"
+            logo: "assets/tools/ventraip.png"
+            subtitle: "Old Domain Registrar"
+            url: "${VENTRA_URL}"
+          - name: "DreamHost"
+            logo: "assets/tools/dreamhost.png"
+            subtitle: "Outgoing Domain Registrar"
+            url: "${DREAMHOST_URL}"
+  mediarr.yml: |
+    ---
+    subtitle: "you are a pirate"
+    message: ~
+
+    services:
+      - name: "Cloud"
+        icon: "fab fa-google-drive"
+        items:
+          - name: "NZBGet"
+            logo: "assets/tools/nzbget.png"
+            subtitle: "Usenet Downloader"
+            url: "${NZBGET_URL}"
+          - name: "Sonarr"
+            type: "Sonarr"
+            logo: "assets/tools/sonarr.png"
+            subtitle: "TV Shows"
+            url: "${SONARR_URL}"
+            apikey: "${API_SONARR}"
+          - name: "Radarr"
+            type: "Radarr"
+            logo: "assets/tools/radarr.png"
+            subtitle: "Movies"
+            url: "${API_RADARR}"
+            apikey: "${NZBGET_URL}"
+          - name: "Readarr"
+            logo: "assets/tools/readarr.png"
+            subtitle: "Books"
+            url: "${READARR_URL}"
+            url: "${API_READARR}"
+          - name: "Bazarr"
+            logo: "assets/tools/bazarr.png"
+            subtitle: "Subtitles"
+            url: "${BAZARR_URL}"
+          - name: "Files"
+            logo: "assets/tools/files.png"
+            subtitle: "File Browser"
+            url: "${AUTO_URL}"
+      - name: "MBS"
+        icon: "fas fa-cloud"
+        items:
+          - name: "File Share"
+            logo: "assets/tools/txt.png"
+            subtitle: "${MBS_TEXT}"
+          - name: "MBS Files"
+            logo: "assets/tools/files.png"
+            subtitle: "File Browser"
+            url: "${MBS_URL}"
+      - name: "File Server"
+        icon: "fas fa-server"
+        items:
+          - name: "Local Array File Share"
+            logo: "assets/tools/txt.png"
+            subtitle: "${FILESERVER}"
+      - name: "Others"
+        icon: "fas fa-film"
+        items:
+          - name: "Odd Bird Media"
+            logo: "assets/tools/files.png"
+            subtitle: "File Browser of TV, Movies, Misc"
+            url: "${ODDBIRD_URL}"
+  money.yml: |
+    ---
+    subtitle: "money, money, money"
+    message: ~
+
+    services:
+      - name: "Banking"
+        icon: "fas fa-sack-dollar"
+        items:
+          - name: "ING"
+            logo: "assets/tools/ing.png"
+            subtitle: "Main Bank"
+            url: "${ING_URL}"
+          - name: "Bankwest"
+            logo: "assets/tools/bankwest.png"
+            subtitle: "Credit Card"
+            url: "${BANKWEST_URL}"
+          - name: "UBank"
+            logo: "assets/tools/ubank.png"
+            subtitle: "Emergency Savings"
+            url: "${UBANK_URL}"
+          - name: "CMC Markets"
+            logo: "assets/tools/cmc.png"
+            subtitle: "Investment"
+            url: "${CMC_URL}"
+          - name: "NAB"
+            logo: "assets/tools/nab.png"
+            subtitle: "Bank (Physical Branch)"
+            url: "${NAB_URL}"
+      - name: "Shopping"
+        icon: "fas fa-shopping-basket"
+        items:
+          - name: "Discounts"
+            logo: "assets/tools/gsheets.png"
+            subtitle: "Attempt to list discounts"
+            url: "${DISCOUNTS_URL}"
+          - name: "Bupa Life Rewards"
+            logo: "assets/tools/life.png"
+            subtitle: "Discounts/eCards from Bupa"
+            url: "${LIFEREWARDS_URL}"
+          - name: "Woolworths Everyday Rewards"
+            logo: "assets/tools/everydayrewards.png"
+            subtitle: "Everyday Extras, Discounts, etc."
+            url: "${EVERYDAYREWARDS_URL}"
+          - name: "PA Member Advantage"
+            logo: "assets/tools/pa.png"
+            subtitle: "Professionals Australia Discounts"
+            url: "${MEMBERADVANTAGE_URL}"
