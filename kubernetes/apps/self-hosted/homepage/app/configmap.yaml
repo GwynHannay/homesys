@@ -69,6 +69,7 @@ data:
       hosts:
         icon: mdi-wan
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       documents:
@@ -89,6 +90,7 @@ data:
       web-stuff:
         icon: mdi-web
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       banking:
