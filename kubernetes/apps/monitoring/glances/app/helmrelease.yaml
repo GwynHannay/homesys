@@ -50,6 +50,7 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: glances.png
           gethomepage.dev/name: Glances
+          gethomepage.dev/weight: "20"
         hosts:
           - host: &host "glances.${SECRET_DOMAIN}"
             paths:

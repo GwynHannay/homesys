@@ -70,9 +70,10 @@ spec:
           annotations:
             gethomepage.dev/enabled: "true"
             gethomepage.dev/description: Network Flows
-            gethomepage.dev/group: *ns
+            gethomepage.dev/group: monitoring
             gethomepage.dev/icon: cilium.png
             gethomepage.dev/name: Hubble
+            gethomepage.dev/weight: "90"
           hosts:
             - &host "hubble.${SECRET_DOMAIN}"
           tls:

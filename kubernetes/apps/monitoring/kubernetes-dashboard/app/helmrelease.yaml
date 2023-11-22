@@ -38,6 +38,7 @@ spec:
         gethomepage.dev/group: *ns
         gethomepage.dev/icon: kubernetes-dashboard.png
         gethomepage.dev/name: Kubernetes Dashboard
+        gethomepage.dev/weight: "10"
         gethomepage.dev/href: "https://kubernetes.${SECRET_DOMAIN}/#/workloads?namespace=_all"
       hosts:
         - &host "kubernetes.${SECRET_DOMAIN}"
