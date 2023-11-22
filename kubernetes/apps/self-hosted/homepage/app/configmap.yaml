@@ -41,6 +41,7 @@ data:
         columns: 3
         tab: Main
       data-platform:
+        icon: mdi-table-pivot
         style: row
         columns: 3
         tab: Main
@@ -52,10 +53,6 @@ data:
         style: row
         columns: 3
         tab: Main
-      monitoring:
-        style: row
-        columns: 3
-        tab: Monitoring
       self-hosted:
         style: row
         columns: 3
@@ -86,6 +83,11 @@ data:
       Shopping:
         icon: mdi-basket
         tab: House
+      monitoring:
+        icon: mdi-glasses
+        style: row
+        columns: 3
+        tab: Monitoring
       Glances:
         icon: mdi-chart-box
         style: row

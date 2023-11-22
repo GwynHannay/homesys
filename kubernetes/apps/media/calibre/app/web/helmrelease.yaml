@@ -48,7 +48,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: eBook GUI
-          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/group: *ns
           gethomepage.dev/icon: calibre-web.png
           gethomepage.dev/name: Calibre
           gethomepage.dev/widget.type: calibreweb

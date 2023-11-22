@@ -48,7 +48,7 @@ spec:
         className: internal
         annotations:
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: eBook Library
+          gethomepage.dev/description: eBook Library Admin
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: calibre.png
           gethomepage.dev/name: Calibre

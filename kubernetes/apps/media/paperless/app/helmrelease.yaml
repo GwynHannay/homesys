@@ -74,7 +74,7 @@ spec:
           nginx.ingress.kubernetes.io/proxy-body-size: 4G
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Documents
-          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/group: *ns
           gethomepage.dev/icon: paperless-ngx.png
           gethomepage.dev/name: Paperless-NGX
           gethomepage.dev/widget.type: paperlessngx
