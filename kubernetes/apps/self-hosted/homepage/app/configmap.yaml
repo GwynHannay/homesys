@@ -61,17 +61,16 @@ data:
         tab: House
       Health:
         icon: mdi-heart-pulse
-        columns: 4
-        tab: Links
+        tab: House
       Web Stuff:
         icon: mdi-web
-        tab: Links
+        tab: House
       Banking:
         icon: mdi-credit-card
-        tab: Links
+        tab: House
       Shopping:
         icon: mdi-basket
-        tab: Links
+        tab: House
   services.yaml: |
     ---
     - Host Widgets:
