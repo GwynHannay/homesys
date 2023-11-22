@@ -40,6 +40,21 @@ data:
         style: row
         columns: 3
         tab: Main
+      data-platform:
+        columns: 3
+        tab: Main
+      kube-system:
+        columns: 3
+        tab: Main
+      media:
+        columns: 3
+        tab: Main
+      self-hosted:
+        columns: 3
+        tab: Main
+      monitoring:
+        columns: 3
+        tab: Main
       Mediarr:
         icon: mdi-projector
         style: row
