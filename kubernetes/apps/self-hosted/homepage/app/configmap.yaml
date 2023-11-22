@@ -88,29 +88,29 @@ data:
         tab: House
       mediarr-files:
         icon: mdi-folder
-        style: row
-        columns: 4
+        # style: row
+        # columns: 4
         tab: House
       monitoring:
         icon: mdi-glasses
         style: row
         columns: 3
-        tab: Monitoring
+        tab: Infrastructure
       glances:
         icon: mdi-chart-box
         style: row
         columns: 3
-        tab: Monitoring
+        tab: Infrastructure
       storage:
         icon: mdi-content-save-settings-outline
         style: row
         columns: 3
-        tab: Monitoring
+        tab: Infrastructure
       hosts:
         icon: mdi-wan
         style: row
-        columns: 4
-        tab: Monitoring
+        columns: 3
+        tab: Infrastructure
   services.yaml: |
     ---
     - glances:
