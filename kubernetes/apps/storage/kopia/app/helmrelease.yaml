@@ -76,7 +76,7 @@ spec:
         enabled: true
         readOnly: true
         type: configMap
-        name: *app
+        name: monitoring-widgets
         globalMounts:
           - path: /app/config/repository.config
             subPath: repository.config
