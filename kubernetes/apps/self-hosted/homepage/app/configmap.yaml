@@ -25,6 +25,7 @@ data:
     headerStyle: boxed
     quicklaunch:
       searchDescriptions: true
+    disableCollapse: true
     layout:
       # homesys links:
       #   icon: mdi-server-network
@@ -34,7 +35,6 @@ data:
       bookmarks:
         style: row
         columns: 3
-        disableCollapse: true
         tab: Main
       media:
         icon: mdi-folder-play-outline
@@ -75,16 +75,19 @@ data:
       documents:
         icon: mdi-file-document
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       mediarr-files:
         icon: mdi-folder
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       health:
         icon: mdi-heart-pulse
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       web-stuff:
@@ -96,11 +99,13 @@ data:
       banking:
         icon: mdi-credit-card
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       shopping:
         icon: mdi-basket
         style: row
+        columns: 4
         disableCollapse: true
         tab: House
       monitoring:
