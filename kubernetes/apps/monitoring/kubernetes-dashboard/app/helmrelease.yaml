@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: kubernetes-dashboard
-  namespace: monitoring
+  namespace: &ns monitoring
 spec:
   interval: 30m
   chart:
@@ -35,7 +35,7 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Dashboard
-        gethomepage.dev/group: homesys links
+        gethomepage.dev/group: *ns
         gethomepage.dev/icon: kubernetes-dashboard.png
         gethomepage.dev/name: Kubernetes Dashboard
         gethomepage.dev/href: "https://kubernetes.${SECRET_DOMAIN}/#/workloads?namespace=_all"

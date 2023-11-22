@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app glances
-  namespace: monitoring
+  namespace: &ns monitoring
 spec:
   interval: 30m
   chart:
@@ -47,7 +47,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: System Resources
-          gethomepage.dev/group: homesys links
+          gethomepage.dev/group: *ns
           gethomepage.dev/icon: glances.png
           gethomepage.dev/name: Glances
         hosts:

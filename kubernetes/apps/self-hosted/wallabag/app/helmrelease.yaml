@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app wallabag
-  namespace: self-hosted
+  namespace: &ns self-hosted
 spec:
   interval: 15m
   chart:
@@ -49,7 +49,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Bookmarked Articles
-          gethomepage.dev/group: homesys links
+          gethomepage.dev/group: *ns
           gethomepage.dev/icon: wallabag.png
           gethomepage.dev/name: Wallabag
         hosts:
