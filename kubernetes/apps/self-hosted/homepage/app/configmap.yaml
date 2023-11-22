@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: homepage
 data:
   bookmarks.yaml: |
-    - Bookmarks:
+    - bookmarks:
         - GitHub Repo (homesys):
             - icon: github.png
               href: https://github.com/GwynHannay/homesys
@@ -37,66 +37,91 @@ data:
         disableCollapse: true
         tab: Main
       media:
+        icon: mdi-folder-play-outline
         style: row
         columns: 3
+        disableCollapse: true
+        tab: Main
+      self-hosted:
+        icon: mdi-devices
+        style: row
+        columns: 3
+        disableCollapse: true
         tab: Main
       widgets:
         icon: mdi-widgets
         style: row
         columns: 3
+        disableCollapse: true
         tab: Main
       data-platform:
         icon: mdi-table-pivot
         style: row
         columns: 3
-        tab: Main
-      self-hosted:
-        style: row
-        columns: 3
+        disableCollapse: true
         tab: Main
       mediarr:
         icon: mdi-projector
         style: row
         columns: 3
+        disableCollapse: true
         tab: House
       hosts:
         icon: mdi-wan
+        style: row
+        disableCollapse: true
         tab: House
       documents:
         icon: mdi-file-document
+        style: row
+        disableCollapse: true
         tab: House
       mediarr-files:
         icon: mdi-folder
+        style: row
+        disableCollapse: true
         tab: House
       health:
         icon: mdi-heart-pulse
+        style: row
+        disableCollapse: true
         tab: House
       web-stuff:
         icon: mdi-web
+        style: row
+        disableCollapse: true
         tab: House
       banking:
         icon: mdi-credit-card
+        style: row
+        disableCollapse: true
         tab: House
       shopping:
         icon: mdi-basket
+        style: row
+        disableCollapse: true
         tab: House
       monitoring:
         icon: mdi-glasses
         style: row
         columns: 3
+        disableCollapse: true
         tab: Monitoring
       glances:
         icon: mdi-chart-box
         style: row
         columns: 3
+        disableCollapse: true
         tab: Monitoring
       monitoring-widgets:
         style: row
         columns: 3
+        disableCollapse: true
         tab: Monitoring
       kube-system:
         style: row
         columns: 3
+        disableCollapse: true
         tab: Monitoring
   services.yaml: |
     ---
