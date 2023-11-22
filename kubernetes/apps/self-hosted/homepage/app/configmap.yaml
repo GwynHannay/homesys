@@ -57,6 +57,10 @@ data:
         style: row
         columns: 3
         tab: Main
+      storage:
+        style: row
+        columns: 3
+        tab: Main
       Mediarr:
         icon: mdi-projector
         style: row
@@ -132,7 +136,7 @@ data:
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/local
               chart: false
-    - homesys links:
+    - self-hosted:
         - Homer:
             icon: homer.png
             href: {{HOMEPAGE_VAR_HOMER_URL}}
