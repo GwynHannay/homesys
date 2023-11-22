@@ -77,7 +77,7 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: paperless-ngx.png
           gethomepage.dev/name: Paperless-NGX
-          gethomepage.dev/weight: 11
+          gethomepage.dev/weight: "11"
           gethomepage.dev/widget.type: paperlessngx
           gethomepage.dev/widget.url: "https://paperless.${SECRET_DOMAIN}"
           gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PAPERLESS}}"

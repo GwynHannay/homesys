@@ -52,7 +52,7 @@ spec:
           gethomepage.dev/group: self-hosted
           gethomepage.dev/icon: calibre.png
           gethomepage.dev/name: Calibre
-          gethomepage.dev/weight: 50
+          gethomepage.dev/weight: "50"
         hosts:
           - host: &host "calibre.${SECRET_DOMAIN}"
             paths:

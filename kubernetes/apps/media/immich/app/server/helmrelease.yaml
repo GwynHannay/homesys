@@ -64,7 +64,7 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: immich.png
           gethomepage.dev/name: Immich
-          gethomepage.dev/weight: 10
+          gethomepage.dev/weight: "10"
           gethomepage.dev/widget.type: immich
           gethomepage.dev/widget.url: "https://immich.${SECRET_DOMAIN}"
           gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_IMMICH}}"
