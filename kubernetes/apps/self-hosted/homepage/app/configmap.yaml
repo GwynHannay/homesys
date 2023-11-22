@@ -26,30 +26,27 @@ data:
     quicklaunch:
       searchDescriptions: true
     layout:
+      # homesys widgets:
+      #   icon: mdi-widgets
+      #   style: row
+      #   columns: 3
+      #   tab: Main
+      # homesys links:
+      #   icon: mdi-server-network
+      #   style: row
+      #   columns: 3
+      #   tab: Main
       Bookmarks:
         style: row
         columns: 3
+        disableCollapse: true
         tab: Main
-      homesys widgets:
-        icon: mdi-widgets
-        style: row
-        columns: 3
-        tab: Main
-      homesys links:
-        icon: mdi-server-network
+      media:
         style: row
         columns: 3
         tab: Main
       data-platform:
         icon: mdi-table-pivot
-        style: row
-        columns: 3
-        tab: Main
-      kube-system:
-        style: row
-        columns: 3
-        tab: Main
-      media:
         style: row
         columns: 3
         tab: Main
@@ -94,6 +91,10 @@ data:
         tab: Monitoring
       Glances:
         icon: mdi-chart-box
+        style: row
+        columns: 3
+        tab: Monitoring
+      kube-system:
         style: row
         columns: 3
         tab: Monitoring
