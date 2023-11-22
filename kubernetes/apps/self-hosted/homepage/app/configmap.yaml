@@ -40,95 +40,76 @@ data:
         icon: mdi-folder-play-outline
         style: row
         columns: 3
-        disableCollapse: true
         tab: Main
       self-hosted:
         icon: mdi-devices
         style: row
         columns: 3
-        disableCollapse: true
         tab: Main
       widgets:
         icon: mdi-widgets
         style: row
         columns: 3
-        disableCollapse: true
         tab: Main
       data-platform:
         icon: mdi-table-pivot
         style: row
         columns: 3
-        disableCollapse: true
         tab: Main
       mediarr:
         icon: mdi-projector
         style: row
         columns: 3
-        disableCollapse: true
-        tab: House
-      hosts:
-        icon: mdi-wan
-        style: row
-        columns: 4
-        disableCollapse: true
         tab: House
       documents:
         icon: mdi-file-document
         style: row
         columns: 4
-        disableCollapse: true
-        tab: House
-      mediarr-files:
-        icon: mdi-folder
-        style: row
-        columns: 4
-        disableCollapse: true
-        tab: House
-      health:
-        icon: mdi-heart-pulse
-        style: row
-        columns: 4
-        disableCollapse: true
-        tab: House
-      web-stuff:
-        icon: mdi-web
-        style: row
-        columns: 4
-        disableCollapse: true
         tab: House
       banking:
         icon: mdi-credit-card
         style: row
         columns: 4
-        disableCollapse: true
+        tab: House
+      health:
+        icon: mdi-heart-pulse
+        # style: row
+        # columns: 4
+        tab: House
+      web-stuff:
+        icon: mdi-web
+        # style: row
+        # columns: 4
         tab: House
       shopping:
         icon: mdi-basket
+        # style: row
+        # columns: 4
+        tab: House
+      mediarr-files:
+        icon: mdi-folder
         style: row
         columns: 4
-        disableCollapse: true
         tab: House
       monitoring:
         icon: mdi-glasses
         style: row
         columns: 3
-        disableCollapse: true
         tab: Monitoring
       glances:
         icon: mdi-chart-box
         style: row
         columns: 3
-        disableCollapse: true
         tab: Monitoring
-      monitoring-widgets:
+      storage:
+        icon: mdi-content-save-settings-outline
         style: row
         columns: 3
-        disableCollapse: true
         tab: Monitoring
-      kube-system:
+      hosts:
+        icon: mdi-wan
         style: row
-        columns: 3
-        disableCollapse: true
+        columns: 4
         tab: Monitoring
   services.yaml: |
     ---
