@@ -155,6 +155,8 @@ data:
             icon: homer.png
             href: {{HOMEPAGE_VAR_HOMER_URL}}
             description: Old Home Page
+            namespace: self-hosted
+            app: homer
     - hosts:
         - Brother Printer:
             icon: brother.png
