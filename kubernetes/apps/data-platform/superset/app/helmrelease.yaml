@@ -41,5 +41,5 @@ spec:
       enabled: false
 
     supersetNode:
-      deploymentLabels:
+      podLabels:
         app.kubernetes.io/name: superset
