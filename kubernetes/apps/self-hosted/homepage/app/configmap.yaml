@@ -35,7 +35,7 @@ data:
       Bookmarks:
         style: row
         columns: 3
-        tab: Main
+        # tab: Main
       media:
         icon: mdi-folder-play-outline
         style: row
