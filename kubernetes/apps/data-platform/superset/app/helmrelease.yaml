@@ -31,7 +31,7 @@ spec:
         gethomepage.dev/group: *ns
         gethomepage.dev/icon: /icons/superset.png
         gethomepage.dev/name: Superset
-        gethomepage.dev/href: "https://superset.${SECRET_DOMAIN}"
+        # gethomepage.dev/href: "https://superset.${SECRET_DOMAIN}"
       hosts:
         - &host "superset.${SECRET_DOMAIN}"
       tls:
