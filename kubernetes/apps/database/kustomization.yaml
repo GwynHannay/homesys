@@ -5,5 +5,5 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   - ./postgresql/ks.yaml
-  # - ./pgloader/ks.yaml
+  - ./pgloader/ks.yaml
   - ./redis/ks.yaml

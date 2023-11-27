@@ -23,8 +23,9 @@ spec:
 
     controllers:
       main:
-        annotations:
-          reloader.stakater.com/auto: "true"
+        type: cronjob
+        cronjob:
+          schedule: "08 07 * * *"
         containers:
           main:
             image:
@@ -36,8 +37,8 @@ spec:
               PG_HOST: "${POSTGRES_HOST}"
             command:
               - pgloader
-              - "sqlite:///nfs/sonarr.db"
-              - "pgsql://$(PG_USER)@$(PG_HOST)/sonarr"
+              - "sqlite:///nfs/radarr.db"
+              - "pgsql://$(PG_USER)@$(PG_HOST)/radarr"
 
     service:
       main:
