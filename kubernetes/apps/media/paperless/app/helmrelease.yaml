@@ -36,6 +36,15 @@ spec:
                   name: paperless-secrets
               - configMapRef:
                   name: paperless-config
+            probes:
+              startup:
+                enabled: true
+                custom: false
+                spec:
+                  initialDelaySeconds: 0
+                  timeoutSeconds: 1
+                  failureThreshold: 30
+                  periodSeconds: 15
             resources:
               requests:
                 cpu: 5m
@@ -43,15 +52,6 @@ spec:
               limits:
                 cpu: 2500m
                 memory: 2000Mi
-            probes:
-              startup:
-                enabled: true
-                custom: true
-                spec:
-                  initialDelaySeconds: 0
-                  timeoutSeconds: 1
-                  failureThreshold: 30
-                  periodSeconds: 15
 
           gotenberg:
             name: gotenberg
