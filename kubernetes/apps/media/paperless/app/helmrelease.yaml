@@ -49,8 +49,8 @@ spec:
               custom: true
               spec:
                 httpGet:
-                  path: /health
-                  port: *port
+                  path: /
+                  port: 8000
                 failureThreshold: 30
                 periodSeconds: 15
                 successThreshold: 1
