@@ -6,8 +6,8 @@ resources:
   - ./pvc.yaml
   # - ./ghostfolio/ks.yaml
   # - ./homebox/ks.yaml
-  # - ./homepage/ks.yaml
-  # - ./homer/ks.yaml
-  # - ./joplin/ks.yaml
-  # # - ./nextcloud/ks.yaml
+  - ./homepage/ks.yaml
+  - ./homer/ks.yaml
+  - ./joplin/ks.yaml
+  # - ./nextcloud/ks.yaml
   # - ./wallabag/ks.yaml
