@@ -6,6 +6,6 @@ resources:
   - ./pvc.yaml
   # - ./datasette/ks.yaml
   # - ./mage/ks.yaml
-  # - ./pgadmin/ks.yaml
-  # - ./pgwarehouse/ks.yaml
+  - ./pgadmin/ks.yaml
+  - ./pgwarehouse/ks.yaml
   # - ./superset/ks.yaml
