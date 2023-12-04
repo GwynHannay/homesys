@@ -1,0 +1,114 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app paperless
+  namespace: &ns media
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/paperless-ngx/paperless-ngx
+              tag: 2.0.1
+            envFrom:
+              - secretRef:
+                  name: paperless-secrets
+              - configMapRef:
+                  name: paperless-config
+            probes:
+              startup:
+                enabled: true
+                custom: false
+                spec:
+                  initialDelaySeconds: 0
+                  timeoutSeconds: 1
+                  failureThreshold: 30
+                  periodSeconds: 15
+            resources:
+              requests:
+                cpu: 5m
+                memory: 300Mi
+              limits:
+                cpu: 2500m
+                memory: 2000Mi
+
+          gotenberg:
+            name: gotenberg
+            image:
+              repository: docker.io/gotenberg/gotenberg
+              tag: 7.10.1
+            command:
+              - gotenberg
+              - --chromium-disable-javascript=true
+              - --chromium-allow-list=file:///tmp/.*
+
+          tika:
+            name: tika
+            image:
+              repository: ghcr.io/paperless-ngx/tika
+              tag: 2.9.0-full
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 4G
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Documents
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: paperless-ngx.png
+          gethomepage.dev/name: Paperless-NGX
+          gethomepage.dev/weight: "11"
+          gethomepage.dev/widget.type: paperlessngx
+          gethomepage.dev/widget.url: "https://paperless.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_PAPERLESS}}"
+        hosts:
+          - host: &host "paperless.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      library:
+        existingClaim: local-volume-media
+        globalMounts:
+          - path: /library
+            subPath: *app
+      nfs:
+        existingClaim: nfs-volume-media
+        globalMounts:
+          - path: /nfs
+            subPath: *app

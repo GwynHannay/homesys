@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
+  # - ./pgloader/ks.yaml
   - ./postgresql/ks.yaml
   - ./redis/ks.yaml

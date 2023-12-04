@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app immich-server
+  namespace: &ns media
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  dependsOn:
+    - name: immich-typesense
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              tag: v1.89.0
+            args: ["start.sh", "immich"]
+            envFrom:
+              - secretRef:
+                  name: immich-secrets
+              - configMapRef:
+                  name: immich-config
+            resources:
+              requests:
+                cpu: 5m
+                memory: 250Mi
+              limits:
+                memory: 2000Mi
+
+    service:
+      main:
+        ports:
+          http:
+            targetPort: 3001
+            port: 2283
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Photos
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: immich.png
+          gethomepage.dev/name: Immich
+          gethomepage.dev/weight: "10"
+          gethomepage.dev/widget.type: immich
+          gethomepage.dev/widget.url: "https://immich.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_IMMICH}}"
+        hosts:
+          - host: &host "immich.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+            secretName: immich-tls
+
+    persistence:
+      library:
+        existingClaim: local-volume-media
+        globalMounts:
+          - path: /usr/src/app/upload
+            subPath: immich/upload

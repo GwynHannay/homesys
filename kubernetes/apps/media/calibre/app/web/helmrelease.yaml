@@ -1,0 +1,78 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app calibre-web
+  namespace: &ns media
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/linuxserver/calibre-web
+              tag: 0.6.21-ls240
+            env:
+              TZ: "${TIMEZONE}"
+              PGID: 1001
+              PUID: 1001
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8083
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: eBook Browser
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: calibre-web.png
+          gethomepage.dev/name: Calibre Web
+          gethomepage.dev/weight: "15"
+          # gethomepage.dev/widget.type: calibreweb
+          # gethomepage.dev/widget.url: "https://books.${SECRET_DOMAIN}"
+          # gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_CALIBRE_USER}}"
+          # gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_CALIBRE_PASS}}"
+        hosts:
+          - host: &host "books.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: local-volume-media
+        globalMounts:
+          - path: /config
+            subPath: calibre/web
+          - path: /books
+            subPath: calibre/library

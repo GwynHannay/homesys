@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app kopia
-  namespace: storage
+  namespace: &ns storage
 spec:
   interval: 30m
   chart:
@@ -55,7 +55,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Backups
-          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/group: *ns
           gethomepage.dev/icon: kopia.png
           gethomepage.dev/name: Kopia
           gethomepage.dev/widget.type: kopia

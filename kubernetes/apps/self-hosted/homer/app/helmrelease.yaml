@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app homer
-  namespace: self-hosted
+  namespace: &ns self-hosted
 spec:
   interval: 15m
   chart:
@@ -23,6 +23,8 @@ spec:
 
     controllers:
       main:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           main:
             image:
@@ -30,7 +32,7 @@ spec:
               tag: v23.10.1
             env:
               - name: TZ
-                value: "Australia/Perth"
+                value: "${TIMEZONE}"
               - name: INIT_ASSETS
                 value: 0
 
@@ -44,6 +46,21 @@ spec:
             targetPort: 8080
 
     persistence:
+      config:
+        enabled: true
+        type: secret
+        name: homer-secret-config
+        globalMounts:
+          - subPath: config.yml
+            path: /www/assets/config.yml
+          - subPath: docs.yml
+            path: /www/assets/docs.yml
+          - subPath: links.yml
+            path: /www/assets/links.yml
+          - subPath: mediarr.yml
+            path: /www/assets/mediarr.yml
+          - subPath: money.yml
+            path: /www/assets/money.yml
       assets:
         existingClaim: local-volume-self-hosted
         globalMounts:

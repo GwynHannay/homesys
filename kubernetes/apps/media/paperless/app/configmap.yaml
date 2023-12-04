@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paperless-config
+  namespace: media
+  labels:
+    app.kubernetes.io/name: paperless
+data:
+  TZ: "Australia/Perth"
+  PAPERLESS_DBHOST: "${POSTGRES_HOST}"
+  PAPERLESS_REDIS: "redis://${REDIS_HOST}:6379"
+  PAPERLESS_TIKA_ENABLED: 'true'
+  PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+  PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+  PAPERLESS_CONSUMPTION_DIR: /nfs/consume
+  PAPERLESS_DATA_DIR: /library/data
+  PAPERLESS_MEDIA_ROOT: /library/media
+  PAPERLESS_FILENAME_FORMAT: "{document_type}/{correspondent}_{title}_{created}"
+  PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: 'true'
+  PAPERLESS_LOGROTATE_MAX_BACKUPS: '100'
+  PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
+  PAPERLESS_OCR_LANGUAGE: eng
+  PAPERLESS_OCR_SKIP_ARCHIVE_FILE: with_text
+  PAPERLESS_OCR_DESKEW: 'false'
+  PAPERLESS_OCR_ROTATE_PAGES: 'false'
+  PAPERLESS_TASK_WORKERS: '3'
+  PAPERLESS_TIME_ZONE: "Australia/Perth"
+  PAPERLESS_CONSUMER_RECURSIVE: 'true'
+  PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: 'true'
+  PAPERLESS_FILENAME_DATE_ORDER: YMD
+  PAPERLESS_CONSUMER_POLLING: '30'
+  PAPERLESS_PORT: '8000'
+  USERMAP_UID: '1001'
+  USERMAP_GID: '1001'

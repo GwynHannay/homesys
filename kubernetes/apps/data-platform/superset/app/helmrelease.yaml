@@ -3,13 +3,13 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app superset
-  namespace: data-platform
+  namespace: &ns data-platform
 spec:
   interval: 15m
   chart:
     spec:
       chart: *app
-      version: 0.10.14
+      version: 0.10.15
       sourceRef:
         kind: HelmRepository
         name: superset
@@ -28,10 +28,9 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Dashboard
-        gethomepage.dev/group: homesys links
+        gethomepage.dev/group: *ns
         gethomepage.dev/icon: /icons/superset.png
         gethomepage.dev/name: Superset
-        gethomepage.dev/href: "https://superset.${SECRET_DOMAIN}"
       hosts:
         - &host "superset.${SECRET_DOMAIN}"
       tls:
@@ -40,3 +39,7 @@ spec:
 
     postgresql:
       enabled: false
+
+    supersetNode:
+      podLabels:
+        app.kubernetes.io/name: superset

@@ -1,0 +1,51 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app pgloader
+  namespace: database
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.0.3
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        type: cronjob
+        cronjob:
+          schedule: "08 07 * * *"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/dimitri/pgloader
+              tag: 3.6.9
+            env:
+              PGPASSWORD: "${POSTGRES_PASSWORD}"
+              PG_USER: postgres
+              PG_HOST: "${POSTGRES_HOST}"
+            command:
+              - pgloader
+              - "sqlite:///nfs/radarr.db"
+              - "pgsql://$(PG_USER)@$(PG_HOST)/radarr"
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8000
+
+    persistence:
+      nfs:
+        existingClaim: nfs-volume-database

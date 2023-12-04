@@ -25,56 +25,95 @@ data:
     headerStyle: boxed
     quicklaunch:
       searchDescriptions: true
+    disableCollapse: true
     layout:
+      # homesys links:
+      #   icon: mdi-server-network
+      #   style: row
+      #   columns: 3
+      #   tab: Main
       Bookmarks:
         style: row
         columns: 3
+        # tab: Main
+      media:
+        icon: mdi-folder-play-outline
+        style: row
+        columns: 3
         tab: Main
-      homesys widgets:
+      self-hosted:
+        icon: mdi-devices
+        style: row
+        columns: 3
+        tab: Main
+      widgets:
         icon: mdi-widgets
         style: row
         columns: 3
         tab: Main
-      homesys links:
-        icon: mdi-server-network
+      data-platform:
+        icon: mdi-table-pivot
         style: row
         columns: 3
         tab: Main
-      Host Widgets:
-        icon: mdi-chart-box
-        style: row
-        columns: 3
-        tab: Main
-      Mediarr:
+      mediarr:
         icon: mdi-projector
         style: row
         columns: 3
         tab: House
-      Hosts:
-        icon: mdi-wan
-        tab: House
-      Documents:
+      documents:
         icon: mdi-file-document
-        tab: House
-      Mediarr Files:
-        icon: mdi-folder
-        tab: House
-      Health:
-        icon: mdi-heart-pulse
+        style: row
         columns: 4
-        tab: Links
-      Web Stuff:
-        icon: mdi-web
-        tab: Links
-      Banking:
+        tab: House
+      banking:
         icon: mdi-credit-card
-        tab: Links
-      Shopping:
+        style: row
+        columns: 4
+        tab: House
+      health:
+        icon: mdi-heart-pulse
+        # style: row
+        # columns: 4
+        tab: House
+      web-stuff:
+        icon: mdi-web
+        # style: row
+        # columns: 4
+        tab: House
+      shopping:
         icon: mdi-basket
-        tab: Links
+        # style: row
+        # columns: 4
+        tab: House
+      mediarr-files:
+        icon: mdi-folder
+        # style: row
+        # columns: 4
+        tab: House
+      monitoring:
+        icon: mdi-glasses
+        style: row
+        columns: 3
+        tab: Infrastructure
+      glances:
+        icon: mdi-chart-box
+        style: row
+        columns: 3
+        tab: Infrastructure
+      storage:
+        icon: mdi-content-save-settings-outline
+        style: row
+        columns: 3
+        tab: Infrastructure
+      hosts:
+        icon: mdi-wan
+        style: row
+        columns: 3
+        tab: Infrastructure
   services.yaml: |
     ---
-    - Host Widgets:
+    - glances:
         - Info:
             widget:
               type: glances
@@ -111,16 +150,14 @@ data:
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/local
               chart: false
-    - homesys links:
+    - self-hosted:
         - Homer:
             icon: homer.png
             href: {{HOMEPAGE_VAR_HOMER_URL}}
             description: Old Home Page
-        # - Home Assistant:
-        #     icon: home-assistant.png
-        #     href: {{HOMEPAGE_VAR_HOMEASSISTANT_URL}}
-        #     description: Home Automation
-    - Hosts:
+            namespace: self-hosted
+            app: homer
+    - hosts:
         - Brother Printer:
             icon: brother.png
             href: {{HOMEPAGE_VAR_PRINTER_URL}}
@@ -137,7 +174,7 @@ data:
             icon: unifi.png
             href: {{HOMEPAGE_VAR_WIFI_URL}}
             description: WiFi
-    - Documents:
+    - documents:
         - Online Orders:
             icon: mdi-mailbox-#34A853
             href: {{HOMEPAGE_VAR_ORDERS_URL}}
@@ -158,7 +195,7 @@ data:
             icon: mdi-domain-#00B5E2
             href: {{HOMEPAGE_VAR_DOMAINS_URL}}
             description: Our Web Domains, Hosting
-    - Mediarr:
+    - mediarr:
         - NZBGet:
             icon: nzbget.png
             href: {{HOMEPAGE_VAR_NZBGET_URL}}
@@ -198,7 +235,7 @@ data:
               type: bazarr
               url: {{HOMEPAGE_VAR_BAZARR_URL}}
               key: {{HOMEPAGE_VAR_BAZARR}}
-    - Mediarr Files:
+    - mediarr-files:
         - Cloud:
             icon: mdi-cloud
             href: {{HOMEPAGE_VAR_AUTO_URL}}
@@ -211,7 +248,7 @@ data:
             icon: mdi-cloud
             href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
             description: Media Files
-    - Banking:
+    - banking:
         - ING Bank:
             icon: /icons/ing.png
             href: {{HOMEPAGE_VAR_ING_URL}}
@@ -232,7 +269,7 @@ data:
             icon: /icons/nab.png
             href: {{HOMEPAGE_VAR_NAB_URL}}
             description: Physical Branch
-    - Shopping:
+    - shopping:
         - Discounts:
             icon: google-sheets.png
             href: {{HOMEPAGE_VAR_DISCOUNTS_URL}}
@@ -249,7 +286,7 @@ data:
             icon: /icons/everydayrewards.png
             href: {{HOMEPAGE_VAR_EVERYDAYREWARDS_URL}}
             description: Points, Discounts, etc.
-    - Web Stuff:
+    - web-stuff:
         - Hostinger:
             icon: /icons/hostinger.png
             href: {{HOMEPAGE_VAR_HOSTINGER_URL}}
@@ -266,7 +303,7 @@ data:
             icon: /icons/dreamhost.png
             href: {{HOMEPAGE_VAR_DREAMHOST_URL}}
             description: Outgoing Domain Registrar
-    - Health:
+    - health:
         - Medicare:
             icon: /icons/medicare.png
             href: {{HOMEPAGE_VAR_MEDICARE_URL}}

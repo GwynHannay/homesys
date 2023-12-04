@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: &app ghostfolio
-  namespace: self-hosted
+  namespace: &ns self-hosted
 spec:
   interval: 15m
   chart:
@@ -29,7 +29,7 @@ spec:
           main:
             image:
               repository: ghostfolio/ghostfolio
-              tag: 2.21.0
+              tag: 2.26.0
             envFrom:
               - secretRef:
                   name: ghostfolio-secrets
@@ -49,7 +49,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Finance Dashboard
-          gethomepage.dev/group: homesys widgets
+          gethomepage.dev/group: widgets
           gethomepage.dev/icon: ghostfolio.png
           gethomepage.dev/name: Ghostfolio
           gethomepage.dev/widget.type: ghostfolio
