@@ -23,8 +23,8 @@ spec:
         containers:
           main:
             image:
-              repository: ghcr.io/kopia/kopia
-              tag: v0.15.0
+              repository: kopia/kopia
+              tag: 20231204.0.182043
             command: kopia
             args:
               - server
