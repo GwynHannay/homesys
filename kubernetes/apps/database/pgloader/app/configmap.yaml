@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgloader-config
+  namespace: database
+  labels:
+    app.kubernetes.io/name: pgloader
+data:
+  TZ: "Australia/Perth"
+  PG_HOST: "${POSTGRES_HOST}"
+  PG_USER: postgres
+  PGPASSWORD: "${POSTGRES_PASSWORD}"
+  PG_DB: photosv8
+  SQLITE_DB: "photos.db"

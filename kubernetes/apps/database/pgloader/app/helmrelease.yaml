@@ -23,22 +23,23 @@ spec:
 
     controllers:
       main:
+        annotations:
+          reloader.stakater.com/auto: "true"
         type: cronjob
         cronjob:
-          schedule: "08 05 * * *"
+          schedule: "00 00 1 1 *"
         containers:
           main:
             image:
               repository: ghcr.io/dimitri/pgloader
               tag: 3.6.9
-            env:
-              PGPASSWORD: "${POSTGRES_PASSWORD}"
-              PG_USER: postgres
-              PG_HOST: "${POSTGRES_HOST}"
+            envFrom:
+              - configMapRef:
+                  name: pgloader-config
             command:
               - pgloader
-              - "sqlite:///nfs/photos_matching_tags_2023-12-10.db"
-              - "pgsql://$(PG_USER)@$(PG_HOST)/photosv7"
+              - "sqlite:///nfs/$(SQLITE_DB)"
+              - "pgsql://$(PG_USER)@$(PG_HOST)/$(PG_DB)"
 
     service:
       main:
