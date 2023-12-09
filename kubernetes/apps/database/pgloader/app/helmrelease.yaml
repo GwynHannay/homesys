@@ -25,7 +25,7 @@ spec:
       main:
         type: cronjob
         cronjob:
-          schedule: "08 07 * * *"
+          schedule: "08 05 * * *"
         containers:
           main:
             image:
@@ -37,8 +37,8 @@ spec:
               PG_HOST: "${POSTGRES_HOST}"
             command:
               - pgloader
-              - "sqlite:///nfs/radarr.db"
-              - "pgsql://$(PG_USER)@$(PG_HOST)/radarr"
+              - "sqlite:///nfs/photos_with_edits_2023-12-09.db"
+              - "pgsql://$(PG_USER)@$(PG_HOST)/photosv6"
 
     service:
       main:
