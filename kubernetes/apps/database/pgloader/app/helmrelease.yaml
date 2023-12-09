@@ -37,7 +37,7 @@ spec:
               PG_HOST: "${POSTGRES_HOST}"
             command:
               - pgloader
-              - "sqlite:///nfs/photos_matching_tags_2023-11-07.db"
+              - "sqlite:///nfs/photos_matching_tags_2023-12-10.db"
               - "pgsql://$(PG_USER)@$(PG_HOST)/photosv7"
 
     service:
