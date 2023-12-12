@@ -30,7 +30,7 @@ spec:
           main:
             image:
               repository: mageai/mageai
-              tag: 0.9.48
+              tag: 0.9.50
             env:
               - name: KUBE_NAMESPACE
                 valueFrom:
