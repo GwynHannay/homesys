@@ -1,0 +1,81 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app immich-typesense
+  namespace: &ns media
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: docker.io/typesense/typesense
+              tag: 0.25.1
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: &port 8108
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  failureThreshold: 30
+                  periodSeconds: 5
+                  successThreshold: 1
+                  timeoutSeconds: 1
+            envFrom:
+              - configMapRef:
+                  name: immich-config
+              - secretRef:
+                  name: immich-secrets
+            resources:
+              requests:
+                cpu: 5m
+                memory: 250Mi
+              limits:
+                memory: 1443Mi
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: local-volume-media
+        globalMounts:
+          - path: /config
+            subPath: immich/typesense

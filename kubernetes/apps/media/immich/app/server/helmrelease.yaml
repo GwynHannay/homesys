@@ -16,6 +16,9 @@ spec:
         name: bjw-s
         namespace: flux-system
 
+  dependsOn:
+    - name: immich-typesense
+
   values:
     defaultPodOptions:
       securityContext:
@@ -29,7 +32,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.91.1
+              tag: v1.90.2
             args: ["start.sh", "immich"]
             envFrom:
               - secretRef:

@@ -18,6 +18,7 @@ spec:
 
   dependsOn:
     - name: immich-server
+    - name: immich-typesense
 
   values:
     defaultPodOptions:
@@ -32,7 +33,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.91.1
+              tag: v1.90.2
             args: ["start.sh", "microservices"]
             envFrom:
               - secretRef:
