@@ -39,4 +39,4 @@ spec:
         enabled: true
         existingClaim: local-volume-database
         subPath: *app
-    postgresqlSharedPreloadLibraries: "pgaudit,vectors.so"
+    # postgresqlSharedPreloadLibraries: "pgaudit,vectors.so"
