@@ -11,5 +11,5 @@ data:
   PG_HOST: "${POSTGRES_HOST}"
   PG_USER: postgres
   PGPASSWORD: "${POSTGRES_PASSWORD}"
-  PG_DB: photosv11
+  PG_DB: photosv12
   SQLITE_DB: "photos.db"

@@ -5,7 +5,7 @@ metadata:
   name: postgres16
 spec:
   instances: 1
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1-8
 
   primaryUpdateStrategy: unsupervised
 
@@ -17,7 +17,3 @@ spec:
     name: cloudnative-secrets
 
   enableSuperuserAccess: true
-
-  postgresql:
-    shared_preload_libraries:
-      - "vectors.so"
