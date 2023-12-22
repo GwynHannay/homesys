@@ -6,3 +6,4 @@ resources:
   - ./cloudnative-secrets.sops.yaml
   - ./cluster.yaml
   - ./helmrelease.yaml
+  - ./service.yaml
