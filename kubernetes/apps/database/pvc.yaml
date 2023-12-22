@@ -45,6 +45,29 @@ spec:
           values:
           - homesys
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-claim-database
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/tera/claims
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
