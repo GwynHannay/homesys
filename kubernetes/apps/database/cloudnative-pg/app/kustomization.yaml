@@ -4,5 +4,5 @@ kind: Kustomization
 namespace: database
 resources:
   - ./cloudnative-secrets.sops.yaml
-  - ./cluster.yaml
+  # - ./cluster.yaml
   - ./helmrelease.yaml
