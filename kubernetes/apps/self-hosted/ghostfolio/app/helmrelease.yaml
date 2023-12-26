@@ -25,6 +25,19 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: &secrets ghostfolio-secrets
+              - configMapRef:
+                  name: &config ghostfolio-config
+
         containers:
           main:
             image:
@@ -32,9 +45,9 @@ spec:
               tag: 2.31.0
             envFrom:
               - secretRef:
-                  name: ghostfolio-secrets
+                  name: *secrets
               - configMapRef:
-                  name: ghostfolio-config
+                  name: *config
 
     service:
       main:
