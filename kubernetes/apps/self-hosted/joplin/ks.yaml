@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-postgresql
+    - name: cluster-apps-cloudnative-pg
   path: ./kubernetes/apps/self-hosted/joplin/app
   prune: true
   sourceRef:

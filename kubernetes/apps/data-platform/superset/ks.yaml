@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: cluster-apps-pgwarehouse
+    - name: cluster-apps-cloudnative-pg
   path: ./kubernetes/apps/data-platform/superset/app
   prune: true
   sourceRef:
