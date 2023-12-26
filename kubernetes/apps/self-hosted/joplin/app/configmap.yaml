@@ -8,6 +8,12 @@ metadata:
     app.kubernetes.io/name: joplin
 data:
   TZ: "Australia/Perth"
+
+  # Init DB
+  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
+  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
+
+  # App
   MAX_TIME_DRIFT: '0'
   DB_CLIENT: pg
   POSTGRES_HOST: "${POSTGRES_HOST}"
