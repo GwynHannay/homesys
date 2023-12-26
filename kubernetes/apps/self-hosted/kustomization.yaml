@@ -10,4 +10,4 @@ resources:
   - ./homer/ks.yaml
   - ./joplin/ks.yaml
   # - ./nextcloud/ks.yaml
-  - ./wallabag/ks.yaml
+  # - ./wallabag/ks.yaml
