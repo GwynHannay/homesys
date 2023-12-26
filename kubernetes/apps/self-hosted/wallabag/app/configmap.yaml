@@ -9,6 +9,12 @@ metadata:
 data:
   TZ: "Australia/Perth"
   PHP_TIMEZONE: "Australia/Perth"
+
+  # Init DB
+  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
+  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
+
+  # App
   SYMFONY__ENV__DATABASE_DRIVER: pdo_pgsql
   SYMFONY__ENV__DATABASE_HOST: "${NATIVE_PG_HOST}"
   SYMFONY__ENV__DATABASE_NAME: wallabag
