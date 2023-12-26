@@ -16,9 +16,6 @@ spec:
         name: bjw-s
         namespace: flux-system
 
-  dependsOn:
-    - name: immich-typesense
-
   values:
     defaultPodOptions:
       securityContext:
@@ -28,17 +25,30 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: &secrets immich-secrets
+              - configMapRef:
+                  name: &config immich-config
+
         containers:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.90.2
+              tag: v1.91.4
             args: ["start.sh", "immich"]
             envFrom:
               - secretRef:
-                  name: immich-secrets
+                  name: *secrets
               - configMapRef:
-                  name: immich-config
+                  name: *config
             resources:
               requests:
                 cpu: 5m

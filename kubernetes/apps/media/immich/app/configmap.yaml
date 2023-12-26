@@ -8,14 +8,18 @@ metadata:
     app.kubernetes.io/name: immich
 data:
   TZ: "Australia/Perth"
+
+  # Init DB
+  INIT_POSTGRES_HOST: "${NATIVE_VECTOR_HOST}"
+  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
+
+  # App
   NODE_ENV: "production"
   LOG_LEVEL: "verbose"
-  DB_HOSTNAME: "${POSTGRES_HOST}"
+  DB_HOSTNAME: "${NATIVE_VECTOR_HOST}"
   DB_DATABASE_NAME: immich
   DB_PORT: '5432'
   REDIS_HOSTNAME: "${REDIS_HOST}"
   IMMICH_SERVER_URL: http://immich-server.media.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.media.svc.cluster.local:3003
   MACHINE_LEARNING_PORT: '3003'
-  TYPESENSE_HOST: immich-typesense.media.svc.cluster.local
-  TYPESENSE_DATA_DIR: /config
