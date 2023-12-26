@@ -113,29 +113,29 @@ spec:
           operator: In
           values:
           - homesys
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: local-claim-datawarehouse
-# spec:
-#   capacity:
-#     storage: 20Gi
-#   volumeMode: Filesystem
-#   accessModes:
-#   - ReadWriteOnce
-#   persistentVolumeReclaimPolicy: Retain
-#   storageClassName: local-storage
-#   local:
-#     path: /mnt/tera/vols/datawarehouse
-#   nodeAffinity:
-#     required:
-#       nodeSelectorTerms:
-#       - matchExpressions:
-#         - key: kubernetes.io/hostname
-#           operator: In
-#           values:
-#           - homesys
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-claim-datawarehouse
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/tera/vols/datawarehouse
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
