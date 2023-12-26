@@ -4,8 +4,8 @@ kind: Kustomization
 namespace: database
 resources:
   - ./cloudnative-secrets.sops.yaml
-  - ./cluster.yaml
-  - ./cluster-vector.yaml
   - ./helmrelease.yaml
-  - ./service.yaml
-  - ./service-vector.yaml
+  - ./primary/cluster.yaml
+  - ./primary/service.yaml
+  - ./pgvector/cluster-vector.yaml
+  - ./pgvector/service-vector.yaml
