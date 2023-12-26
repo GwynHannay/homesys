@@ -8,6 +8,12 @@ metadata:
     app.kubernetes.io/name: mage
 data:
   TZ: "Australia/Perth"
+
+  # Init DB
+  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
+  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
+
+  # App
   MAGE_PUBLIC_HOST: "https://mage.${SECRET_DOMAIN}"
   USER_CODE_PATH: /home/src/repo
   DW_HOST: "${DW_POSTGRES_HOST}"
