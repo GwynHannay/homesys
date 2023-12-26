@@ -26,6 +26,18 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: &secrets mage-secrets
+              - configMapRef:
+                  name: &config mage-config
+
         containers:
           main:
             image:
@@ -38,9 +50,9 @@ spec:
                     fieldPath: metadata.namespace
             envFrom:
               - secretRef:
-                  name: mage-secrets
+                  name: *secrets
               - configMapRef:
-                  name: mage-config
+                  name: *config
 
     serviceAccount:
       name: mage-user
