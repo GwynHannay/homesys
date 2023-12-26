@@ -5,6 +5,6 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   - ./cloudnative-pg/ks.yaml
-  - ./pgloader/ks.yaml
-  - ./postgresql/ks.yaml
+  # - ./pgloader/ks.yaml
+  # - ./postgresql/ks.yaml
   - ./redis/ks.yaml
