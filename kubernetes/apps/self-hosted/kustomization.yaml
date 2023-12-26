@@ -8,6 +8,6 @@ resources:
   - ./homebox/ks.yaml
   - ./homepage/ks.yaml
   - ./homer/ks.yaml
-  # - ./joplin/ks.yaml
+  - ./joplin/ks.yaml
   # - ./nextcloud/ks.yaml
   - ./wallabag/ks.yaml
