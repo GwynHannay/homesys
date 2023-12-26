@@ -9,5 +9,5 @@ resources:
   - ./primary/service.yaml
   - ./pgvector/cluster-vector.yaml
   - ./pgvector/service-vector.yaml
-  # - ./lake/cluster.yaml
-  # - ./lake/service.yaml
+  - ./lake/cluster.yaml
+  - ./lake/service.yaml
