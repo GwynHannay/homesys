@@ -1,0 +1,19 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-vector
+spec:
+  instances: 1
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1
+
+  primaryUpdateStrategy: unsupervised
+
+  storage:
+    size: 20Gi
+    storageClass: local-storage
+
+  superuserSecret:
+    name: cloudnative-secrets
+
+  enableSuperuserAccess: true
