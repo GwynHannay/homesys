@@ -85,3 +85,6 @@ spec:
       vols:
         readOnly: true
         existingClaim: local-volume
+      claims:
+        readOnly: true
+        existingClaim: local-claims
