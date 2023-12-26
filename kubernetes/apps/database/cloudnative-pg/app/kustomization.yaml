@@ -8,3 +8,4 @@ resources:
   - ./cluster-vector.yaml
   - ./helmrelease.yaml
   - ./service.yaml
+  - ./service-vector.yaml
