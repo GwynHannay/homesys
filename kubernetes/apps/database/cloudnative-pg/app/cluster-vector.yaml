@@ -17,3 +17,7 @@ spec:
     name: cloudnative-secrets
 
   enableSuperuserAccess: true
+
+  postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
