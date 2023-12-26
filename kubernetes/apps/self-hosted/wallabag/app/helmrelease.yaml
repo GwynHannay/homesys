@@ -25,6 +25,19 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: &secrets wallabag-secrets
+              - configMapRef:
+                  name: &config wallabag-config
+
         containers:
           main:
             image:
@@ -32,9 +45,9 @@ spec:
               tag: 2.6.7
             envFrom:
               - secretRef:
-                  name: wallabag-secrets
+                  name: *secrets
               - configMapRef:
-                  name: wallabag-config
+                  name: *config
 
     service:
       main:
