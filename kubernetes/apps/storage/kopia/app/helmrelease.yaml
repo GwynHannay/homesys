@@ -24,7 +24,7 @@ spec:
           main:
             image:
               repository: kopia/kopia
-              tag: 20231221.0.183952
+              tag: 20231227.0.222930
             command: kopia
             args:
               - server
