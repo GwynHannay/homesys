@@ -42,6 +42,11 @@ data:
         style: row
         columns: 3
         tab: Main
+      widgets:
+        icon: mdi-widgets
+        style: row
+        columns: 3
+        tab: Main
       data-platform:
         icon: mdi-table-pivot
         style: row
@@ -61,22 +66,22 @@ data:
         icon: mdi-glasses
         style: row
         columns: 3
-        tab: Infrastructure
+        tab: Infra
       glances:
         icon: mdi-chart-box
         style: row
         columns: 3
-        tab: Infrastructure
+        tab: Infra
       storage:
         icon: mdi-content-save-settings-outline
         style: row
         columns: 3
-        tab: Infrastructure
+        tab: Infra
       hosts:
         icon: mdi-wan
         style: row
         columns: 3
-        tab: Infrastructure
+        tab: Infra
       banking:
         icon: mdi-credit-card
         style: row
