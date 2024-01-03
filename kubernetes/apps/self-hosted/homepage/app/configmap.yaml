@@ -27,6 +27,7 @@ data:
       searchDescriptions: true
     disableCollapse: true
     useEqualHeights: true
+    fiveColumns: true
     layout:
       # homesys links:
       #   icon: mdi-server-network
@@ -69,8 +70,8 @@ data:
         tab: House
       banking:
         icon: mdi-credit-card
-        style: row
-        columns: 4
+        # style: row
+        # columns: 4
         tab: House
       health:
         icon: mdi-heart-pulse
