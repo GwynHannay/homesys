@@ -29,15 +29,9 @@ data:
     useEqualHeights: true
     fiveColumns: true
     layout:
-      # homesys links:
-      #   icon: mdi-server-network
-      #   style: row
-      #   columns: 3
-      #   tab: Main
       Bookmarks:
         style: row
         columns: 3
-        # tab: Main
       media:
         icon: mdi-folder-play-outline
         style: row
@@ -45,11 +39,6 @@ data:
         tab: Main
       self-hosted:
         icon: mdi-devices
-        style: row
-        columns: 3
-        tab: Main
-      widgets:
-        icon: mdi-widgets
         style: row
         columns: 3
         tab: Main
@@ -61,37 +50,12 @@ data:
       mediarr:
         icon: mdi-projector
         style: row
-        columns: 4
+        columns: 3
         tab: House
       documents:
         icon: mdi-file-document
         style: row
         columns: 4
-        tab: House
-      banking:
-        icon: mdi-credit-card
-        # style: row
-        # columns: 4
-        tab: House
-      health:
-        icon: mdi-heart-pulse
-        # style: row
-        # columns: 4
-        tab: House
-      web-stuff:
-        icon: mdi-web
-        # style: row
-        # columns: 4
-        tab: House
-      shopping:
-        icon: mdi-basket
-        # style: row
-        # columns: 4
-        tab: House
-      mediarr-files:
-        icon: mdi-folder
-        # style: row
-        # columns: 4
         tab: House
       monitoring:
         icon: mdi-glasses
@@ -113,6 +77,26 @@ data:
         style: row
         columns: 3
         tab: Infrastructure
+      banking:
+        icon: mdi-credit-card
+        style: row
+        columns: 4
+        tab: Links
+      health:
+        icon: mdi-heart-pulse
+        style: row
+        columns: 4
+        tab: Links
+      web-stuff:
+        icon: mdi-web
+        style: row
+        columns: 4
+        tab: Links
+      shopping:
+        icon: mdi-basket
+        style: row
+        columns: 4
+        tab: Links
   services.yaml: |
     ---
     - glances:
