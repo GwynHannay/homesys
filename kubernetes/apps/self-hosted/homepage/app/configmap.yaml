@@ -61,7 +61,7 @@ data:
       mediarr:
         icon: mdi-projector
         style: row
-        columns: 3
+        columns: 4
         tab: House
       documents:
         icon: mdi-file-document
@@ -223,15 +223,15 @@ data:
               url: {{HOMEPAGE_VAR_RADARR_URL}}
               key: {{HOMEPAGE_VAR_RADARR}}
               hideErrors: true
-        # - Readarr:
-        #     icon: readarr.png
-        #     href: {{HOMEPAGE_VAR_READARR_URL}}
-        #     description: Books
-        #     widget:
-        #       type: readarr
-        #       url: {{HOMEPAGE_VAR_READARR_URL}}
-        #       key: {{HOMEPAGE_VAR_READARR}}
-        #       hideErrors: true
+        - Readarr:
+            icon: readarr.png
+            href: {{HOMEPAGE_VAR_READARR_URL}}
+            description: Books
+            widget:
+              type: readarr
+              url: {{HOMEPAGE_VAR_READARR_URL}}
+              key: {{HOMEPAGE_VAR_READARR}}
+              hideErrors: true
         - Bazarr:
             icon: bazarr.png
             href: {{HOMEPAGE_VAR_BAZARR_URL}}
