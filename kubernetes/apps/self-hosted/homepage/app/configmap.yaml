@@ -26,6 +26,7 @@ data:
     quicklaunch:
       searchDescriptions: true
     disableCollapse: true
+    useEqualHeights: true
     layout:
       # homesys links:
       #   icon: mdi-server-network
@@ -211,6 +212,7 @@ data:
               type: sonarr
               url: {{HOMEPAGE_VAR_SONARR_URL}}
               key: {{HOMEPAGE_VAR_SONARR}}
+              hideErrors: true
         - Radarr:
             icon: radarr.png
             href: {{HOMEPAGE_VAR_RADARR_URL}}
@@ -219,6 +221,7 @@ data:
               type: radarr
               url: {{HOMEPAGE_VAR_RADARR_URL}}
               key: {{HOMEPAGE_VAR_RADARR}}
+              hideErrors: true
         - Readarr:
             icon: readarr.png
             href: {{HOMEPAGE_VAR_READARR_URL}}
@@ -227,6 +230,7 @@ data:
               type: readarr
               url: {{HOMEPAGE_VAR_READARR_URL}}
               key: {{HOMEPAGE_VAR_READARR}}
+              hideErrors: true
         - Bazarr:
             icon: bazarr.png
             href: {{HOMEPAGE_VAR_BAZARR_URL}}
@@ -235,6 +239,7 @@ data:
               type: bazarr
               url: {{HOMEPAGE_VAR_BAZARR_URL}}
               key: {{HOMEPAGE_VAR_BAZARR}}
+              hideErrors: true
     - mediarr-files:
         - Cloud:
             icon: mdi-cloud
