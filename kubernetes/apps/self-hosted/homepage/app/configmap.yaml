@@ -223,15 +223,15 @@ data:
               url: {{HOMEPAGE_VAR_RADARR_URL}}
               key: {{HOMEPAGE_VAR_RADARR}}
               hideErrors: true
-        - Readarr:
-            icon: readarr.png
-            href: {{HOMEPAGE_VAR_READARR_URL}}
-            description: Books
-            widget:
-              type: readarr
-              url: {{HOMEPAGE_VAR_READARR_URL}}
-              key: {{HOMEPAGE_VAR_READARR}}
-              hideErrors: true
+        # - Readarr:
+        #     icon: readarr.png
+        #     href: {{HOMEPAGE_VAR_READARR_URL}}
+        #     description: Books
+        #     widget:
+        #       type: readarr
+        #       url: {{HOMEPAGE_VAR_READARR_URL}}
+        #       key: {{HOMEPAGE_VAR_READARR}}
+        #       hideErrors: true
         - Bazarr:
             icon: bazarr.png
             href: {{HOMEPAGE_VAR_BAZARR_URL}}
@@ -241,7 +241,7 @@ data:
               url: {{HOMEPAGE_VAR_BAZARR_URL}}
               key: {{HOMEPAGE_VAR_BAZARR}}
               hideErrors: true
-    - mediarr-files:
+    # - mediarr-files:
         - Cloud:
             icon: mdi-cloud
             href: {{HOMEPAGE_VAR_AUTO_URL}}
