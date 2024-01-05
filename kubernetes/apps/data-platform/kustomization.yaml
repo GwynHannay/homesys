@@ -5,6 +5,7 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   # - ./datasette/ks.yaml
+  - ./kestra/ks.yaml
   - ./mage/ks.yaml
   - ./pgadmin/ks.yaml
   # - ./pgwarehouse/ks.yaml
