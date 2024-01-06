@@ -20,13 +20,13 @@ spec:
       datasources:
         postgres:
           url: jdbc:postgresql://${NATIVE_PG_HOST}:5432/kestra
-          username: "$(PG_USER)"
-          password: "$(PG_PASS)"
+          username: "$PG_USER"
+          password: "$PG_PASS"
       kestra:
         server:
           basic-auth:
-            username: "$(MAIN_USER)"
-        url: "$(URL)"
+            username: "$MAIN_USER"
+        url: "$URL"
 
     postgresql:
       enabled: false
