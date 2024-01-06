@@ -43,9 +43,8 @@ spec:
             image:
               repository: kestra/kestra
               tag: v0.13.8
-            command:
-              - server
             args:
+              - server
               - standalone
               - --worker-thread=128
             envFrom:
