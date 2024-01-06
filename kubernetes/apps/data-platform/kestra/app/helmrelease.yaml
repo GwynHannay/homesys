@@ -45,6 +45,7 @@ spec:
               tag: v0.13.8
             command:
               - server
+            args:
               - standalone
               - --worker-thread=128
             envFrom:
