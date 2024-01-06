@@ -16,6 +16,17 @@ spec:
         namespace: flux-system
 
   values:
+    configuration:
+      kestra:
+        queue:
+          type: postgres
+        repository:
+          type: postgres
+          storage:
+            type: local
+            local:
+              base-path: "/local"
+
     postgresql:
       enabled: false
     minio:
