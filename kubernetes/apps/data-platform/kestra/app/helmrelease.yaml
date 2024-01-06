@@ -18,6 +18,8 @@ spec:
   values:
     postgresql:
       enabled: false
+    minio:
+      enabled: false
 
     ingress:
       enabled: true
