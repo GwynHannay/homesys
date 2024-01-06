@@ -16,18 +16,6 @@ spec:
         namespace: flux-system
 
   values:
-    secrets:
-      datasources:
-        postgres:
-          url: jdbc:postgresql://${NATIVE_PG_HOST}:5432/kestra
-          username: "${PG_USER}"
-          password: "${PG_PASS}"
-      kestra:
-        server:
-          basic-auth:
-            username: "${MAIN_USER}"
-        url: "${URL}"
-
     postgresql:
       enabled: false
     minio:
@@ -73,36 +61,22 @@ spec:
               name: &config kestra-config
 
     extraVolumeMounts:
+      - name: secrets
+        mountPath: /app/secrets
       - name: local
         mountPath: /local
         subPath: *app
 
     extraVolumes:
+      - name: secrets
+        secret:
+          secretName: kestra-secret
+          items:
+            - key: application-secrets.yml
+              path: application-secrets.yml
       - name: local
         persistentVolumeClaim:
           claimName: local-volume-data-platform
-
-    extraEnv:
-      - name: PG_USER
-        valueFrom:
-          secretKeyRef:
-            name: *secrets
-            key: PG_USER
-      - name: PG_PASS
-        valueFrom:
-          secretKeyRef:
-            name: *secrets
-            key: PG_PASS
-      - name: MAIN_USER
-        valueFrom:
-          secretKeyRef:
-            name: *secrets
-            key: MAIN_USER
-      - name: URL
-        valueFrom:
-          secretKeyRef:
-            name: *secrets
-            key: URL
 
     podSecurityContext:
       fsGroup: 1001
