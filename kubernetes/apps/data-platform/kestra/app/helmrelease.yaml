@@ -21,6 +21,15 @@ spec:
     minio:
       enabled: false
 
+    dind:
+      image:
+        tag: dind
+      args:
+        - --log-level=fatal
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
     ingress:
       enabled: true
       className: internal
@@ -71,3 +80,7 @@ spec:
 
     podSecurityContext:
       fsGroup: 1001
+
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
