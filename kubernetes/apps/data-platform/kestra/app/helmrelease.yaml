@@ -8,90 +8,82 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: *app
-      version: 0.13.0
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: kestra
+        name: bjw-s
         namespace: flux-system
 
   values:
-    configuration:
-      kestra:
-        queue:
-          type: postgres
-        repository:
-          type: postgres
-          storage:
-            type: local
-            local:
-              base-path: "/local"
-
-    postgresql:
-      enabled: false
-    minio:
-      enabled: false
-
-    dind:
-      image:
-        tag: dind
-      args:
-        - --log-level=fatal
+    defaultPodOptions:
       securityContext:
-        runAsUser: 0
-        runAsGroup: 0
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        initContainers:
+          01-init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom:
+              - secretRef:
+                  name: &secrets kestra-secrets
+              - configMapRef:
+                  name: &config kestra-config
+
+        containers:
+          main:
+            image:
+              repository: kestra/kestra
+              tag: v0.13.8
+            command:
+              - server
+              - standalone
+              - --worker-thread=128
+            envFrom:
+              - secretRef:
+                  name: *secrets
+              - configMapRef:
+                  name: *config
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+          management:
+            port: 8081
 
     ingress:
-      enabled: true
-      className: internal
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Data Orchestration
-        gethomepage.dev/group: *ns
-        gethomepage.dev/icon: /icons/kestra.png
-        gethomepage.dev/name: Kestra
-      hosts:
-        - host: &host "kestra.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
-      tls:
-        - hosts:
-            - *host
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          gethomepage.dev/description: Data Orchestration
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: /icons/kestra.png
+          gethomepage.dev/name: Kestra
+        hosts:
+          - host: &host "kestra.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
 
-    annotations:
-      reloader.stakater.com/auto: "true"
-
-    initContainers:
-      - name: 01-init-db
-        image: ghcr.io/onedr0p/postgres-init:16
-        envFrom:
-          - secretRef:
-              name: &secrets kestra-secrets
-          - configMapRef:
-              name: &config kestra-config
-
-    extraVolumeMounts:
-      - name: secrets
-        mountPath: /app/secrets
-      - name: local
-        mountPath: /local
-        subPath: *app
-
-    extraVolumes:
-      - name: secrets
-        secret:
-          secretName: kestra-secret
-          items:
-            - key: application-secrets.yml
-              path: application-secrets.yml
-      - name: local
-        persistentVolumeClaim:
-          claimName: local-volume-data-platform
-
-    podSecurityContext:
-      fsGroup: 1001
-
-    securityContext:
-      runAsUser: 0
-      runAsGroup: 0
+    persistence:
+      local:
+        existingClaim: local-volume-data-platform
+        globalMounts:
+          - path: /local
+            subPath: *app
