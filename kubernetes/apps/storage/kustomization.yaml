@@ -6,3 +6,4 @@ resources:
   - ./local-storageclass.yaml
   - ./pvc.yaml
   - ./kopia/ks.yaml
+  - ./minio/ks.yaml

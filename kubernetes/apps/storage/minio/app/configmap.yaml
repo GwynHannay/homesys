@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minio-config
+  namespace: storage
+  labels:
+    app.kubernetes.io/name: minio
+data:
+  TZ: "Australia/Perth"
+  MINIO_API_CORS_ALLOW_ORIGIN: https://minio.${SECRET_DOMAIN},https://s3.${SECRET_DOMAIN}
+  MINIO_BROWSER_REDIRECT_URL: https://minio.${SECRET_DOMAIN}
+  MINIO_PROMETHEUS_JOB_ID: minio
+  MINIO_SERVER_URL: https://s3.${SECRET_DOMAIN}
