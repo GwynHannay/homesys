@@ -88,3 +88,8 @@ spec:
         globalMounts:
           - path: /local
             subPath: *app
+      nfs:
+        existingClaim: nfs-volume-data-platform
+        globalMounts:
+          - path: /nfs
+            subPath: *app
