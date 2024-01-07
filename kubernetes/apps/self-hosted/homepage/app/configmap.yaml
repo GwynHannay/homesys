@@ -157,6 +157,10 @@ data:
             icon: vmware-esxi.png
             href: {{HOMEPAGE_VAR_ESXI_URL}}
             description: homesys ESXi
+        - Peter HP:
+            icon: vmware-esxi.png
+            href: {{HOMEPAGE_VAR_HP_ESXI_URL}}
+            description: Peter's HP ESXi
         - RouterOS:
             icon: mikrotik.png
             href: {{HOMEPAGE_VAR_ROUTER_URL}}
