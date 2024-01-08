@@ -10,5 +10,5 @@ data:
   TZ: "Australia/Perth"
   MODE: production
   DEFAULT_LOCALE: en_GB
-  CALENDAR_FIRST_DAY_OF_WEEK: 1
+  CALENDAR_FIRST_DAY_OF_WEEK: "1"
   CURRENCY: AUD
