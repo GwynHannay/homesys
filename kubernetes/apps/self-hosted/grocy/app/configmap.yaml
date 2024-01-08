@@ -8,7 +8,8 @@ metadata:
     app.kubernetes.io/name: grocy
 data:
   TZ: "Australia/Perth"
-  MODE: production
-  DEFAULT_LOCALE: en_GB
+  MODE: "production"
+  DEFAULT_LOCALE: "en_GB"
   CALENDAR_FIRST_DAY_OF_WEEK: "1"
-  CURRENCY: AUD
+  CURRENCY: "AUD"
+  ENERGY_UNIT: "kJ"
