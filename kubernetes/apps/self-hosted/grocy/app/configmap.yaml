@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grocy-config
+  namespace: self-hosted
+  labels:
+    app.kubernetes.io/name: grocy
+data:
+  TZ: "Australia/Perth"
+  MODE: production
+  DEFAULT_LOCALE: en_GB
+  CALENDAR_FIRST_DAY_OF_WEEK: 1
+  CURRENCY: AUD

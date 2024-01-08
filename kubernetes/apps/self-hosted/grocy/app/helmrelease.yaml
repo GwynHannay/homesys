@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app grocy
+  namespace: &ns self-hosted
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: lscr.io/linuxserver/grocy
+              tag: v4.0.3-ls230
+            envFrom:
+              - configMapRef:
+                  name: grocy-config
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Fridge ERP
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: grocy.png
+          gethomepage.dev/name: Grocy
+        hosts:
+          - host: &host "grocy.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      data:
+        existingClaim: local-volume-self-hosted
+        globalMounts:
+          - path: /config
+            subPath: *app
