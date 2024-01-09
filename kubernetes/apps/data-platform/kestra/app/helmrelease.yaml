@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: kestra/kestra
-              tag: v0.13.8-full
+              tag: v0.13.9-full
             args:
               - server
               - standalone
