@@ -8,6 +8,8 @@ metadata:
     app.kubernetes.io/name: grocy
 data:
   TZ: "Australia/Perth"
+  PUID: "1001"
+  PGID: "1001"
   GROCY_MODE: "production"
   GROCY_DEFAULT_LOCALE: "en_GB"
   GROCY_CALENDAR_FIRST_DAY_OF_WEEK: "1"
