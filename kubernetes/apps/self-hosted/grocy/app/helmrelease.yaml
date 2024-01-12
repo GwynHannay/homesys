@@ -20,17 +20,27 @@ spec:
     defaultPodOptions:
       securityContext:
         fsGroup: 1001
+        runAsUser: 1001
+        runAsGroup: 1001
 
     controllers:
       main:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
 
         containers:
           main:
             image:
-              repository: lscr.io/linuxserver/grocy
-              tag: v4.0.3-ls230
+              repository: docker.io/grocy/backend
+              tag: v4.0.3-2
+            envFrom:
+              - configMapRef:
+                  name: grocy-config
+          frontend:
+            image:
+              repository: docker.io/grocy/frontend
+              tag: v4.0.3-2
             envFrom:
               - configMapRef:
                   name: grocy-config
@@ -39,7 +49,7 @@ spec:
       main:
         ports:
           http:
-            port: 80
+            port: 8080
 
     ingress:
       main:
@@ -66,5 +76,5 @@ spec:
       data:
         existingClaim: local-volume-self-hosted
         globalMounts:
-          - path: /config
+          - path: /var/www/data
             subPath: *app
