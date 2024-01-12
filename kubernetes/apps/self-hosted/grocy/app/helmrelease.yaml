@@ -20,8 +20,6 @@ spec:
     defaultPodOptions:
       securityContext:
         fsGroup: 1001
-        runAsUser: 1001
-        runAsGroup: 1001
       hostAliases:
         - ip: "127.0.0.1"
           hostnames:
