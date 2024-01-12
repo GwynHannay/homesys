@@ -80,5 +80,5 @@ spec:
       data:
         existingClaim: local-volume-self-hosted
         globalMounts:
-          - path: /var/www
+          - path: /var/www/data
             subPath: *app
