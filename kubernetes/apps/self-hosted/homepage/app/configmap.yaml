@@ -18,6 +18,9 @@ data:
         - Shared Drive:
             - icon: google-drive.png
               href: {{HOMEPAGE_VAR_GDRIVE_URL}}
+        - kubesearch:
+            - icon: kubernetes.png
+              href: https://kubesearch.dev
   kubernetes.yaml: |
     mode: default
   settings.yaml: |
@@ -31,7 +34,7 @@ data:
     layout:
       Bookmarks:
         style: row
-        columns: 3
+        columns: 4
       media:
         icon: mdi-folder-play-outline
         style: row
