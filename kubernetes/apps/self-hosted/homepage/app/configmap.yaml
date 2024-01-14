@@ -52,11 +52,11 @@ data:
         style: row
         columns: 3
         tab: Main
-      mediarr:
-        icon: mdi-projector
-        style: row
-        columns: 3
-        tab: House
+      # mediarr:
+      #   icon: mdi-projector
+      #   style: row
+      #   columns: 3
+      #   tab: House
       documents:
         icon: mdi-file-document
         style: row
@@ -235,18 +235,18 @@ data:
     #           key: {{HOMEPAGE_VAR_BAZARR}}
     #           hideErrors: true
     # - mediarr-files:
-        # - Cloud:
-        #     icon: mdi-cloud
-        #     href: {{HOMEPAGE_VAR_AUTO_URL}}
-        #     description: Cloud Auto Files
-        # - MBS:
-        #     icon: mdi-cloud
-        #     href: {{HOMEPAGE_VAR_MBS_URL}}
-        #     description: MBS Files
-        # - Odd Bird Media:
-        #     icon: mdi-cloud
-        #     href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
-        #     description: Media Files
+    #     - Cloud:
+    #         icon: mdi-cloud
+    #         href: {{HOMEPAGE_VAR_AUTO_URL}}
+    #         description: Cloud Auto Files
+    #     - MBS:
+    #         icon: mdi-cloud
+    #         href: {{HOMEPAGE_VAR_MBS_URL}}
+    #         description: MBS Files
+    #     - Odd Bird Media:
+    #         icon: mdi-cloud
+    #         href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
+    #         description: Media Files
     - banking:
         - ING Bank:
             icon: /icons/ing.png
