@@ -61,7 +61,7 @@ data:
         icon: mdi-file-document
         style: row
         columns: 4
-        tab: House
+        tab: Links
       monitoring:
         icon: mdi-glasses
         style: row
@@ -190,63 +190,63 @@ data:
             icon: mdi-domain-#00B5E2
             href: {{HOMEPAGE_VAR_DOMAINS_URL}}
             description: Our Web Domains, Hosting
-    - mediarr:
-        - NZBGet:
-            icon: nzbget.png
-            href: {{HOMEPAGE_VAR_NZBGET_URL}}
-            description: UseNet Downloads
-            widget:
-              type: nzbget
-              url: {{HOMEPAGE_VAR_NZBGET_URL}}
-        - Sonarr:
-            icon: sonarr.png
-            href: {{HOMEPAGE_VAR_SONARR_URL}}
-            description: TV Shows
-            widget:
-              type: sonarr
-              url: {{HOMEPAGE_VAR_SONARR_URL}}
-              key: {{HOMEPAGE_VAR_SONARR}}
-              hideErrors: true
-        - Radarr:
-            icon: radarr.png
-            href: {{HOMEPAGE_VAR_RADARR_URL}}
-            description: Movies
-            widget:
-              type: radarr
-              url: {{HOMEPAGE_VAR_RADARR_URL}}
-              key: {{HOMEPAGE_VAR_RADARR}}
-              hideErrors: true
-        - Readarr:
-            icon: readarr.png
-            href: {{HOMEPAGE_VAR_READARR_URL}}
-            description: Books
-            widget:
-              type: readarr
-              url: {{HOMEPAGE_VAR_READARR_URL}}
-              key: {{HOMEPAGE_VAR_READARR}}
-              hideErrors: true
-        - Bazarr:
-            icon: bazarr.png
-            href: {{HOMEPAGE_VAR_BAZARR_URL}}
-            description: Subtitles
-            widget:
-              type: bazarr
-              url: {{HOMEPAGE_VAR_BAZARR_URL}}
-              key: {{HOMEPAGE_VAR_BAZARR}}
-              hideErrors: true
+    # - mediarr:
+    #     - NZBGet:
+    #         icon: nzbget.png
+    #         href: {{HOMEPAGE_VAR_NZBGET_URL}}
+    #         description: UseNet Downloads
+    #         widget:
+    #           type: nzbget
+    #           url: {{HOMEPAGE_VAR_NZBGET_URL}}
+    #     - Sonarr:
+    #         icon: sonarr.png
+    #         href: {{HOMEPAGE_VAR_SONARR_URL}}
+    #         description: TV Shows
+    #         widget:
+    #           type: sonarr
+    #           url: {{HOMEPAGE_VAR_SONARR_URL}}
+    #           key: {{HOMEPAGE_VAR_SONARR}}
+    #           hideErrors: true
+    #     - Radarr:
+    #         icon: radarr.png
+    #         href: {{HOMEPAGE_VAR_RADARR_URL}}
+    #         description: Movies
+    #         widget:
+    #           type: radarr
+    #           url: {{HOMEPAGE_VAR_RADARR_URL}}
+    #           key: {{HOMEPAGE_VAR_RADARR}}
+    #           hideErrors: true
+    #     - Readarr:
+    #         icon: readarr.png
+    #         href: {{HOMEPAGE_VAR_READARR_URL}}
+    #         description: Books
+    #         widget:
+    #           type: readarr
+    #           url: {{HOMEPAGE_VAR_READARR_URL}}
+    #           key: {{HOMEPAGE_VAR_READARR}}
+    #           hideErrors: true
+    #     - Bazarr:
+    #         icon: bazarr.png
+    #         href: {{HOMEPAGE_VAR_BAZARR_URL}}
+    #         description: Subtitles
+    #         widget:
+    #           type: bazarr
+    #           url: {{HOMEPAGE_VAR_BAZARR_URL}}
+    #           key: {{HOMEPAGE_VAR_BAZARR}}
+    #           hideErrors: true
     # - mediarr-files:
-        - Cloud:
-            icon: mdi-cloud
-            href: {{HOMEPAGE_VAR_AUTO_URL}}
-            description: Cloud Auto Files
-        - MBS:
-            icon: mdi-cloud
-            href: {{HOMEPAGE_VAR_MBS_URL}}
-            description: MBS Files
-        - Odd Bird Media:
-            icon: mdi-cloud
-            href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
-            description: Media Files
+        # - Cloud:
+        #     icon: mdi-cloud
+        #     href: {{HOMEPAGE_VAR_AUTO_URL}}
+        #     description: Cloud Auto Files
+        # - MBS:
+        #     icon: mdi-cloud
+        #     href: {{HOMEPAGE_VAR_MBS_URL}}
+        #     description: MBS Files
+        # - Odd Bird Media:
+        #     icon: mdi-cloud
+        #     href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
+        #     description: Media Files
     - banking:
         - ING Bank:
             icon: /icons/ing.png
