@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: kestra
+  name: influxdata-charts
   namespace: flux-system
 spec:
   interval: 5m
-  url: https://helm.kestra.io
+  url: https://helm.influxdata.com

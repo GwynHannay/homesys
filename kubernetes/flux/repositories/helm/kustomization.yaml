@@ -9,9 +9,9 @@ resources:
   - ./coredns.yaml
   - ./external-dns.yaml
   - ./grafana.yaml
+  - ./influxdb.yaml
   - ./ingress-nginx.yaml
   - ./jetstack.yaml
-  - ./kestra.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
   - ./nextcloud.yaml

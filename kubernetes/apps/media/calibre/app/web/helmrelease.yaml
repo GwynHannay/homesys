@@ -52,10 +52,10 @@ spec:
           gethomepage.dev/icon: calibre-web.png
           gethomepage.dev/name: Calibre Web
           gethomepage.dev/weight: "15"
-          # gethomepage.dev/widget.type: calibreweb
-          # gethomepage.dev/widget.url: "https://books.${SECRET_DOMAIN}"
-          # gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_CALIBRE_USER}}"
-          # gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_CALIBRE_PASS}}"
+          gethomepage.dev/widget.type: calibreweb
+          gethomepage.dev/widget.url: "https://books.${SECRET_DOMAIN}"
+          gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_CALIBRE_USER}}"
+          gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_CALIBRE_PASS}}"
         hosts:
           - host: &host "books.${SECRET_DOMAIN}"
             paths:
