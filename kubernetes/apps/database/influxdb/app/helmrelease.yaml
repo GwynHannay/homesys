@@ -8,8 +8,8 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: influxdb2
-      version: 2.1.2
+      chart: influxdb
+      version: 4.12.5
       sourceRef:
         kind: HelmRepository
         name: influxdata-charts
@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: influxdb
-      tag: 2.7.5-alpine
+      tag: 1.8.10-alpine
 
     pdb:
       create: false
@@ -31,8 +31,7 @@ spec:
 
     persistence:
       enabled: true
-      useExisting: true
-      name: local-volume-database
+      existingClaim: local-volume-database
       subPath: *app
 
     ingress:
