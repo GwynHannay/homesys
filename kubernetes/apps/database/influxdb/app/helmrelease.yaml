@@ -8,40 +8,61 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: influxdb
-      version: 4.12.5
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: influxdata-charts
+        name: bjw-s
         namespace: flux-system
 
   values:
-    image:
-      repository: influxdb
-      tag: 1.8.10-alpine
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
 
-    pdb:
-      create: false
+        containers:
+          main:
+            image:
+              repository: influxdb
+              tag: 1.8.10
+            envFrom:
+              - secretRef:
+                  name: influxdb-secrets
+            env:
+              TZ: "${TIMEZONE}"
 
-    adminUser:
-      organization: "homesys"
-      user: "admin"
-      bucket: "default"
-      existingSecret: "influxdb-secrets"
-
-    persistence:
-      enabled: true
-      existingClaim: local-volume-database
-      subPath: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8086
 
     ingress:
-      enabled: true
-      className: internal
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Time Series DB
-        gethomepage.dev/group: data-platform
-        gethomepage.dev/icon: influxdb.png
-        gethomepage.dev/name: InfluxDB
-      hostname: "influxdb.${SECRET_DOMAIN}"
-      tls: true
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Time Series DB
+          gethomepage.dev/group: data-platform
+          gethomepage.dev/icon: influxdb.png
+          gethomepage.dev/name: InfluxDB
+        hosts:
+          - host: &host "influxdb.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      influxdata:
+        existingClaim: local-volume-database
+        globalMounts:
+          - path: /var/lib/influxdb
+            subPath: *app
