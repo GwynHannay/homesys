@@ -8,62 +8,41 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: app-template
-      version: 2.5.0
-      interval: 30m
+      chart: influxdb2
+      version: 2.1.2
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: influxdata-charts
         namespace: flux-system
 
   values:
-    controllers:
-      main:
-        annotations:
-          reloader.stakater.com/auto: "true"
+    image:
+      repository: influxdb
+      tag: 2.7.5-alpine
 
-        containers:
-          main:
-            image:
-              repository: influxdb
-              tag: 1.8.10
-            envFrom:
-              - secretRef:
-                  name: influxdb-secrets
-            env:
-              TZ: "${TIMEZONE}"
+    pdb:
+      create: false
 
-    service:
-      main:
-        ports:
-          http:
-            port: 8086
-
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        annotations:
-          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Time Series DB
-          gethomepage.dev/group: data-platform
-          gethomepage.dev/icon: influxdb.png
-          gethomepage.dev/name: InfluxDB
-        hosts:
-          - host: &host "influxdb.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
+    adminUser:
+      organization: "homesys"
+      user: "admin"
+      bucket: "default"
+      existingSecret: "influxdb-secrets"
 
     persistence:
-      influxdata:
-        existingClaim: local-volume-database
-        globalMounts:
-          - path: /var/lib/influxdb
-            subPath: *app
+      enabled: true
+      useExisting: true
+      name: local-volume-database
+      subPath: *app
+
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Time Series DB
+        gethomepage.dev/group: data-platform
+        gethomepage.dev/icon: influxdb.png
+        gethomepage.dev/name: InfluxDB
+      hostname: "influxdb.${SECRET_DOMAIN}"
+      tls: true
