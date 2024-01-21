@@ -1,0 +1,96 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app grafana
+  namespace: &ns monitoring
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: grafana
+      version: 7.2.3
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+    extraInitContainers:
+      - name: 01-init-db
+        image: ghcr.io/onedr0p/postgres-init:16
+        envFrom:
+          - secretRef:
+              name: &secret grafana-secrets
+          - configMapRef:
+              name: &config grafana-config
+
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
+
+    env:
+      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+      GF_EXPLORE_ENABLED: true
+      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+      GF_SECURITY_COOKIE_SAMESITE: *app
+      GF_SERVER_ROOT_URL: https://grafana.${SECRET_DOMAIN}
+
+    envFromSecrets:
+      - name: *secret
+      - name: *config
+
+    grafana.ini:
+      analytics:
+        check_for_updates: false
+        check_for_plugin_updates: false
+        reporting_enabled: false
+
+    admin:
+      existingSecret: grafana-secrets
+      passwordKey: adminPass
+      userKey: adminUser
+
+    sidecar:
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
+      datasources:
+        enabled: true
+        searchNamespace: ALL
+        labelValue: ""
+    plugins:
+      - grafana-clock-panel
+      - grafana-piechart-panel
+      - grafana-worldmap-panel
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - vonage-status-panel
+    serviceMonitor:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: internal
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Charts
+        gethomepage.dev/group: *ns
+        gethomepage.dev/icon: grafana.png
+        gethomepage.dev/name: Grafana
+      hosts:
+        - &host "grafana.${SECRET_DOMAIN}"
+      tls:
+        - hosts:
+            - *host
+          secretName: grafana-dashboard-tls
+
+    persistence:
+      enabled: true
+      existingClaim: local-volume-monitoring
+      subPath: *app
