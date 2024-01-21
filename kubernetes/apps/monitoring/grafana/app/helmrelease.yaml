@@ -67,16 +67,6 @@ spec:
         searchNamespace: ALL
         labelValue: ""
 
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-          - name: home_assistant
-            type: influxdb
-            access: proxy
-            url: http://influxdb-influxdb2.database:8086
-            database: home_assistant
-
     plugins:
       - grafana-clock-panel
       - grafana-piechart-panel
