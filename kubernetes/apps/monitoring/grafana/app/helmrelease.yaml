@@ -64,7 +64,8 @@ spec:
     dashboards:
       default:
         home-assistant:
-          url: https://raw.githubusercontent.com/rwlove/fleet-infra/main/kubernetes/main/apps/monitoring/grafana/dashboards/home_assistant.json
+          gnetId: 15832
+          revision: 2
           datasource: InfluxDB
 
     admin:
