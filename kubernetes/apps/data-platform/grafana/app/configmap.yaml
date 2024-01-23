@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-config
+  namespace: data-platform
+  labels:
+    app.kubernetes.io/name: grafana
+data:
+  TZ: "Australia/Perth"
+
+  # Init DB
+  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
+  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
+
+  # App
+  GF_DATABASE_HOST: "${NATIVE_PG_HOST}"
+  GF_DATABASE_TYPE: postgres
+  GF_DATABASE_SSL_MODE: disable

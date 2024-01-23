@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: grafana-datasources
+    namespace: data-platform
+    labels:
+        grafana_datasource: "true"
+stringData:
+    influxdb.yaml: ENC[AES256_GCM,data:nT082i4bNy86ULPA59hY/Zvg+DEZMFUA5NFGg2PWwf5lOAoNsBxDvDN7y/Tys/i0wWsEtZFUpIcVa2BW2WiIK8aHFQ6jReZD1DwhR9e+Ui/QkOO51W5N+q1LGJp6PgBJDcuJooL96Vai75Z3uaiUXk6QXKHsp278+Lw2XVaGGpwguwG3lR3DzTfbKlCbifE4PrnySuEH/jnSsnI9+kLMEzx6KpLF5PB7fb3+bAoUFyCxilQQCafJ48kCe8yBkv3uslniCZgNBS2/a2VhFbREgnBWvHoKqTY3V0Zg3nj72E1HCoPAOUG703sFiRmXzOsoAkjd3s6sxf4bzw==,iv:sqZEPsUyLtcZXGmjaZLMZuujnA3c26Oz3MiUndyjWsI=,tag:ZO4cnZBD/SdUi0mcV8SvlQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1g9s64k2xkul5pekjhv9hgrz9csze3utwruyegkypyfxwd6hjqugq5wyxfx
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlbHNNRUYxVnVGdHJtL1JF
+            QWlEdm0zWkNjTVIvMVorWVlJRWVBMGI3WEcwCmR1K3FIemNDZFNhNEdvUnl3UEV4
+            R2k1R09PWVIvV3dpQTY5OE5PZTgvMG8KLS0tIEdNbFBma3pQVWtvQU9TSWp2UGpH
+            V3NnZUs2QVJuMmIwSWVCUnJ1dGEzV3MKyiGzAWX9PxLjzIca+P6dqhix38WkShll
+            hdZDDqF2/PMQecmUNwn2juvvPYWdTjr0ZppY528iMi+3s56OIIMTiQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-01-23T19:27:06Z"
+    mac: ENC[AES256_GCM,data:fo1W7F+hESVGlRAnJ4x4YOc0F1iwc8D5M1oLJd8o8c0ispQRQ74BIMoVGqDmGMQhb6juxJ+JigZADZkgjanVoBR0kWROZg7u+d+oqrO1mQmTuMdPHm2wZQyAfoDUIp4v30G7sbem84wxumTJzauDqIIWkp3FG7qU04M5fzGskrY=,iv:1to6FiMh2r1XR7Oh3II8gZJCtr9sf2cyUoVxYKu1DEE=,tag:nysi2XqdHOMmMGSx6bVvMA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
