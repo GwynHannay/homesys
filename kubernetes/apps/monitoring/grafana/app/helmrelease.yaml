@@ -48,6 +48,12 @@ spec:
         check_for_plugin_updates: false
         reporting_enabled: false
 
+    dashboards:
+      default:
+        home-assistant:
+          url: https://raw.githubusercontent.com/rwlove/fleet-infra/main/kubernetes/main/apps/monitoring/grafana/dashboards/home_assistant.json
+          datasource: InfluxDB
+
     admin:
       existingSecret: grafana-secrets
       passwordKey: adminPass
