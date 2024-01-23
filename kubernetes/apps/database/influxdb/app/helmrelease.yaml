@@ -46,3 +46,7 @@ spec:
         gethomepage.dev/name: InfluxDB
       hostname: "influxdb.${SECRET_DOMAIN}"
       tls: true
+
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 10.172.90.40
