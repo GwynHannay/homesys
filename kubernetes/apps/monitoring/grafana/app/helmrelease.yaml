@@ -40,6 +40,7 @@ spec:
 
     envFromSecrets:
       - name: *secret
+      - name: grafana-datasources
 
     grafana.ini:
       analytics:
