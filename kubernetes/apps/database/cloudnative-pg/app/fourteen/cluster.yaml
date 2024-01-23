@@ -2,10 +2,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: fourteen
+  name: datalake
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1-8
 
   primaryUpdateStrategy: unsupervised
 
