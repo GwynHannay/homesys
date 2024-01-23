@@ -16,3 +16,4 @@ data:
   # App
   GF_DATABASE_HOST: "${NATIVE_PG_HOST}"
   GF_DATABASE_TYPE: postgres
+  GF_DATABASE_SSL_MODE: disable

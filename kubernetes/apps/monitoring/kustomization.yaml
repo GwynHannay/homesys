@@ -5,5 +5,5 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   - ./glances/ks.yaml
-  # - ./grafana/ks.yaml
+  - ./grafana/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
