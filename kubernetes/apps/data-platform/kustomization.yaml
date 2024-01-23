@@ -5,6 +5,7 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   # - ./datasette/ks.yaml
+  - ./grafana/ks.yaml
   - ./kestra/ks.yaml
   - ./pgadmin/ks.yaml
-  - ./superset/ks.yaml
+  # - ./superset/ks.yaml
