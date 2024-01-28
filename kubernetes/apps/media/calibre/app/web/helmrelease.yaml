@@ -48,7 +48,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: eBook Browser
-          gethomepage.dev/group: *ns
+          gethomepage.dev/group: media-widgets
           gethomepage.dev/icon: calibre-web.png
           gethomepage.dev/name: Calibre Web
           gethomepage.dev/weight: "15"
