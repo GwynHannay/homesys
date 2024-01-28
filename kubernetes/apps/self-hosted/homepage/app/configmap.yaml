@@ -35,8 +35,8 @@ data:
       Bookmarks:
         style: row
         columns: 4
-      media-widgets:
-        icon: mdi-folder-play-outline
+      widgets:
+        icon: mdi-widgets
         style: row
         columns: 3
         tab: Main
@@ -50,11 +50,6 @@ data:
         style: row
         columns: 3
         tab: Apps
-      monitor-widgets:
-        icon: mdi-widgets
-        style: row
-        columns: 3
-        tab: Main
       data-platform:
         icon: mdi-table-pivot
         style: row
