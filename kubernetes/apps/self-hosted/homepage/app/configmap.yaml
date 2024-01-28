@@ -206,6 +206,7 @@ data:
             widget:
               type: nzbget
               url: {{HOMEPAGE_VAR_NZBGET_URL}}
+              hideErrors: true
         - Sonarr:
             icon: sonarr.png
             href: {{HOMEPAGE_VAR_SONARR_URL}}
