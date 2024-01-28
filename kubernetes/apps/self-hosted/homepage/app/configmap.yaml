@@ -60,11 +60,6 @@ data:
         style: row
         columns: 3
         tab: Main
-      mediarr-files:
-        icon: mdi-projector
-        style: row
-        columns: 3
-        tab: Main
       documents:
         icon: mdi-file-document
         style: row
@@ -87,6 +82,11 @@ data:
         tab: Apps
       hosts:
         icon: mdi-wan
+        style: row
+        columns: 3
+        tab: Apps
+      mediarr-files:
+        icon: mdi-projector
         style: row
         columns: 3
         tab: Apps
