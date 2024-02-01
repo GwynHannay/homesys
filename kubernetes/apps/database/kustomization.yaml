@@ -6,6 +6,6 @@ resources:
   - ./pvc.yaml
   - ./cloudnative-pg/ks.yaml
   - ./influxdb/ks.yaml
-  # - ./influxv1/ks.yaml
+  - ./influxv1/ks.yaml
   # - ./pgloader/ks.yaml
   - ./redis/ks.yaml
