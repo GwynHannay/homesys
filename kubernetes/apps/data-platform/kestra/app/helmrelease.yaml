@@ -63,8 +63,11 @@ spec:
             securityContext:
               runAsUser: 0
               runAsGroup: 0
-            socketPath: /dind/
-            tmpPath: /local/tmp/
+            envFrom:
+              - secretRef:
+                  name: *secrets
+              - configMapRef:
+                  name: *config
 
     service:
       main:
