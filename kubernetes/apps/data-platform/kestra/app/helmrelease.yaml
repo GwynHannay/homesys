@@ -63,6 +63,8 @@ spec:
             securityContext:
               runAsUser: 0
               runAsGroup: 0
+            socketPath: /dind/
+            tmpPath: /local/tmp/
 
     service:
       main:
