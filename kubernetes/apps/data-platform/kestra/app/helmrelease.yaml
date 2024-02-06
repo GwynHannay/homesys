@@ -53,6 +53,16 @@ spec:
               - configMapRef:
                   name: *config
 
+          dind:
+            image:
+              repository: docker
+              tag: dind
+            args:
+              - --log-level=fatal
+            securityContext:
+              runAsUser: 1000
+              runAsGroup: 1000
+
     service:
       main:
         ports:
