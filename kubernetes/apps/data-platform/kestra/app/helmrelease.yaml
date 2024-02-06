@@ -54,20 +54,20 @@ spec:
               - configMapRef:
                   name: *config
 
-          dind:
-            image:
-              repository: docker
-              tag: dind
-            args:
-              - --log-level=fatal
-            securityContext:
-              runAsUser: 0
-              runAsGroup: 0
-            envFrom:
-              - secretRef:
-                  name: *secrets
-              - configMapRef:
-                  name: *config
+          # dind:
+          #   image:
+          #     repository: docker
+          #     tag: dind
+          #   args:
+          #     - --log-level=fatal
+          #   securityContext:
+          #     runAsUser: 0
+          #     runAsGroup: 0
+          #   envFrom:
+          #     - secretRef:
+          #         name: *secrets
+          #     - configMapRef:
+          #         name: *config
 
     service:
       main:
