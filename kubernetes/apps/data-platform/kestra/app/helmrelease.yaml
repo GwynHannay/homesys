@@ -17,9 +17,10 @@ spec:
         namespace: flux-system
 
   values:
-    # defaultPodOptions:
-    #   securityContext:
-    #     fsGroup: 1001
+    defaultPodOptions:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
 
     controllers:
       main:
