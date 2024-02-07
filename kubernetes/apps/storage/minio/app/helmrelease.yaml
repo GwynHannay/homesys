@@ -53,7 +53,7 @@ spec:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Object Storage
-          gethomepage.dev/group: *ns
+          gethomepage.dev/group: data-platform
           gethomepage.dev/icon: minio.png
           gethomepage.dev/name: Minio
         hosts:
