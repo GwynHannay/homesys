@@ -70,7 +70,7 @@ spec:
             name: gotenberg
             image:
               repository: docker.io/gotenberg/gotenberg
-              tag: 8.0.2
+              tag: 8.0.3
             command:
               - gotenberg
               - --chromium-disable-javascript=true
