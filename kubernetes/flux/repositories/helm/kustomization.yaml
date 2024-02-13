@@ -7,6 +7,7 @@ resources:
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
   - ./coredns.yaml
+  - ./dagster.yaml
   - ./external-dns.yaml
   - ./grafana.yaml
   - ./influxdb.yaml
@@ -14,7 +15,6 @@ resources:
   - ./jetstack.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
-  - ./nextcloud.yaml
   - ./stakater.yaml
   - ./superset.yaml
   # - ./weave-gitops.yaml
