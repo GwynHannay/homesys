@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  - ./dagster/ks.yaml
+  # - ./dagster/ks.yaml
   # - ./datasette/ks.yaml
   - ./grafana/ks.yaml
   - ./pgadmin/ks.yaml
