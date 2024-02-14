@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app dagster
+  namespace: &ns data-platform
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: dagster
+      version: 0.0.1-dev
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: dagster
+        namespace: flux-system
+
+  values:
+    global:
+      potgresqlSecretName: dagster-secrets
+
+    dagsterWebserver:
+      image:
+        pullPolicy: IfNotPresent
+      annotations:
+       reloader.stakater.com/auto: "true"
+
+    postgresql:
+      enabled: false
+      postgresqlHost: "${POSTGRES_HOST}"

@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kestra-config
+  name: dagster-config
   namespace: data-platform
   labels:
-    app.kubernetes.io/name: kestra
+    app.kubernetes.io/name: dagster
 data:
   TZ: "Australia/Perth"
 
