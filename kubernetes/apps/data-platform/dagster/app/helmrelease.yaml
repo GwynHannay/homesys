@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: dagster
-      version: 0.0.1-dev
+      version: 0.15.10
       interval: 30m
       sourceRef:
         kind: HelmRepository
