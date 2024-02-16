@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app ocr4all
+  namespace: &ns data-platform
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.5.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        containers:
+          main:
+            image:
+              repository: uniwuezpd/ocr4all
+              tag: 0.6.1
+            # envFrom:
+            #   - secretRef:
+            #       name: ocr4all-secrets
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: OCR Workflows
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: mdi-file-pdf-box
+          gethomepage.dev/name: OCR4all
+        hosts:
+          - host: &host "ocr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+
+    persistence:
+      vols:
+        enabled: true
+        existingClaim: local-volume-data-platform
+        globalMounts:
+          - path: /var/ocr4all/data
+            subPath: ocr4all/data
+          - path: /var/ocr4all/models/custom
+            subPath: ocr4all/models

@@ -7,5 +7,6 @@ resources:
   # - ./dagster/ks.yaml
   # - ./datasette/ks.yaml
   - ./grafana/ks.yaml
+  - ./ocr4all/ks.yaml
   - ./pgadmin/ks.yaml
   # - ./superset/ks.yaml
