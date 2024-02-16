@@ -51,6 +51,7 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: mdi-file-pdf-box
           gethomepage.dev/name: OCR4all
+          gethomepage.dev/href: "https://ocr.${SECRET_DOMAIN}/ocr4all"
         hosts:
           - host: &host "ocr.${SECRET_DOMAIN}"
             paths:
