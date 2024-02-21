@@ -38,4 +38,3 @@ spec:
       persistence:
         enabled: true
         existingClaim: local-claim-recovery
-    # postgresqlSharedPreloadLibraries: "pgaudit,vectors.so"
