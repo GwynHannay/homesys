@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  # - ./grafana/ks.yaml
+  - ./grafana/ks.yaml
   # - ./ocr4all/ks.yaml
-  # - ./pgadmin/ks.yaml
+  - ./pgadmin/ks.yaml
