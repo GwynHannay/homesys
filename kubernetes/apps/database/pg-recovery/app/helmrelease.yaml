@@ -28,7 +28,7 @@ spec:
     global:
       postgresql:
         auth:
-          postgresPassword: "${NATIVE_PASSWORD}"
+          postgresPassword: "${POSTGRES_PASSWORD}"
     audit:
       logTimezone: "Australia/Perth"
     primary:
