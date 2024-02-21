@@ -4,11 +4,10 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  - ./ghostfolio/ks.yaml
-  - ./grocy/ks.yaml
-  - ./homebox/ks.yaml
-  - ./homepage/ks.yaml
-  - ./homer/ks.yaml
-  - ./joplin/ks.yaml
-  # - ./nextcloud/ks.yaml
-  - ./wallabag/ks.yaml
+  # - ./ghostfolio/ks.yaml
+  # - ./grocy/ks.yaml
+  # - ./homebox/ks.yaml
+  # - ./homepage/ks.yaml
+  # - ./homer/ks.yaml
+  # - ./joplin/ks.yaml
+  # - ./wallabag/ks.yaml
