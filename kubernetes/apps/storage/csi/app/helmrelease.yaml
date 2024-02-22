@@ -55,7 +55,10 @@ spec:
         enabled: false
 
       externalSnapshotter:
-        enabled: false
+        enabled: true
+        extraArgs:
+          - --leader-election=false
+          - --node-deployment=true
 
     node:
       driver:
