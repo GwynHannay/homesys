@@ -104,7 +104,7 @@ spec:
 #   persistentVolumeReclaimPolicy: Retain
 #   storageClassName: local-storage
 #   local:
-#     path: /mnt/tera/vols/lake
+#     path: /mnt/tera/cnpg/lake
 #   nodeAffinity:
 #     required:
 #       nodeSelectorTerms:
