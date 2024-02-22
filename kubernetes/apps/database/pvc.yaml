@@ -222,5 +222,5 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  volumeName: local-claim-postgres16
+  volumeName: local-claim-recovery
   storageClassName: local-storage
