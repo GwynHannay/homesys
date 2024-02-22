@@ -45,8 +45,8 @@ spec:
       volumeSnapshots:
         storage:
           name: local-claim-recovery
-          kind: PersistentVolumeClaim
-          apiGroup: core.k8s.io
+          kind: VolumeSnapshot
+          apiGroup: snapshot.storage.k8s.io
       # source: &previousCluster postgres16-v1
   # externalClusters:
   #   - name: *previousCluster
