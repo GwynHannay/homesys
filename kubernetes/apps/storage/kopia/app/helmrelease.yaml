@@ -84,7 +84,7 @@ spec:
         existingClaim: nfs-volume
       vols:
         readOnly: true
-        existingClaim: local-volume
+        existingClaim: local-volume-kopia
       claims:
         readOnly: true
         existingClaim: local-claims
