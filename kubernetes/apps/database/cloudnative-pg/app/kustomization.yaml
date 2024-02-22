@@ -5,8 +5,8 @@ namespace: database
 resources:
   - ./cloudnative-secrets.sops.yaml
   - ./helmrelease.yaml
-  # - ./primary/cluster.yaml
-  # - ./primary/service.yaml
+  - ./primary/cluster.yaml
+  - ./primary/service.yaml
   # - ./pgvector/cluster-vector.yaml
   # - ./pgvector/service-vector.yaml
   # - ./lake/cluster.yaml

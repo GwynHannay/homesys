@@ -44,7 +44,7 @@ spec:
     recovery:
       volumeSnapshots:
         storage:
-          name: local-claim-recovery
+          name: pg-snapshot
           kind: VolumeSnapshot
           apiGroup: snapshot.storage.k8s.io
       # source: &previousCluster postgres16-v1
