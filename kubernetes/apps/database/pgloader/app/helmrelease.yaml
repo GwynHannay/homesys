@@ -38,8 +38,8 @@ spec:
                   name: pgloader-config
             command:
               - pgloader
-              - "sqlite:///nfs/$(SQLITE_DB)"
-              - "pgsql://$(PG_USER)@$(PG_HOST)/$(PG_DB)"
+              # - "sqlite:///nfs/$(SQLITE_DB)"
+              # - "pgsql://$(PG_USER)@$(PG_HOST)/$(PG_DB)"
 
     service:
       main:
@@ -49,4 +49,4 @@ spec:
 
     persistence:
       nfs:
-        existingClaim: nfs-volume-database
+        existingClaim: cnpg-restore
