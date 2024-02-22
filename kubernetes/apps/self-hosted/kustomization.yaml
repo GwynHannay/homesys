@@ -5,7 +5,7 @@ resources:
   - ./namespace.yaml
   - ./pvc.yaml
   # - ./ghostfolio/ks.yaml
-  # - ./grocy/ks.yaml
+  - ./grocy/ks.yaml
   # - ./homebox/ks.yaml
   - ./homepage/ks.yaml
   # - ./homer/ks.yaml
