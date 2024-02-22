@@ -39,43 +39,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: local-volume-kopia
-spec:
-  capacity:
-    storage: 930Gi
-  volumeMode: Filesystem
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  local:
-    path: /mnt/tera/vols
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - homesys
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: local-volume-kopia
-  namespace: storage
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 930Gi
-  volumeName: local-volume-kopia
-  storageClassName: local-storage
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: local-claims
 spec:
   capacity:
@@ -146,40 +109,4 @@ spec:
       storage: 900Gi
   volumeName: nfs-volume
   storageClassName: local-storage
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-volume-kopia
-spec:
-  capacity:
-    storage: 900Gi
-  volumeMode: Filesystem
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  local:
-    path: /mnt/fileserver/backups
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - homesys
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: nfs-volume-kopia
-  namespace: storage
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 900Gi
-  volumeName: nfs-volume-kopia
-  storageClassName: local-storage
+
