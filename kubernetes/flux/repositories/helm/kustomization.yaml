@@ -8,6 +8,7 @@ resources:
   - ./cloudnative-pg.yaml
   - ./coredns.yaml
   - ./dagster.yaml
+  - ./democratic-csi.yaml
   - ./external-dns.yaml
   - ./grafana.yaml
   - ./influxdb.yaml
