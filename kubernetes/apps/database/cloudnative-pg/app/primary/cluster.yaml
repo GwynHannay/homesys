@@ -42,7 +42,8 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      volumeSnapshots: local-claim-recovery
+      volumeSnapshots:
+        storage: local-claim-recovery
       # source: &previousCluster postgres16-v1
   # externalClusters:
   #   - name: *previousCluster
