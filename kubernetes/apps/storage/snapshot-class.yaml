@@ -6,4 +6,3 @@ metadata:
     snapshot.storage.kubernetes.io/is-default-class: "true"
 driver: org.democratic-csi.local-hostpath
 deletionPolicy: Delete
-parameters:
