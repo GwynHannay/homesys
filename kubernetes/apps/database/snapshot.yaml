@@ -4,5 +4,6 @@ metadata:
   name: pg-snapshot
   namespace: database
 spec:
+  volumeSnapshotClassName: snapshot-local
   source:
     persistentVolumeClaimName: cnpg-restore
