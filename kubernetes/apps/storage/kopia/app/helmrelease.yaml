@@ -81,7 +81,7 @@ spec:
           - path: /app/config/repository.config
             subPath: repository.config
       snapshots:
-        existingClaim: nfs-volume
+        existingClaim: nfs-volume-kopia
       vols:
         readOnly: true
         existingClaim: local-volume-kopia
