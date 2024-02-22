@@ -67,29 +67,29 @@ spec:
 #           operator: In
 #           values:
 #           - homesys
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: local-claim-postgres16
-# spec:
-#   capacity:
-#     storage: 20Gi
-#   volumeMode: Filesystem
-#   accessModes:
-#   - ReadWriteOnce
-#   persistentVolumeReclaimPolicy: Retain
-#   storageClassName: local-storage
-#   local:
-#     path: /mnt/tera/claims
-#   nodeAffinity:
-#     required:
-#       nodeSelectorTerms:
-#       - matchExpressions:
-#         - key: kubernetes.io/hostname
-#           operator: In
-#           values:
-#           - homesys
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-claim-postgres16
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/tera/claims
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
 ---
 # apiVersion: v1
 # kind: PersistentVolume
@@ -210,17 +210,17 @@ spec:
       storage: 900Gi
   volumeName: nfs-volume-database
   storageClassName: local-storage
-# ---
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   name: local-claim-postgres16
-#   namespace: database
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 20Gi
-#   volumeName: local-claim-postgres16
-#   storageClassName: local-storage
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-claim-postgres16
+  namespace: database
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: local-claim-postgres16
+  storageClassName: local-storage
