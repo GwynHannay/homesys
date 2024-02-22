@@ -2,10 +2,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: fourteen
+  name: datalake
 spec:
   instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:14
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1-8
 
   primaryUpdateStrategy: unsupervised
 
@@ -14,42 +14,6 @@ spec:
     storageClass: local-storage
 
   superuserSecret:
-    name: &secret cloudnative-secrets
+    name: cloudnative-secrets
 
   enableSuperuserAccess: true
-
-  backup:
-    retentionPolicy: 30d
-    barmanObjectStore: &barmanObjectStore
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: s3://postgresql/pg14
-      endpointURL: https://s3.${SECRET_DOMAIN}
-      # Note: serverName version needs to be incremented or changed
-      # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres14-v1
-      s3Credentials:
-        accessKeyId:
-          name: *secret
-          key: minio_access_id
-        secretAccessKey:
-          name: *secret
-          key: minio_access_key
-  # Note: previousCluster needs to be set to the name of the previous
-  # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      volumeSnapshots:
-        storage:
-          name: pg-snapshot
-          kind: VolumeSnapshot
-          apiGroup: snapshot.storage.k8s.io
-      # source: &previousCluster postgres14-v1
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
