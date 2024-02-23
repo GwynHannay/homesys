@@ -11,7 +11,7 @@ resources:
   - ./pgvector/service-vector.yaml
   - ./lake/cluster.yaml
   - ./lake/service.yaml
-  # - ./datawarehouse/cluster.yaml
-  # - ./datawarehouse/service.yaml
+  - ./datawarehouse/cluster.yaml
+  - ./datawarehouse/service.yaml
   - ./fourteen/cluster.yaml
   - ./fourteen/service.yaml
