@@ -13,5 +13,5 @@ resources:
   - ./lake/service.yaml
   # - ./datawarehouse/cluster.yaml
   # - ./datawarehouse/service.yaml
-  # - ./fourteen/cluster.yaml
-  # - ./fourteen/service.yaml
+  - ./fourteen/cluster.yaml
+  - ./fourteen/service.yaml
