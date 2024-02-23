@@ -4,10 +4,10 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  - ./csi-pvc.yaml
-  - ./snapshot.yaml
+  # - ./csi-pvc.yaml
+  # - ./snapshot.yaml
   - ./cloudnative-pg/ks.yaml
   - ./influxdb/ks.yaml
   # - ./pg-recovery/ks.yaml
-  - ./pgloader/ks.yaml
+  # - ./pgloader/ks.yaml
   - ./redis/ks.yaml
