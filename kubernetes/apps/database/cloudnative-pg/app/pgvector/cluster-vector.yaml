@@ -48,11 +48,11 @@ spec:
       #     kind: VolumeSnapshot
       #     apiGroup: snapshot.storage.k8s.io
       source: &previousCluster pgvector-v1
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
 
   postgresql:
     shared_preload_libraries:
