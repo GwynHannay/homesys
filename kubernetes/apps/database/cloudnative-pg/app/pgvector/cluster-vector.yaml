@@ -30,7 +30,7 @@ spec:
       endpointURL: https://s3.${SECRET_DOMAIN}
       # Note: serverName version needs to be incremented or changed
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster pgvector-v1
+      serverName: &currentCluster pgvector-v2
       s3Credentials:
         accessKeyId:
           name: *secret
