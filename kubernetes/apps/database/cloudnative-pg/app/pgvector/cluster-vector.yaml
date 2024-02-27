@@ -5,7 +5,7 @@ metadata:
   name: postgres-vector
 spec:
   instances: 1
-  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.1.11
+  imageName: ghcr.io/bo0tzz/cnpgvecto.rs:16.1-v0.2.0
 
   primaryUpdateStrategy: unsupervised
 
@@ -42,12 +42,12 @@ spec:
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
     recovery:
-      volumeSnapshots:
-        storage:
-          name: pg-snapshot
-          kind: VolumeSnapshot
-          apiGroup: snapshot.storage.k8s.io
-      # source: &previousCluster pgvector-v1
+      # volumeSnapshots:
+      #   storage:
+      #     name: pg-snapshot
+      #     kind: VolumeSnapshot
+      #     apiGroup: snapshot.storage.k8s.io
+      source: &previousCluster pgvector-v1
   # externalClusters:
   #   - name: *previousCluster
   #     barmanObjectStore:
