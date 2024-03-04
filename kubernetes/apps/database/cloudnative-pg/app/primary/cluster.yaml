@@ -30,7 +30,7 @@ spec:
       endpointURL: https://s3.${SECRET_DOMAIN}
       # Note: serverName version needs to be incremented or changed
       # when recovering from an existing cnpg cluster
-      serverName: &currentCluster postgres16-v1
+      serverName: &currentCluster postgres16-v2
       s3Credentials:
         accessKeyId:
           name: *secret
@@ -47,9 +47,9 @@ spec:
           name: pg-snapshot
           kind: VolumeSnapshot
           apiGroup: snapshot.storage.k8s.io
-      # source: &previousCluster postgres16-v1
-  # externalClusters:
-  #   - name: *previousCluster
-  #     barmanObjectStore:
-  #       <<: *barmanObjectStore
-  #       serverName: *previousCluster
+      source: &previousCluster postgres16-v1
+  externalClusters:
+    - name: *previousCluster
+      barmanObjectStore:
+        <<: *barmanObjectStore
+        serverName: *previousCluster
