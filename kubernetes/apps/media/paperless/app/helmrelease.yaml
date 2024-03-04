@@ -117,15 +117,11 @@ spec:
     persistence:
       library:
         existingClaim: local-volume-media
-        advancedMounts:
-          main:
-            main:
-              - path: /library
-                subPath: *app
+        globalMounts:
+          - path: /library
+            subPath: *app
       nfs:
         existingClaim: nfs-volume-media
-        advancedMounts:
-          main:
-            main:
-              - path: /nfs
-                subPath: *app
+        globalMounts:
+          - path: /nfs
+            subPath: *app
