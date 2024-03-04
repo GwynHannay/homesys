@@ -25,6 +25,46 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: lv-database-redis-vol
+spec:
+  capacity:
+    storage: 30Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  claimRef:
+    name: lv-database-redis-claim
+    namespace: database
+  local:
+    path: /mnt/tera/vols/redis
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: lv-database-redis-claim
+  namespace: database
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Gi
+  volumeName: lv-database-redis-vol
+  storageClassName: local-storage
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: nfs-volume-database
 spec:
   capacity:
