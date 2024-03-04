@@ -17,10 +17,14 @@ spec:
 
   values:
     architecture: standalone
+
     auth:
       enabled: false
       sentinel: false
+
     master:
+      podSecurityContext:
+        fsGroupChangePolicy: "OnRootMismatch"
       persistence:
         existingClaim: local-volume-database
         subPath: *app
