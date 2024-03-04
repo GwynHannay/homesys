@@ -22,7 +22,8 @@ spec:
       sentinel: false
     master:
       persistence:
-        existingClaim: lv-database-redis-claim
+        existingClaim: local-volume-database
+        subPath: *app
       service:
         type: LoadBalancer
         loadBalancerIP: 10.172.90.31
