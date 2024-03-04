@@ -9,33 +9,14 @@ spec:
   chart:
     spec:
       chart: democratic-csi
-      version: 0.14.2
+      version: 0.14.5
       sourceRef:
         kind: HelmRepository
         name: democratic-csi
         namespace: flux-system
       interval: 15m
-  install:
-    createNamespace: true
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
+
   values:
-    csiDriver:
-      name: "org.democratic-csi.local-hostpath"
-      attachRequired: false
-      storageCapacity: true
-      fsGroupPolicy: File
-
-    storageClasses:
-      - name: local-hostpath
-        defaultClass: false
-        reclaimPolicy: Retain
-        volumeBindingMode: WaitForFirstConsumer
-        allowVolumeExpansion: false
-
     controller:
       enabled: true
       strategy: node
@@ -60,26 +41,39 @@ spec:
           - --leader-election=false
           - --node-deployment=true
 
-    node:
-      driver:
-        extraVolumeMounts:
-          - name: local-storage
-            mountPath: /var/lib/csi-local-hostpath
-            mountPropagation: Bidirectional
+    csiDriver:
+      name: "org.democratic-csi.local-hostpath"
+      attachRequired: false
+      storageCapacity: true
+      fsGroupPolicy: File
 
-      extraVolumes:
-        - name: local-storage
-          hostPath:
-            path: /mnt/raid/local-hostpath
-            type: DirectoryOrCreate
+    storageClasses:
+      - name: local-hostpath
+        defaultClass: false
+        reclaimPolicy: Retain
+        volumeBindingMode: WaitForFirstConsumer
+        allowVolumeExpansion: true
 
     driver:
       config:
         driver: local-hostpath
         instance_id: homesys
         local-hostpath:
-          shareBasePath: "/var/lib/csi-local-hostpath"
-          controllerBasePath: "/var/lib/csi-local-hostpath"
+          shareBasePath: &storagePath "/mnt/tera/csi"
+          controllerBasePath: *storagePath
           dirPermissionsMode: "0777"
           dirPermissionsUser: 0
           dirPermissionsGroup: 0
+
+    node:
+      driver:
+        extraVolumeMounts:
+          - name: local-hostpath
+            mountPath: *storagePath
+            mountPropagation: Bidirectional
+
+      extraVolumes:
+        - name: local-hostpath
+          hostPath:
+            path: *storagePath
+            type: DirectoryOrCreate
