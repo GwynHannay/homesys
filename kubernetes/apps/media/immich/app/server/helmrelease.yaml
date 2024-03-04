@@ -93,6 +93,8 @@ spec:
     persistence:
       library:
         existingClaim: local-volume-media
-        globalMounts:
-          - path: /usr/src/app/upload
-            subPath: immich/upload
+        advancedMounts:
+          main:
+            main:
+              - path: /usr/src/app/upload
+                subPath: immich/upload
