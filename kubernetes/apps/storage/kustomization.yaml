@@ -5,7 +5,7 @@ resources:
   - ./namespace.yaml
   - ./local-storageclass.yaml
   - ./pvc.yaml
-  - ./csi/ks.yaml
+  # - ./csi/ks.yaml
   # - ./snapshot-class.yaml
   - ./kopia/ks.yaml
   - ./minio/ks.yaml

@@ -16,6 +16,11 @@ spec:
         namespace: flux-system
 
   values:
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+
     controllers:
       main:
         annotations:
