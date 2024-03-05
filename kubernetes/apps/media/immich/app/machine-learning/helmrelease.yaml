@@ -53,6 +53,8 @@ spec:
     persistence:
       cache:
         existingClaim: local-volume-media
-        globalMounts:
-          - path: /cache
-            subPath: immich/models
+        advancedMounts:
+          main:
+            main:
+              - path: /cache
+                subPath: immich/models
