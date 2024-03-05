@@ -24,6 +24,7 @@ spec:
 
     master:
       podSecurityContext:
+        fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
       persistence:
         existingClaim: local-volume-database
