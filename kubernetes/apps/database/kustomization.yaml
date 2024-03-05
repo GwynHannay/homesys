@@ -10,4 +10,4 @@ resources:
   - ./influxdb/ks.yaml
   # - ./pg-recovery/ks.yaml
   # - ./pgloader/ks.yaml
-  - ./redis/ks.yaml
+  # - ./redis/ks.yaml

@@ -26,6 +26,8 @@ spec:
       podSecurityContext:
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
+      containerSecurityContent:
+        runAsGroup: 1001
       persistence:
         existingClaim: local-volume-database
         subPath: *app
