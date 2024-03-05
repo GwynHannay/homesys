@@ -20,6 +20,9 @@ spec:
       repository: influxdb
       tag: 2.7.5-alpine
 
+    securityContext:
+      fsGroupChangePolicy: "OnRootMismatch"
+
     pdb:
       create: false
 
