@@ -20,6 +20,7 @@ spec:
     defaultPodOptions:
       securityContext:
         fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
       hostAliases:
         - ip: "127.0.0.1"
           hostnames:
