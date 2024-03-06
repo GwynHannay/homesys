@@ -1,0 +1,143 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app airflow
+  namespace: &ns data-platform
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: airflow
+      version: 1.12.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: airflow
+        namespace: flux-system
+
+  values:
+    useStandardNaming: true
+
+    securityContexts:
+      pod:
+        fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+
+    ingress:
+      web:
+        enabled: true
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Data Orchestrator
+          gethomepage.dev/group: *ns
+          gethomepage.dev/icon: airflow.png
+          gethomepage.dev/name: Airflow
+        hosts:
+          - name: &host "airflow.${SECRET_DOMAIN}"
+            tls:
+              enabled: true
+              secretName: *host
+        ingressClassName: internal
+
+    airflowPodAnnotations:
+      reloader.stakater.com/auto: "true"
+
+    executor: "CeleryExecutor"
+
+    extraEnvFrom: |
+      - secretRef:
+          name: airflow-secrets
+      - configMapRef:
+          name: airflow-config
+
+    data:
+      metadataSecretName: &secrets airflow-secrets
+      brokerUrl: "redis://${REDIS_HOST}:6379"
+
+    webserverSecretKeySecretName: *secrets
+
+    kerberos:
+      enabled: false
+
+    workers:
+      securityContext:
+        fsGroup: 1001
+
+    scheduler:
+      enabled: true
+      extraContainers:
+        - name: minio-sync
+          image: ghcr.io/scribd/objinsync:v2.5.0
+          securityContext:
+            fsGroup: 1001
+            fsGroupChangePolicy: "OnRootMismatch"
+          command: /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+          volumeMounts:
+            - name: dags
+              mountPath: /opt/airflow/dags
+      extraInitContainers:
+        - name: init-minio-sync
+          image: ghcr.io/scribd/objinsync:v2.5.0
+          securityContext:
+            fsGroup: 1001
+            fsGroupChangePolicy: "OnRootMismatch"
+          command: /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+          volumeMounts:
+            - name: dags
+              mountPath: /opt/airflow/dags
+
+
+    createUserJob:
+      useHelmHooks: false
+      applyCustomEnv: false
+
+    migrateDatabaseJob:
+      useHelmHooks: false
+      applyCustomEnv: false
+
+    webserver:
+      enabled: true
+
+    triggerer:
+      enabled: true
+
+    dagProcessor:
+      enabled: false
+
+    flower:
+      enabled: false
+
+    statsd:
+      enabled: true
+
+    pgbouncer:
+      enabled: true
+
+    redis:
+      enabled: false
+
+    elasticsearch:
+      enabled: false
+
+    cleanup:
+      enabled: false
+
+    postgresql:
+      enabled: false
+
+    config:
+      core:
+        load_examples: 'True'
+      logging:
+        colored_console_log: 'True'
+
+    dags:
+      persistence:
+        enabled: true
+        existingClaim: local-volume-data-platform
+        subPath: *app
+
+    logs:
+      persistence:
+        enabled: false

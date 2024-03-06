@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-config
+  namespace: data-platform
+  labels:
+    app.kubernetes.io/name: airflow
+data:
+  TZ: "Australia/Perth"
