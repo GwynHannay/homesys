@@ -69,20 +69,16 @@ spec:
       extraContainers:
         - name: minio-sync
           image: ghcr.io/scribd/objinsync:v2.5.0
-          securityContext:
-            fsGroup: 1001
-            fsGroupChangePolicy: "OnRootMismatch"
-          command: /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+          command:
+            - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
           volumeMounts:
             - name: dags
               mountPath: /opt/airflow/dags
       extraInitContainers:
         - name: init-minio-sync
           image: ghcr.io/scribd/objinsync:v2.5.0
-          securityContext:
-            fsGroup: 1001
-            fsGroupChangePolicy: "OnRootMismatch"
-          command: /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+          command:
+            - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
           volumeMounts:
             - name: dags
               mountPath: /opt/airflow/dags
