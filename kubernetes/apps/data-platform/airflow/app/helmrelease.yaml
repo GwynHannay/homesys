@@ -40,8 +40,8 @@ spec:
               secretName: *host
         ingressClassName: internal
 
-    airflowPodAnnotations:
-      reloader.stakater.com/auto: "true"
+    # airflowPodAnnotations:
+    #   reloader.stakater.com/auto: "true"
 
     executor: "CeleryExecutor"
 
@@ -65,6 +65,8 @@ spec:
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
       safeToEvict: false
+      podAnnotations:
+        reloader.stakater.com/auto: "true"
 
     scheduler:
       enabled: true
