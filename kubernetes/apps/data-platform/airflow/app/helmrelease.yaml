@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: airflow
-      version: 1.14.0-dev
+      version: 1.13.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -40,8 +40,8 @@ spec:
               secretName: *host
         ingressClassName: internal
 
-    # airflowPodAnnotations:
-    #   reloader.stakater.com/auto: "true"
+    airflowPodAnnotations:
+      reloader.stakater.com/auto: "true"
 
     executor: "CeleryExecutor"
 
@@ -65,8 +65,8 @@ spec:
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
       safeToEvict: false
-      podAnnotations:
-        reloader.stakater.com/auto: "true"
+      # podAnnotations:
+      #   reloader.stakater.com/auto: "true"
 
     scheduler:
       enabled: true
