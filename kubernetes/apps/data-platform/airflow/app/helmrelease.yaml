@@ -63,6 +63,8 @@ spec:
     workers:
       securityContext:
         fsGroup: 1001
+        fsGroupChangePolicy: "OnRootMismatch"
+      safeToEvict: false
 
     scheduler:
       enabled: true
