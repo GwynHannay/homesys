@@ -63,14 +63,14 @@ spec:
               - *host
 
     persistence:
-      config:
-        enabled: true
-        type: configMap
-        name: *app
-        globalMounts:
-          - subPath: glances.conf
-            path: /glances/conf/glances.conf
-            readOnly: true
+      # config:
+      #   enabled: true
+      #   type: configMap
+      #   name: *app
+      #   globalMounts:
+      #     - subPath: glances.conf
+      #       path: /glances/conf/glances.conf
+      #       readOnly: true
       local:
         existingClaim: local-volume-monitoring
         globalMounts:
