@@ -32,7 +32,8 @@ spec:
               tag: 3.4.0.3
             env:
               TZ: "${TIMEZONE}"
-              GLANCES_OPT: "--config /glances/conf/glances.conf --webserver --light"
+              GLANCES_OPT: "-w -d"
+              # GLANCES_OPT: "--config /glances/conf/glances.conf --webserver --light"
 
     service:
       main:
