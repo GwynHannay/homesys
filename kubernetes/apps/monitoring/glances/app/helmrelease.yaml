@@ -32,7 +32,8 @@ spec:
               tag: 3.4.0.3
             env:
               TZ: "${TIMEZONE}"
-              GLANCES_OPT: "-d -C /glances/conf/glances.conf --export influxdb2"
+              GLANCES_OPT: "-w -d -C /glances/conf/glances.conf"
+              # GLANCES_OPT: "-d -C /glances/conf/glances.conf --export influxdb2"
 
     service:
       main:
