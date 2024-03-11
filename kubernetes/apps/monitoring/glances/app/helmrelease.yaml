@@ -32,7 +32,7 @@ spec:
               tag: 3.4.0.3
             env:
               TZ: "${TIMEZONE}"
-              GLANCES_OPT: "-w -d --light"
+              GLANCES_OPT: "-w -d -C /glances/conf/glances.conf"
               # GLANCES_OPT: "--config /glances/conf/glances.conf --webserver --light"
 
     service:
@@ -64,14 +64,14 @@ spec:
               - *host
 
     persistence:
-      # config:
-      #   enabled: true
-      #   type: configMap
-      #   name: *app
-      #   globalMounts:
-      #     - subPath: glances.conf
-      #       path: /glances/conf/glances.conf
-      #       readOnly: true
+      config:
+        enabled: true
+        type: configMap
+        name: *app
+        globalMounts:
+          - subPath: glances.conf
+            path: /glances/conf/glances.conf
+            readOnly: true
       local:
         existingClaim: local-volume-monitoring
         globalMounts:
