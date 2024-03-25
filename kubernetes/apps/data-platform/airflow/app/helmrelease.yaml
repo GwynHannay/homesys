@@ -74,7 +74,8 @@ spec:
             - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
           volumeMounts:
             - name: dags
-              mountPath: /opt/airflow/dags
+              mountPath: /opt/airflow
+              subPath: *app
       extraInitContainers:
         - name: init-minio-sync
           image: ghcr.io/scribd/objinsync:v2.5.0
@@ -82,7 +83,8 @@ spec:
             - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
           volumeMounts:
             - name: dags
-              mountPath: /opt/airflow/dags
+              mountPath: /opt/airflow
+              subPath: *app
 
 
     createUserJob:
@@ -137,4 +139,6 @@ spec:
 
     logs:
       persistence:
-        enabled: false
+        enabled: true
+        existingClaim: local-volume-data-platform
+        subPath: *app
