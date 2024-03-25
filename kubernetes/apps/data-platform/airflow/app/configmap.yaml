@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: airflow-config
+  name: airflow-user-config
   namespace: data-platform
   labels:
     app.kubernetes.io/name: airflow
