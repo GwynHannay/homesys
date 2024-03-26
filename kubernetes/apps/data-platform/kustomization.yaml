@@ -6,6 +6,6 @@ resources:
   - ./pvc.yaml
   # - ./airflow/ks.yaml
   - ./grafana/ks.yaml
-  # - ./objinsync/ks.yaml
+  - ./objinsync/ks.yaml
   # - ./ocr4all/ks.yaml
   - ./pgadmin/ks.yaml
