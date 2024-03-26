@@ -31,6 +31,12 @@ spec:
             command:
               - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
 
+    service:
+      main:
+        ports:
+          http:
+            port: 8001
+
     persistence:
       data:
         existingClaim: local-volume-data-platform
