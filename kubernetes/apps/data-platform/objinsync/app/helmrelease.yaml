@@ -29,7 +29,12 @@ spec:
               repository: ghcr.io/scribd/objinsync
               tag: v2.5.0
             command:
-              - /bin/objinsync pull --interval 20s --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+              - /bin/objinsync
+            args:
+              - pull
+              - --interval 20s
+              - --s3-endpoint https://s3.${SECRET_DOMAIN}/airflow/dags
+              - /opt/airflow/dags
 
     service:
       main:
