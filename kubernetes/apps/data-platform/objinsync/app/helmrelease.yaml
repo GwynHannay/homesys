@@ -48,4 +48,4 @@ spec:
         existingClaim: local-volume-data-platform
         globalMounts:
           - path: /opt/airflow
-            subPath: *app
+            subPath: airflow
