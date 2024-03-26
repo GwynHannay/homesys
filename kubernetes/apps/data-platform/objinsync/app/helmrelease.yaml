@@ -29,7 +29,7 @@ spec:
               repository: ghcr.io/scribd/objinsync
               tag: v2.5.0
             command:
-              - /bin/objinsync
+              - /app/objinsync
             args:
               - pull
               - --interval 20s
