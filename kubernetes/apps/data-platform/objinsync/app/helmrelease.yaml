@@ -32,7 +32,8 @@ spec:
               - /bin/objinsync
             args:
               - pull
-              - https://s3.${SECRET_DOMAIN}/airflow/dags /opt/airflow/dags
+              - https://s3.${SECRET_DOMAIN}/airflow/dags
+              - /opt/airflow/dags
               - --interval=20s
               - --s3-endpoint=https://s3.${SECRET_DOMAIN}/airflow/dags
 
