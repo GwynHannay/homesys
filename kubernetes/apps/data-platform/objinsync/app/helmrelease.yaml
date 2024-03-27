@@ -36,6 +36,8 @@ spec:
               - /opt/airflow/dags
               - --interval=20s
               - --s3-endpoint=https://s3.${SECRET_DOMAIN}/airflow/dags
+            env:
+              AWS_REGION: "us-east-1"
 
     service:
       main:
