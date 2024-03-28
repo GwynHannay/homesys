@@ -67,8 +67,6 @@ spec:
 
     scheduler:
       enabled: true
-      existingClaim: local-volume-data-platform
-      subPath: *app
 
     createUserJob:
       useHelmHooks: false
