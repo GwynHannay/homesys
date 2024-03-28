@@ -31,7 +31,7 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Data Orchestrator
           gethomepage.dev/group: *ns
-          gethomepage.dev/icon: airflow.png
+          gethomepage.dev/icon: /icons/airflow.png
           gethomepage.dev/name: Airflow
         hosts:
           - name: &host "airflow.${SECRET_DOMAIN}"
