@@ -121,5 +121,3 @@ spec:
     logs:
       persistence:
         enabled: false
-        existingClaim: local-volume-data-platform
-        subPath: *app
