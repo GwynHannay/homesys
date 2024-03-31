@@ -46,6 +46,10 @@ spec:
 
     executor: "CeleryExecutor"
 
+    extraEnv: |
+      - name: AIRFLOW__CORE__LOAD_EXAMPLES
+        value: 'True'
+
     extraEnvFrom: |
       - secretRef:
           name: airflow-secrets
