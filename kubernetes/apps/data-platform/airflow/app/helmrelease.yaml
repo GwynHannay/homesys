@@ -80,7 +80,9 @@ spec:
       enabled: true
 
     triggerer:
-      enabled: true
+        enabled: true
+        persistence:
+          enabled: false
 
     dagProcessor:
       enabled: false
@@ -120,4 +122,5 @@ spec:
 
     logs:
       persistence:
-        enabled: false
+        enabled: true
+        existingClaim: airflow-logs-data-platform
