@@ -62,7 +62,7 @@ spec:
 
     data:
       metadataSecretName: &secrets airflow-secrets
-      brokerUrl: "redis://${REDIS_HOST}:6379"
+      brokerUrl: "redis://${REDIS_HOST}:6379/333"
 
     webserverSecretKeySecretName: *secrets
 
