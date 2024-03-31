@@ -64,6 +64,8 @@ spec:
       securityContext:
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
+      persistence:
+        enabled: false
 
     scheduler:
       enabled: true
