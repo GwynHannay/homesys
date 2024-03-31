@@ -49,6 +49,10 @@ spec:
     extraEnv: |
       - name: AIRFLOW__CORE__LOAD_EXAMPLES
         value: 'True'
+      - name: AIRFLOW__CORE__DONOT_PICKLE
+        value: 'False'
+      - name: AIRFLOW__CORE__DEFAULT_TIMEZONE
+        value: Australia/Perth
 
     extraEnvFrom: |
       - secretRef:
