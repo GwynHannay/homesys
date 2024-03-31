@@ -33,6 +33,7 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: /icons/airflow.png
           gethomepage.dev/name: Airflow
+          gethomepage.dev/url: "https://airflow.${SECRET_DOMAIN}"
         hosts:
           - name: &host "airflow.${SECRET_DOMAIN}"
             tls:
@@ -113,13 +114,15 @@ spec:
     config:
       core:
         load_examples: 'True'
+        colored_console_log: 'True'
       logging:
         colored_console_log: 'True'
 
     dags:
       persistence:
         enabled: true
-        existingClaim: airflow-dags-data-platform
+        existingClaim: local-volume-data-platform
+        subPath: airflow/dags
 
     logs:
       persistence:
