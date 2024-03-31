@@ -62,7 +62,7 @@ spec:
 
     data:
       metadataSecretName: &secrets airflow-secrets
-      brokerUrl: "redis://${REDIS_HOST}:6379/333"
+      brokerUrl: "redis://${REDIS_HOST}:6379"
 
     webserverSecretKeySecretName: *secrets
 
@@ -70,6 +70,12 @@ spec:
       enabled: false
 
     workers:
+      args:
+        - "bash"
+        - "-c"
+        - |-
+          exec \
+          airflow celery worker --without-mingle --without-gossip
       securityContext:
         fsGroup: 1001
         fsGroupChangePolicy: "OnRootMismatch"
