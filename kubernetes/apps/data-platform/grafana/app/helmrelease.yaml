@@ -104,13 +104,13 @@ spec:
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Charts
-        gethomepage.dev/group: widgets
+        gethomepage.dev/group: *ns
         gethomepage.dev/icon: grafana.png
         gethomepage.dev/name: Grafana
-        gethomepage.dev/widget.type: grafana
-        gethomepage.dev/widget.url: "https://grafana.${SECRET_DOMAIN}"
-        gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_GRAFANA_USER}}"
-        gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_GRAFANA_PASS}}"
+        # gethomepage.dev/widget.type: grafana
+        # gethomepage.dev/widget.url: "https://grafana.${SECRET_DOMAIN}"
+        # gethomepage.dev/widget.username: "{{HOMEPAGE_VAR_GRAFANA_USER}}"
+        # gethomepage.dev/widget.password: "{{HOMEPAGE_VAR_GRAFANA_PASS}}"
       hosts:
         - &host "grafana.${SECRET_DOMAIN}"
       tls:
