@@ -33,7 +33,6 @@ spec:
           gethomepage.dev/group: *ns
           gethomepage.dev/icon: /icons/airflow.png
           gethomepage.dev/name: Airflow
-          gethomepage.dev/href: "https://airflow.${SECRET_DOMAIN}"
         hosts:
           - name: &host "airflow.${SECRET_DOMAIN}"
             tls:
