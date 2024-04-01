@@ -206,6 +206,8 @@ data:
             widget:
               type: nzbget
               url: {{HOMEPAGE_VAR_NZBGET_URL}}
+              username: {{HOMEPAGE_VAR_NZBGET_USER}}
+              password: {{HOMEPAGE_VAR_NZBGET_PASS}}
               hideErrors: true
         - Sonarr:
             icon: sonarr.png
