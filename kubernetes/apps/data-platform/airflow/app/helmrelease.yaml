@@ -62,6 +62,8 @@ spec:
         value: 'False'
       - name: AIRFLOW__CORE__DEFAULT_TIMEZONE
         value: Australia/Perth
+      - name: AIRFLOW__WEBSERVER__BASE_URL
+        value: 'https://airflow.${SECRET_DOMAIN}'
       - name: AIRFLOW__WEBSERVER__DEFAULT_WRAP
         value: 'True'
       - name: AIRFLOW__WEBSERVER__EXPOSE_CONFIG
