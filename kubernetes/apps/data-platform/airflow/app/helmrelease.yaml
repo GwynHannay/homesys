@@ -140,6 +140,7 @@ spec:
       gitSync:
         enabled: true
         repo: git@github.com:GwynHannay/airflow-pipelines.git
+        branch: "main"
         ref: "main"
         subPath: ""
         sshKeySecret: repo-ssh-secret
