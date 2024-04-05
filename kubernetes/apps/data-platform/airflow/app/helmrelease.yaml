@@ -45,6 +45,16 @@ spec:
 
     executor: "CeleryExecutor"
 
+    volumes:
+      - name: airflow-data
+        persistentVolumeClaim:
+          claimName: airflow-data-platform
+
+    volumeMounts:
+      - name: airflow-data
+        readOnly: true
+        mountPath: "/data/tera"
+
     extraEnv: |
       - name: AIRFLOW__CORE__LOAD_EXAMPLES
         value: 'False'

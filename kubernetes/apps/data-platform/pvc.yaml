@@ -48,7 +48,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: airflow-logs-data-platform
+  name: airflow-data-platform
 spec:
   capacity:
     storage: 930Gi
@@ -58,7 +58,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /mnt/tera/vols/airflow/logs
+    path: /mnt/tera/vols/airflow-data
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -90,29 +90,6 @@ spec:
           operator: In
           values:
           - homesys
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: airflow-dags-data-platform
-# spec:
-#   capacity:
-#     storage: 930Gi
-#   volumeMode: Filesystem
-#   accessModes:
-#   - ReadWriteOnce
-#   persistentVolumeReclaimPolicy: Retain
-#   storageClassName: local-storage
-#   local:
-#     path: /mnt/tera/vols/airflow/dags
-#   nodeAffinity:
-#     required:
-#       nodeSelectorTerms:
-#       - matchExpressions:
-#         - key: kubernetes.io/hostname
-#           operator: In
-#           values:
-#           - homesys
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -145,7 +122,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: airflow-logs-data-platform
+  name: airflow-data-platform
   namespace: data-platform
 spec:
   accessModes:
@@ -153,7 +130,7 @@ spec:
   resources:
     requests:
       storage: 930Gi
-  volumeName: airflow-logs-data-platform
+  volumeName: airflow-data-platform
   storageClassName: local-storage
 ---
 kind: PersistentVolumeClaim
@@ -169,17 +146,3 @@ spec:
       storage: 930Gi
   volumeName: airflow-logging-data-platform
   storageClassName: local-storage
-# ---
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   name: airflow-dags-data-platform
-#   namespace: data-platform
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 930Gi
-#   volumeName: airflow-dags-data-platform
-#   storageClassName: local-storage
