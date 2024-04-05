@@ -139,7 +139,7 @@ spec:
         # subPath: airflow/dags
       gitSync:
         enabled: true
-        repo: https://github.com/GwynHannay/airflow-piplines.git
+        repo: git@github.com:GwynHannay/airflow-pipelines.git
         ref: "main"
         subPath: ""
         sshKeySecret: repo-ssh-secret
