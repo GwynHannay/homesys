@@ -138,7 +138,11 @@ spec:
         existingClaim: local-volume-data-platform
         subPath: airflow/dags
       gitSync:
-        enabled: false
+        enabled: true
+        repo: https://github.com/GwynHannay/airflow-piplines.git
+        ref: "main"
+        subPath: ""
+        sshKeySecret: repo-ssh-secret
 
     logs:
       persistence:
