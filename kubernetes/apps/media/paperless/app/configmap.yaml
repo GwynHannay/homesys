@@ -30,7 +30,7 @@ data:
   PAPERLESS_FILENAME_FORMAT_REMOVE_NONE: 'true'
 
   # Logging
-  PAPERLESS_LOGROTATE_MAX_BACKUPS: '100'
+  PAPERLESS_LOGROTATE_MAX_BACKUPS: '20'
 
   # Hosting and security
   PAPERLESS_URL: "https://paperless.${SECRET_DOMAIN}"
@@ -42,7 +42,8 @@ data:
   PAPERLESS_OCR_ROTATE_PAGES: 'false'
 
   # Software tweaks
-  PAPERLESS_TASK_WORKERS: '3'
+  PAPERLESS_TASK_WORKERS: '2'
+  PAPERLESS_THREADS_PER_WORKER: '2'
   PAPERLESS_TIME_ZONE: "Australia/Perth"
 
   # Document consumption
