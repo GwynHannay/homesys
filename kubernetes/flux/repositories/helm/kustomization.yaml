@@ -10,6 +10,7 @@ resources:
   - ./coredns.yaml
   - ./dagster.yaml
   - ./democratic-csi.yaml
+  - ./elastic.yaml
   - ./external-dns.yaml
   - ./grafana.yaml
   - ./influxdb.yaml
