@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: elasticsearch
+  namespace: &ns monitoring
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Logging
+    gethomepage.dev/group: *ns
+    gethomepage.dev/icon: elasticsearch.png
+    gethomepage.dev/name: Elasticsearch
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host "elastic.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: main-es-http
+                port:
+                  number: 9200
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
