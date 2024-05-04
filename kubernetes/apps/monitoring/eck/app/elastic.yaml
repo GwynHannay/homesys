@@ -5,7 +5,7 @@ metadata:
   namespace: &ns monitoring
 spec:
   version: 8.13.3
-  volumeClaimDeletePolicy: DeleteOnScaledownOnly
+  # volumeClaimDeletePolicy: DeleteOnScaledownOnly
 
   nodeSets:
     - name: default
