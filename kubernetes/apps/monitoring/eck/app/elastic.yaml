@@ -23,6 +23,9 @@ spec:
                   memory: 4505M
                 limits:
                   memory: 5446M
+          volumes:
+          - name: elasticsearch-data
+            emptyDir: {}
       # volumeClaimTemplates:
       #   - metadata:
       #       name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.

@@ -68,6 +68,29 @@ spec:
           values:
           - homesys
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: elasticsearch-data-monitoring
+spec:
+  capacity:
+    storage: 930Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/tera/vols
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
