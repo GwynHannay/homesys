@@ -27,3 +27,32 @@ spec:
     - hosts:
         - *host
       secretName: *host
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana
+  namespace: &ns monitoring
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Logging Management
+    gethomepage.dev/group: *ns
+    gethomepage.dev/icon: kibana.png
+    gethomepage.dev/name: Kibana
+spec:
+  ingressClassName: internal
+  rules:
+    - host: &host "kibana.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana-kb-http
+                port:
+                  number: 5601
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
