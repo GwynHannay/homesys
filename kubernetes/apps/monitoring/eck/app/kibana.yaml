@@ -13,3 +13,5 @@ spec:
     tls:
       selfSignedCertificate:
         disabled: true
+  config:
+    server.publicBaseUrl: "https://kibana.${SECRET_DOMAIN}"
