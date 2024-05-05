@@ -5,6 +5,10 @@ metadata:
   namespace: &ns monitoring
 spec:
   version: 8.13.3
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
   # volumeClaimDeletePolicy: DeleteOnScaledownOnly
 
   nodeSets:

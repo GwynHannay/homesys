@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ./helmrelease.yaml
-  - ./elastic.yaml
+  # - ./elastic.yaml
   - ./kibana.yaml
   - ./ingress.yaml
