@@ -6,5 +6,5 @@ resources:
   - ./helmrelease.yaml
   - ./elastic.yaml
   - ./kibana.yaml
-  # - ./fluentd.yaml
+  - ./fluentd.yaml
   - ./ingress.yaml
