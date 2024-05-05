@@ -9,17 +9,3 @@ spec:
   count: 1
   elasticsearchRef:
     name: elasticsearch
-  config:
-    server.publicBaseUrl: "https://elastic.${SECRET_DOMAIN}"
-  podTemplate:
-    spec:
-      containers:
-        - name: kibana
-          env:
-            - name: NODE_OPTIONS
-              value: "--max-old-space-size=2048"
-          resources:
-            requests:
-              memory: 1Gi
-            limits:
-              memory: 2Gi
