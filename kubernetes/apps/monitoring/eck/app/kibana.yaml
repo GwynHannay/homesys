@@ -3,16 +3,16 @@ kind: Kibana
 apiVersion: kibana.k8s.elastic.co/v1
 metadata:
   name: kibana
-  namespace: &ns monitoring
+  namespace: monitoring
 spec:
   version: 8.13.3
   count: 1
   elasticsearchRef:
     name: elasticsearch
-  http:
-    tls:
-      selfSignedCertificate:
-        disabled: true
+  # http:
+  #   tls:
+  #     selfSignedCertificate:
+  #       disabled: true
   config:
     server.publicBaseUrl: "https://kibana.${SECRET_DOMAIN}"
     xpack.reporting.roles:
