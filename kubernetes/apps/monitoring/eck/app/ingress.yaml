@@ -6,7 +6,6 @@ metadata:
   namespace: &ns monitoring
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Logging
     gethomepage.dev/group: *ns
