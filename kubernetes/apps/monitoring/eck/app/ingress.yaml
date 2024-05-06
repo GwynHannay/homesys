@@ -5,7 +5,6 @@ metadata:
   name: elasticsearch
   namespace: &ns monitoring
   annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Logging
     gethomepage.dev/group: *ns
@@ -24,6 +23,10 @@ spec:
                 name: elasticsearch-es-http
                 port:
                   number: 9200
+  tls:
+    - hosts:
+        - *host
+      secretName: *host
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
