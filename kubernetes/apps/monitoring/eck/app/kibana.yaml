@@ -13,10 +13,10 @@ spec:
     tls:
       selfSignedCertificate:
         disabled: true
-  # config:
-  #   server.publicBaseUrl: "https://kibana.${SECRET_DOMAIN}"
-  #   xpack.reporting.roles:
-  #     enabled: "false"
+  config:
+    server.publicBaseUrl: "https://kibana.${SECRET_DOMAIN}"
+    xpack.reporting.roles:
+      enabled: "false"
   # podTemplate:
   #   spec:
   #     containers:
