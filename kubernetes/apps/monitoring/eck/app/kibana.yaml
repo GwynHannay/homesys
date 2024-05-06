@@ -15,12 +15,4 @@ spec:
         disabled: true
   config:
     server.publicBaseUrl: "https://kibana.${SECRET_DOMAIN}"
-    xpack.reporting.roles:
-      enabled: "false"
-  # podTemplate:
-  #   spec:
-  #     containers:
-  #       - name: kibana
-  #         env:
-  #           - name: NODE_OPTIONS
-  #             value: "--max-old-space-size=2048"
+

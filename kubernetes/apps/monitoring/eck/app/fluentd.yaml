@@ -68,8 +68,8 @@ spec:
            value: "9200" # The port that your elasticsearch API is exposed on
          - name: FLUENT_ELASTICSEARCH_SCHEME
            value: "https" # Either HTTP or HTTPS.
-         - name: FLUENT_SYSTEMD_CONF
-           value: "disable"
+        #  - name: FLUENT_SYSTEMD_CONF
+        #    value: "disable"
        resources:
          limits:
            memory: 512Mi
