@@ -32,13 +32,3 @@ spec:
           volumes:
           - name: elasticsearch-data
             emptyDir: {}
-      # volumeClaimTemplates:
-      #   - metadata:
-      #       name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
-      #     spec:
-      #       accessModes:
-      #         - ReadWriteOnce
-      #       resources:
-      #         requests:
-      #           storage: 100Gi
-      #       storageClassName: ceph-block

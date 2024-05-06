@@ -25,3 +25,6 @@ spec:
 
     config:
       logVerbosity: "1"
+
+    podMonitor:
+      enabled: true
