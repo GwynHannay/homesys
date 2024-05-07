@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  # - ./eck/ks.yaml
+  - ./eck/ks.yaml
   - ./glances/ks.yaml
   - ./kubernetes-dashboard/ks.yaml

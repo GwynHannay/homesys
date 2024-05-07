@@ -15,13 +15,10 @@ spec:
       count: 1
       config:
         node.store.allow_mmap: false
-        # xpack.security.authc:
-        #   anonymous:
-        #     username: anonymous
-        #     roles: superuser
-        #     authz_exception: false
       podTemplate:
         spec:
+          nodeSelector:
+            kubernetes.io/arch: amd64
           containers:
             - name: elasticsearch
               resources:
