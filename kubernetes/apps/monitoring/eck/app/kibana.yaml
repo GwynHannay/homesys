@@ -6,6 +6,10 @@ metadata:
   namespace: monitoring
 spec:
   version: 8.13.3
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
   count: 1
   elasticsearchRef:
     name: elasticsearch
