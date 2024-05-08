@@ -79,6 +79,8 @@ spec:
               value: "disable"
             - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
               value: "cri"
+            - name: FLUENT_CONTAINER_TAIL_PARSER_TIME_FORMAT
+              value: "%Y-%m-%dT%H:%M:%S.%N%:z"
           resources:
             limits:
               memory: 512Mi
