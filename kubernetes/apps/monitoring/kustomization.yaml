@@ -6,5 +6,6 @@ resources:
   - ./pvc.yaml
   - ./eck-app/ks.yaml
   - ./eck-operator/ks.yaml
+  - ./fluentd/ks.yaml
   - ./glances/ks.yaml
   - ./kubernetes-dashboard/ks.yaml
