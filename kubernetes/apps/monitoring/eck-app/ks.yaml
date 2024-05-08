@@ -2,10 +2,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-eck
+  name: cluster-apps-eck-app
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/monitoring/eck/app
+  dependsOn:
+    - name: cluster-apps-eck-operator
+  path: ./kubernetes/apps/monitoring/eck-app/app
   prune: true
   sourceRef:
     kind: GitRepository
