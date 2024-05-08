@@ -63,11 +63,11 @@ spec:
           image: fluent/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
           env:
             - name:  FLUENT_ELASTICSEARCH_HOST
-              value: "elastic.${SECRET_DOMAIN}" # Or the host of your elasticsearch server
+              value: "elasticsearch-es-http.monitoring" # Or the host of your elasticsearch server
             - name:  FLUENT_ELASTICSEARCH_PORT
               value: "9200" # The port that your elasticsearch API is exposed on
             - name: FLUENT_ELASTICSEARCH_SCHEME
-              value: "https" # Either HTTP or HTTPS.
+              value: "http" # Either HTTP or HTTPS.
             - name: FLUENT_ELASTICSEARCH_USER
               value: "elastic"
             - name: FLUENT_ELASTICSEARCH_PASSWORD
