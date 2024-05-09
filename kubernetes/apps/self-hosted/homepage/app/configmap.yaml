@@ -40,13 +40,23 @@ data:
         style: row
         columns: 3
         tab: Main
-      media:
-        icon: mdi-folder-play-outline
+      mediarr:
+        icon: mdi-projector
+        style: row
+        columns: 3
+        tab: Main
+      self-hosted:
+        icon: mdi-devices
+        style: row
+        columns: 3
+        tab: Main
+      glances:
+        icon: mdi-chart-box
         style: row
         columns: 3
         tab: Apps
-      self-hosted:
-        icon: mdi-devices
+      monitoring:
+        icon: mdi-glasses
         style: row
         columns: 3
         tab: Apps
@@ -55,41 +65,16 @@ data:
         style: row
         columns: 3
         tab: Apps
-      mediarr:
-        icon: mdi-projector
-        style: row
-        columns: 3
-        tab: Main
-      documents:
-        icon: mdi-file-document
-        style: row
-        columns: 4
-        tab: Links
-      monitoring:
-        icon: mdi-glasses
-        style: row
-        columns: 3
-        tab: Apps
-      glances:
-        icon: mdi-chart-box
-        style: row
-        columns: 3
-        tab: Main
-      storage:
-        icon: mdi-content-save-settings-outline
-        style: row
-        columns: 3
-        tab: Apps
       hosts:
         icon: mdi-wan
         style: row
         columns: 3
         tab: Apps
-      mediarr-files:
-        icon: mdi-projector
+      documents:
+        icon: mdi-file-document
         style: row
-        columns: 3
-        tab: Apps
+        columns: 4
+        tab: Links
       banking:
         icon: mdi-credit-card
         style: row
@@ -97,6 +82,11 @@ data:
         tab: Links
       health:
         icon: mdi-heart-pulse
+        style: row
+        columns: 4
+        tab: Links
+      mediarr-files:
+        icon: mdi-projector
         style: row
         columns: 4
         tab: Links
@@ -110,6 +100,16 @@ data:
         style: row
         columns: 4
         tab: Links
+      storage:
+        icon: mdi-content-save-settings-outline
+        style: row
+        columns: 3
+        tab: Apps
+      media:
+        icon: mdi-folder-play-outline
+        style: row
+        columns: 3
+        tab: Apps
   services.yaml: |
     ---
     - glances:
@@ -149,13 +149,13 @@ data:
               url: https://glances.${SECRET_DOMAIN}
               metric: fs:/local
               chart: false
-    - self-hosted:
-        - Homer:
-            icon: homer.png
-            href: {{HOMEPAGE_VAR_HOMER_URL}}
-            description: Old Home Page
-            namespace: self-hosted
-            app: homer
+    # - self-hosted:
+    #     - Homer:
+    #         icon: homer.png
+    #         href: {{HOMEPAGE_VAR_HOMER_URL}}
+    #         description: Old Home Page
+    #         namespace: self-hosted
+    #         app: homer
     - hosts:
         - Brother Printer:
             icon: brother.png
