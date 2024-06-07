@@ -31,7 +31,7 @@ spec:
           main:
             image:
               repository: dpage/pgadmin4
-              tag: 8.7
+              tag: 8.8
             envFrom:
               - secretRef:
                   name: pgadmin-secrets
