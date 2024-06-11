@@ -33,12 +33,14 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.105.1
+              tag: v1.106.2
             envFrom:
               - secretRef:
                   name: immich-secrets
               - configMapRef:
                   name: immich-config
+            env:
+              IMMICH_PORT: '3003'
             resources:
               requests:
                 cpu: 15m

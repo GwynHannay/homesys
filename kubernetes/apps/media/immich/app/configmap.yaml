@@ -22,4 +22,4 @@ data:
   REDIS_HOSTNAME: "${REDIS_HOST}"
   IMMICH_SERVER_URL: http://immich-server.media.svc.cluster.local:3001
   IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.media.svc.cluster.local:3003
-  MACHINE_LEARNING_PORT: '3003'
+  # MACHINE_LEARNING_PORT: '3003'
