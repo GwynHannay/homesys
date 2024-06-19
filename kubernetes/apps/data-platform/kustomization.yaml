@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  - ./airflow/ks.yaml
+  # - ./airflow/ks.yaml
+  # - ./datasette/ks.yaml
   - ./grafana/ks.yaml
-  # - ./objinsync/ks.yaml
-  # - ./ocr4all/ks.yaml
   - ./pgadmin/ks.yaml
+  # - ./superset/ks.yaml
