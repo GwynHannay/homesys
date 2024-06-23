@@ -8,7 +8,6 @@ resources:
   - ./cilium.yaml
   - ./cloudnative-pg.yaml
   - ./coredns.yaml
-  - ./dagster.yaml
   - ./democratic-csi.yaml
   - ./elastic.yaml
   - ./external-dns.yaml
@@ -16,6 +15,7 @@ resources:
   - ./influxdb.yaml
   - ./ingress-nginx.yaml
   - ./jetstack.yaml
+  - ./jupyter.yaml
   - ./kubernetes-dashboard.yaml
   - ./metrics-server.yaml
   - ./piraeus.yaml
