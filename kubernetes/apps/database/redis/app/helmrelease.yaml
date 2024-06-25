@@ -29,8 +29,7 @@ spec:
       containerSecurityContext:
         runAsGroup: 1001
       persistence:
-        existingClaim: local-volume-database
-        subPath: *app
+        existingClaim: local-volume-redis
       service:
         type: LoadBalancer
         loadBalancerIP: 10.172.90.31
