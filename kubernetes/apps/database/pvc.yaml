@@ -54,7 +54,7 @@ metadata:
   name: local-volume-redis
 spec:
   capacity:
-    storage: 930Gi
+    storage: 30Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
@@ -227,7 +227,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 930Gi
+      storage: 30Gi
   volumeName: local-volume-redis
   storageClassName: local-storage
 
