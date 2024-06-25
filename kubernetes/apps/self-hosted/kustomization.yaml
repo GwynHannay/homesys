@@ -6,6 +6,6 @@ resources:
   - ./pvc.yaml
   # - ./ghostfolio/ks.yaml
   # - ./grocy/ks.yaml
-  # - ./homepage/ks.yaml
+  - ./homepage/ks.yaml
   - ./joplin/ks.yaml
   # - ./wallabag/ks.yaml
