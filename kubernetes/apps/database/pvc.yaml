@@ -61,7 +61,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   claimRef:
-    name: local-volume-database
+    name: local-volume-redis
     namespace: database
   local:
     path: /mnt/tera/vols/redis
