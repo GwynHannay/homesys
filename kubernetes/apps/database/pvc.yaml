@@ -51,6 +51,32 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: local-volume-redis
+spec:
+  capacity:
+    storage: 930Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  claimRef:
+    name: local-volume-database
+    namespace: database
+  local:
+    path: /mnt/tera/vols/redis
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: local-claim-postgres16
 spec:
   capacity:
@@ -189,5 +215,19 @@ spec:
     requests:
       storage: 900Gi
   volumeName: nfs-volume-database
+  storageClassName: local-storage
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: local-volume-redis
+  namespace: database
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 930Gi
+  volumeName: local-volume-redis
   storageClassName: local-storage
 
