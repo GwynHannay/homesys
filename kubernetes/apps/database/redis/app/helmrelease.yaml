@@ -33,3 +33,10 @@ spec:
       service:
         type: LoadBalancer
         loadBalancerIP: 10.172.90.31
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 20
+      periodSeconds: 20
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 30
