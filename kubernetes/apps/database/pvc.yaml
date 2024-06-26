@@ -60,9 +60,6 @@ spec:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
-  claimRef:
-    name: local-volume-redis
-    namespace: database
   local:
     path: /mnt/tera/vols/redis
   nodeAffinity:
