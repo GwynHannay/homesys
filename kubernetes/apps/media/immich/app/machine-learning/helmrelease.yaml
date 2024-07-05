@@ -39,8 +39,6 @@ spec:
                   name: immich-secrets
               - configMapRef:
                   name: immich-config
-            env:
-              IMMICH_PORT: '3003'
             resources:
               requests:
                 cpu: 15m
