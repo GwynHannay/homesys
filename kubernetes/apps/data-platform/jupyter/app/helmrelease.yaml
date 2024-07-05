@@ -16,6 +16,16 @@ spec:
         namespace: flux-system
 
   values:
+    hub:
+      initContainers:
+        - name: 01-init-db
+          image: ghcr.io/onedr0p/postgres-init:16
+          envFrom:
+            - secretRef: &secrets jupyter-secrets
+      existingSecret: *secrets
+      db:
+        type: postgres
+        url: "postgresql+psycopg2://$(DB_USER):$(DB_USER)@${NATIVE_PG_HOST}:5432/$(DB_NAME)"
 
     ingress:
       enabled: true
