@@ -7,5 +7,6 @@ resources:
   # - ./airflow/ks.yaml
   # - ./datasette/ks.yaml
   - ./grafana/ks.yaml
+  - ./jupyter/ks.yaml
   - ./pgadmin/ks.yaml
   # - ./superset/ks.yaml
