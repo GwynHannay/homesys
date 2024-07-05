@@ -5,8 +5,6 @@ metadata:
   name: cluster-apps-jupyter
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-jupyter
   path: ./kubernetes/apps/data-platform/jupyter/app
   prune: true
   sourceRef:
