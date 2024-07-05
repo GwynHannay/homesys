@@ -14,8 +14,8 @@ data:
   INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
 
   # App
-  NODE_ENV: "production"
-  LOG_LEVEL: "verbose"
+  IMMICH_ENV: "production"
+  IMMICH_LOG_LEVEL: "verbose"
   IMMICH_PORT: '3001'
   DB_HOSTNAME: "${NATIVE_VECTOR_HOST}"
   DB_DATABASE_NAME: immich
