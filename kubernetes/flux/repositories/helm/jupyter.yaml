@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://hub.jupyter.org/helm-chart/
+  url: https://jupyterhub.github.io/helm-chart
