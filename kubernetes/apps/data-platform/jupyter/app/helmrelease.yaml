@@ -17,15 +17,20 @@ spec:
 
   values:
     hub:
-      # initContainers:
-      #   - name: 01-init-db
-      #     image: ghcr.io/onedr0p/postgres-init:16
-      #     envFrom:
-      #       - secretRef:
-      #           name: &secrets jupyter-secrets
       existingSecret: jupyter-secrets
       db:
         type: postgres
+
+    singleuser:
+      storage:
+        type: none
+        extraVolumes:
+          - name: jupyter-pvc
+            persistentVolumeClaim:
+              claimName: jupyter-data-platform
+        extraVolumeMounts:
+          - name: jupyter-pvc
+            mountPath: /home/shared
 
     ingress:
       enabled: true

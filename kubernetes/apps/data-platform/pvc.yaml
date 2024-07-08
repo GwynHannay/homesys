@@ -91,6 +91,29 @@ spec:
           values:
           - homesys
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jupyter-data-platform
+spec:
+  capacity:
+    storage: 50Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: /mnt/tera/vols/jupyter
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - homesys
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -146,3 +169,18 @@ spec:
       storage: 930Gi
   volumeName: airflow-logging-data-platform
   storageClassName: local-storage
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jupyter-data-platform
+  namespace: data-platform
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  volumeName: jupyter-data-platform
+  storageClassName: local-storage
+---
