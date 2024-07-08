@@ -16,7 +16,6 @@ data:
   # App
   IMMICH_ENV: "production"
   IMMICH_LOG_LEVEL: "verbose"
-  IMMICH_PORT: '3001'
   DB_HOSTNAME: "${NATIVE_VECTOR_HOST}"
   DB_DATABASE_NAME: immich
   DB_PORT: '5432'
