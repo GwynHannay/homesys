@@ -21,7 +21,8 @@ spec:
         - name: 01-init-db
           image: ghcr.io/onedr0p/postgres-init:16
           envFrom:
-            - secretRef: &secrets jupyter-secrets
+            - secretRef:
+                name: &secrets jupyter-secrets
       existingSecret: *secrets
       db:
         type: postgres
