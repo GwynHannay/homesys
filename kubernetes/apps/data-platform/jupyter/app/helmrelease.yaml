@@ -17,13 +17,13 @@ spec:
 
   values:
     hub:
-      initContainers:
-        - name: 01-init-db
-          image: ghcr.io/onedr0p/postgres-init:16
-          envFrom:
-            - secretRef:
-                name: &secrets jupyter-secrets
-      existingSecret: *secrets
+      # initContainers:
+      #   - name: 01-init-db
+      #     image: ghcr.io/onedr0p/postgres-init:16
+      #     envFrom:
+      #       - secretRef:
+      #           name: &secrets jupyter-secrets
+      existingSecret: jupyter-secrets
       db:
         type: postgres
 
