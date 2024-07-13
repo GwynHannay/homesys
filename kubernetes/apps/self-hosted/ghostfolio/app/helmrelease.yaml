@@ -42,7 +42,7 @@ spec:
           main:
             image:
               repository: ghostfolio/ghostfolio
-              tag: 2.93.0
+              tag: 2.96.0
             envFrom:
               - secretRef:
                   name: *secrets
