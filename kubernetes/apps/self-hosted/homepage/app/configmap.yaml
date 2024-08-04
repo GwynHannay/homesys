@@ -227,6 +227,15 @@ data:
               url: {{HOMEPAGE_VAR_RADARR_URL}}
               key: {{HOMEPAGE_VAR_RADARR}}
               hideErrors: true
+        - Lidarr:
+            icon: lidarr.png
+            href: {{HOMEPAGE_VAR_LIDARR_URL}}
+            description: Music
+            widget:
+              type: lidarr
+              url: {{HOMEPAGE_VAR_LIDARR_URL}}
+              key: {{HOMEPAGE_VAR_LIDARR}}
+              hideErrors: true
         - Readarr:
             icon: readarr.png
             href: {{HOMEPAGE_VAR_READARR_URL}}
@@ -244,6 +253,15 @@ data:
               type: bazarr
               url: {{HOMEPAGE_VAR_BAZARR_URL}}
               key: {{HOMEPAGE_VAR_BAZARR}}
+              hideErrors: true
+        - Prowlarr:
+            icon: prowlarr.png
+            href: {{HOMEPAGE_VAR_PROWLARR_URL}}
+            description: Config
+            widget:
+              type: prowlarr
+              url: {{HOMEPAGE_VAR_PROWLARR_URL}}
+              key: {{HOMEPAGE_VAR_PROWLARR}}
               hideErrors: true
     - mediarr-files:
         - Cloud:
