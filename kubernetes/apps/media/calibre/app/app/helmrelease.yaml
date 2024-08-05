@@ -19,7 +19,7 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        fsGroup: 1001
+        fsGroup: 1002
         fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
@@ -75,6 +75,6 @@ spec:
           - path: library
             subPath: calibre/library
       uploads:
-        existingClaim: nfs-volume-media
+        existingClaim: nas-volume-media
         globalMounts:
           - subPath: *app

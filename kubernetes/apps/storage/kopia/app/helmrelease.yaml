@@ -18,7 +18,7 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        fsGroup: 1001
+        fsGroup: 1002
         fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
@@ -86,7 +86,7 @@ spec:
           - path: /app/config/repository.config
             subPath: repository.config
       snapshots:
-        existingClaim: nfs-volume
+        existingClaim: nas-volume
       vols:
         readOnly: true
         existingClaim: local-volume

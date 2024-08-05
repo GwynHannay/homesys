@@ -25,17 +25,17 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-volume-media
+  name: nas-volume-media
 spec:
   capacity:
-    storage: 900Gi
+    storage: 500Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /mnt/fileserver
+    path: /mnt/nas
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -62,13 +62,13 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nfs-volume-media
+  name: nas-volume-media
   namespace: media
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 900Gi
-  volumeName: nfs-volume-media
+      storage: 500Gi
+  volumeName: nas-volume-media
   storageClassName: local-storage

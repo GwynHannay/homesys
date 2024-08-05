@@ -23,7 +23,7 @@ data:
   PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
 
   # Paths and folders
-  PAPERLESS_CONSUMPTION_DIR: /nfs/consume
+  PAPERLESS_CONSUMPTION_DIR: /nas/consume
   PAPERLESS_DATA_DIR: /library/data
   PAPERLESS_MEDIA_ROOT: /library/media
   PAPERLESS_FILENAME_FORMAT: "{document_type}/{correspondent}_{title}_{created}"

@@ -25,29 +25,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-volume-data-platform
-spec:
-  capacity:
-    storage: 900Gi
-  volumeMode: Filesystem
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  local:
-    path: /mnt/fileserver
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - homesys
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: airflow-data-platform
 spec:
   capacity:
@@ -126,20 +103,6 @@ spec:
     requests:
       storage: 930Gi
   volumeName: local-volume-data-platform
-  storageClassName: local-storage
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: nfs-volume-data-platform
-  namespace: data-platform
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 900Gi
-  volumeName: nfs-volume-data-platform
   storageClassName: local-storage
 ---
 kind: PersistentVolumeClaim

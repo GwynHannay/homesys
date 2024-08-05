@@ -88,9 +88,9 @@ spec:
         hostPath: /mnt/tera
         globalMounts:
           - path: /tera
-      nfs:
+      nas:
         readOnly: true
         type: hostPath
-        hostPath: /mnt/fileserver
+        hostPath: /mnt/nas
         globalMounts:
-          - path: /nfs
+          - path: /nas
