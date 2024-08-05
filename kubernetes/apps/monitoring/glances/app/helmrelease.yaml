@@ -87,3 +87,8 @@ spec:
         globalMounts:
           - path: /host
             readOnly: true
+      nas:
+        existingClaim: nas-volume-monitoring
+        globalMounts:
+          - path: /nas
+            readOnly: true
