@@ -19,7 +19,7 @@ spec:
   values:
     defaultPodOptions:
       securityContext:
-        fsGroup: 1001
+        fsGroup: 65534
 
     controllers:
       main:
@@ -77,11 +77,11 @@ spec:
         globalMounts:
           - path: /local
             readOnly: true
-      nfs:
-        existingClaim: nfs-volume-monitoring
-        globalMounts:
-          - path: /nfs
-            readOnly: true
+      # nfs:
+      #   existingClaim: nfs-volume-monitoring
+      #   globalMounts:
+      #     - path: /nfs
+      #       readOnly: true
       host:
         existingClaim: host-volume-monitoring
         globalMounts:
