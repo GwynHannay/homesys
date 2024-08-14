@@ -55,6 +55,16 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2000Mi
+            probes:
+              liveness:
+                custom: true
+                port: 2283
+              readiness:
+                custom: true
+                port: 2283
+              startup:
+                custom: true
+                port: 2283
 
     service:
       main:
