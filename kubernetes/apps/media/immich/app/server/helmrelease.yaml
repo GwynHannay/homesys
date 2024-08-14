@@ -58,13 +58,31 @@ spec:
             probes:
               liveness:
                 custom: true
-                port: 2283
+                spec:
+                  tcpSocket:
+                    port: 2283
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+                  successThreshold: 1
+                  failureThreshold: 3
               readiness:
                 custom: true
-                port: 2283
+                spec:
+                  tcpSocket:
+                    port: 2283
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+                  successThreshold: 1
+                  failureThreshold: 3
               startup:
                 custom: true
-                port: 2283
+                spec:
+                  tcpSocket:
+                    port: 2283
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+                  successThreshold: 1
+                  failureThreshold: 3
 
     service:
       main:
