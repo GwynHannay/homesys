@@ -55,13 +55,15 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2000Mi
+            probes:
+              liveness
 
     service:
       main:
         ports:
           http:
-            targetPort: 3001
             port: 2283
+            targetPort: 3001
 
     ingress:
       main:
