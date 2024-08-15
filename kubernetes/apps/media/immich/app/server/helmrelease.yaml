@@ -55,39 +55,29 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2500Mi
-            # probes:
-            #   liveness:
-            #     enabled: False
-            #   readiness:
-            #     enabled: False
-            #   startup:
-            #     enabled: False
-            #     custom: true
-            #     spec:
-            #       tcpSocket:
-            #         port: 2283
-            #       timeoutSeconds: 1
-            #       periodSeconds: 10
-            #       successThreshold: 1
-            #       failureThreshold: 3
-            #   readiness:
-            #     custom: true
-            #     spec:
-            #       tcpSocket:
-            #         port: 2283
-            #       timeoutSeconds: 1
-            #       periodSeconds: 10
-            #       successThreshold: 1
-            #       failureThreshold: 3
-            #   startup:
-            #     custom: true
-            #     spec:
-            #       tcpSocket:
-            #         port: 2283
-            #       timeoutSeconds: 1
-            #       periodSeconds: 10
-            #       successThreshold: 1
-            #       failureThreshold: 3
+            probes:
+              liveness:
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/server-info/ping
+                    port: http
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+                  successThreshold: 1
+                  failureThreshold: 3
+              readiness:
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/server-info/ping
+                    port: http
+                  timeoutSeconds: 1
+                  periodSeconds: 10
+                  successThreshold: 1
+                  failureThreshold: 3
+              startup:
+                enabled: False
 
     service:
       main:
