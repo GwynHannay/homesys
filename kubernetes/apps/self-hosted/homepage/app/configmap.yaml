@@ -264,14 +264,10 @@ data:
               key: {{HOMEPAGE_VAR_PROWLARR}}
               hideErrors: true
     - mediarr-files:
-        - Cloud:
+        - NAS:
             icon: mdi-cloud
-            href: {{HOMEPAGE_VAR_AUTO_URL}}
-            description: Cloud Auto Files
-        - MBS:
-            icon: mdi-cloud
-            href: {{HOMEPAGE_VAR_MBS_URL}}
-            description: MBS Files
+            href: {{HOMEPAGE_VAR_NAS_URL}}
+            description: NAS Files
         - Odd Bird Media:
             icon: mdi-cloud
             href: {{HOMEPAGE_VAR_ODDBIRD_URL}}
