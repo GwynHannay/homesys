@@ -55,8 +55,13 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2000Mi
-            # probes:
-            #   liveness:
+            probes:
+              liveness:
+                enabled: False
+              readiness:
+                enabled: False
+              startup:
+                enabled: False
             #     custom: true
             #     spec:
             #       tcpSocket:
