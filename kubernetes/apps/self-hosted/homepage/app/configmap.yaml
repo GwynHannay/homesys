@@ -199,16 +199,16 @@ data:
             href: {{HOMEPAGE_VAR_DOMAINS_URL}}
             description: Our Web Domains, Hosting
     - mediarr:
-        # - NZBGet:
-        #     icon: nzbget.png
-        #     href: {{HOMEPAGE_VAR_NZBGET_URL}}
-        #     description: UseNet Downloads
-        #     widget:
-        #       type: nzbget
-        #       url: {{HOMEPAGE_VAR_NZBGET_URL}}
-        #       username: {{HOMEPAGE_VAR_NZBGET_USER}}
-        #       password: {{HOMEPAGE_VAR_NZBGET_PASS}}
-        #       hideErrors: true
+        - NZBGet:
+            icon: nzbget.png
+            href: {{HOMEPAGE_VAR_NZBGET_URL}}
+            description: UseNet Downloads
+            widget:
+              type: nzbget
+              url: {{HOMEPAGE_VAR_NZBGET_URL}}
+              username: {{HOMEPAGE_VAR_NZBGET_USER}}
+              password: {{HOMEPAGE_VAR_NZBGET_PASS}}
+              hideErrors: true
         - Sonarr:
             icon: sonarr.png
             href: {{HOMEPAGE_VAR_SONARR_URL}}
