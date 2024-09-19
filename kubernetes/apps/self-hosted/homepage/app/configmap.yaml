@@ -165,6 +165,10 @@ data:
             icon: vmware-esxi.png
             href: {{HOMEPAGE_VAR_ESXI_URL}}
             description: homesys ESXi
+        - Servett:
+            icon: vmware-esxi.png
+            href: {{HOMEPAGE_VAR_SERVETT_URL}}
+            description: servett ESXi
         - Peter HP:
             icon: vmware-esxi.png
             href: {{HOMEPAGE_VAR_HP_ESXI_URL}}
