@@ -302,10 +302,6 @@ data:
             icon: google-sheets.png
             href: {{HOMEPAGE_VAR_DISCOUNTS_URL}}
             description: List of Discounts
-        - Bupa Life Rewards:
-            icon: /icons/life.png
-            href: {{HOMEPAGE_VAR_LIFEREWARDS_URL}}
-            description: Discounts/eCards from Bupa
         - PA Member Advantage:
             icon: /icons/pa.png
             href: {{HOMEPAGE_VAR_MEMBERADVANTAGE_URL}}
@@ -336,10 +332,6 @@ data:
             icon: /icons/medicare.png
             href: {{HOMEPAGE_VAR_MEDICARE_URL}}
             description: Healthcare (via myGov)
-        - Bupa:
-            icon: /icons/bupa.png
-            href: {{HOMEPAGE_VAR_BUPA_URL}}
-            description: Private Health Insurance
         - CSIRO Recipes:
             icon: /icons/csiro.png
             href: {{HOMEPAGE_VAR_RECIPES_URL}}

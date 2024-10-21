@@ -43,7 +43,7 @@ spec:
           main:
             image:
               repository: ghcr.io/immich-app/immich-server
-              tag: v1.116.2
+              tag: v1.118.2
             envFrom:
               - secretRef:
                   name: *secrets
@@ -61,7 +61,7 @@ spec:
         ports:
           http:
             port: 2283
-            targetPort: 3001
+            targetPort: 2283
 
     ingress:
       main:
