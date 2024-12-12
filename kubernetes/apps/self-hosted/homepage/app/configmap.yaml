@@ -18,9 +18,9 @@ data:
         - Shared Drive:
             - icon: google-drive.png
               href: {{HOMEPAGE_VAR_GDRIVE_URL}}
-        - kubesearch:
+        - servett:
             - icon: kubernetes.png
-              href: https://kubesearch.dev
+              href: "https://snap-home.${SECRET_DOMAIN}"
   kubernetes.yaml: |
     mode: default
   settings.yaml: |
