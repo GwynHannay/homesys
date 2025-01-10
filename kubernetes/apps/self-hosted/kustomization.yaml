@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./pvc.yaml
-  - ./ghostfolio/ks.yaml
-  - ./grocy/ks.yaml
+  # - ./ghostfolio/ks.yaml
+  # - ./grocy/ks.yaml
   - ./homepage/ks.yaml
   - ./joplin/ks.yaml
   - ./wallabag/ks.yaml
