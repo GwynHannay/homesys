@@ -20,7 +20,7 @@ spec:
 
     image:
       repository: docker.elastic.co/eck/eck-operator
-      tag: 2.12.1
+      tag: 2.16.1
       pullPolicy: IfNotPresent
 
     config:
