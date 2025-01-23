@@ -29,7 +29,7 @@ spec:
           main:
             image:
               repository: nicolargo/glances
-              tag: 3.4.0.3
+              tag: 4.3.0.8
             env:
               TZ: "${TIMEZONE}"
               GLANCES_OPT: "-w -d -C /glances/conf/glances.conf"
