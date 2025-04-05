@@ -132,15 +132,15 @@ spec:
           main:
             main:
               - path: /library/data
-                subPath: *app/data
+                subPath: paperless/data
               - path: /library/media
-                subPath: *app/media
+                subPath: paperless/media
             postgresql:
               - path: /var/lib/postgresql/data
-                subPath: *app/pgdata
+                subPath: paperless/pgdata
             redis:
               - path: /data
-                subPath: *app/redisdata
+                subPath: paperless/redisdata
       nas:
         existingClaim: nas-volume-media
         globalMounts:
