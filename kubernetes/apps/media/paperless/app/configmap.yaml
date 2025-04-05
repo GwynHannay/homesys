@@ -9,13 +9,9 @@ metadata:
 data:
   TZ: "Australia/Perth"
 
-  # Init DB
-  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
-  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
-
   # Required services
-  PAPERLESS_REDIS: "redis://${REDIS_HOST}:6379"
-  PAPERLESS_DBHOST: "${NATIVE_PG_HOST}"
+  PAPERLESS_REDIS: "redis://localhost:6379"
+  PAPERLESS_DBHOST: http://localhost:5432
 
   # Optional services
   PAPERLESS_TIKA_ENABLED: 'true'

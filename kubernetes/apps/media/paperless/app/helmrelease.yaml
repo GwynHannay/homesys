@@ -28,20 +28,13 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: &secrets paperless-secrets
-              - configMapRef:
-                  name: &config paperless-config
-
         containers:
           main:
+            dependsOn:
+              - postgresql
+              - redis
+              - gotenberg
+              - tika
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.14.7
@@ -66,6 +59,23 @@ spec:
               limits:
                 cpu: 3000m
                 memory: 3000Mi
+          
+          postgresql:
+            name: postgresql
+            image:
+              repository: docker.io/library/postgres
+              tag: 16
+            envFrom:
+              - secretRef:
+                  name: *secrets
+              - configMapRef:
+                  name: *config
+          
+          redis:
+            name: redis
+            image:
+              repository: docker.io/library/redis
+              tag: 7
 
           gotenberg:
             name: gotenberg
@@ -118,9 +128,19 @@ spec:
     persistence:
       library:
         existingClaim: local-volume-media
-        globalMounts:
-          - path: /library
-            subPath: *app
+        advancedMounts:
+          main:
+            main:
+              - path: /library/data
+                subPath: *app/data
+              - path: /library/media
+                subPath: *app/media
+            postgresql:
+              - path: /var/lib/postgresql/data
+                subPath: *app/pgdata
+            redis:
+              - path: /data
+                subPath: *app/redisdata
       nas:
         existingClaim: nas-volume-media
         globalMounts:
