@@ -40,9 +40,9 @@ spec:
               tag: 2.14.7
             envFrom:
               - secretRef:
-                  name: *secrets
+                  name: &secrets paperless-secrets
               - configMapRef:
-                  name: *config
+                  name: &config paperless-config
             probes:
               startup:
                 enabled: true
