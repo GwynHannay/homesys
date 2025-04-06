@@ -11,7 +11,7 @@ data:
 
   # Required services
   PAPERLESS_REDIS: "redis://localhost:6379"
-  PAPERLESS_DBHOST: localhost:5432
+  PAPERLESS_DBHOST: http://localhost:5432
 
   # Optional services
   PAPERLESS_TIKA_ENABLED: 'true'
