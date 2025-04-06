@@ -31,7 +31,7 @@ spec:
         containers:
           main:
             dependsOn:
-              - postgresql
+              - db
               - redis
               - gotenberg
               - tika
@@ -60,8 +60,8 @@ spec:
                 cpu: 3000m
                 memory: 3000Mi
           
-          postgresql:
-            name: postgresql
+          db:
+            name: db
             image:
               repository: docker.io/library/postgres
               tag: 16
