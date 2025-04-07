@@ -31,7 +31,7 @@ spec:
         containers:
           main:
             dependsOn:
-              - db
+              - postgresql
               - redis
               - gotenberg
               - tika
