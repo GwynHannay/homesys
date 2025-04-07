@@ -61,8 +61,8 @@ spec:
                 cpu: 3000m
                 memory: 3000Mi
           
-          db:
-            name: db
+          postgresql:
+            name: postgresql
             image:
               repository: docker.io/library/postgres
               tag: 16.1
