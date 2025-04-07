@@ -30,7 +30,6 @@ spec:
 
         containers:
           main:
-            enabled: false
             dependsOn:
               - db
               - redis
