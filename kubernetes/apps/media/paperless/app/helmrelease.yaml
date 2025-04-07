@@ -30,6 +30,7 @@ spec:
 
         containers:
           main:
+            enabled: false
             dependsOn:
               - db
               - redis
@@ -70,6 +71,9 @@ spec:
                   name: *secrets
               - configMapRef:
                   name: *config
+            securityContext:
+              runAsUser: 999
+              allowPrivilegeEscalation: false
           
           redis:
             name: redis
