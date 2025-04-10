@@ -55,6 +55,27 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2500Mi
+          
+          postgresql:
+            name: postgresql
+            image:
+              repository: docker.io/tensorchord/pgvecto-rs
+              tag: pg16-v0.2.1
+            envFrom:
+              - secretRef:
+                  name: *secrets
+              - configMapRef:
+                  name: *config
+            # securityContext:
+            #   runAsUser: 999
+            #   allowPrivilegeEscalation: false
+          
+          redis:
+            name: redis
+            image:
+              repository: docker.io/library/redis
+              tag: 7
+
 
     service:
       main:
@@ -97,3 +118,6 @@ spec:
             main:
               - path: /usr/src/app/upload
                 subPath: immich/upload
+            postgresql:
+              - path: /var/lib/postgresql/data
+                subPath: immich/pgdata
