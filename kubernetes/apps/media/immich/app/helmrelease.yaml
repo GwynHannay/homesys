@@ -49,24 +49,6 @@ spec:
               limits:
                 memory: 2500Mi
           
-          ml:
-            enable: false
-            dependsOn:
-              - main
-            image:
-              repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.131.3
-              pullPolicy: IfNotExists
-            envFrom:
-              - secretRef:
-                  name: immich-secrets
-              - configMapRef:
-                  name: immich-config
-            resources:
-              requests:
-                cpu: 15m
-                memory: 250Mi
-          
           postgresql:
             name: postgresql
             image:
@@ -88,6 +70,28 @@ spec:
               repository: docker.io/library/redis
               tag: 7
               pullPolicy: IfNotExists
+      ml:
+        dependsOn:
+          - main
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+      containers:
+          ml:
+            enable: false
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v1.131.3
+              pullPolicy: IfNotExists
+            envFrom:
+              - secretRef:
+                  name: immich-secrets
+              - configMapRef:
+                  name: immich-config
+            resources:
+              requests:
+                cpu: 15m
+                memory: 250Mi
 
 
     service:
