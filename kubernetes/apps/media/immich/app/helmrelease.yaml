@@ -29,7 +29,6 @@ spec:
 
         containers:
           main:
-            enabled: False
             dependsOn:
               - postgresql
               - redis
@@ -68,7 +67,6 @@ spec:
               repository: docker.io/library/redis
               tag: 7
       ml:
-        enabled: False
         dependsOn:
           - main
         annotations:
