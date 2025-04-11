@@ -68,6 +68,7 @@ spec:
               repository: docker.io/library/redis
               tag: 7
       ml:
+        enabled: False
         dependsOn:
           - main
         annotations:
@@ -75,7 +76,6 @@ spec:
 
         containers:
           ml:
-            enabled: False
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v1.131.3
