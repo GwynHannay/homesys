@@ -29,7 +29,7 @@ spec:
 
         containers:
           main:
-            enable: false
+            enable: False
             dependsOn:
               - postgresql
               - redis
@@ -75,7 +75,7 @@ spec:
 
         containers:
           ml:
-            enable: false
+            enable: False
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v1.131.3
