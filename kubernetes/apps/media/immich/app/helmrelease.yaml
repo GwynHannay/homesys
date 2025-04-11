@@ -36,7 +36,6 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-server
               tag: v1.131.3
-              pullPolicy: IfNotExists
             envFrom:
               - secretRef:
                   name: &secrets immich-secrets
@@ -54,7 +53,6 @@ spec:
             image:
               repository: docker.io/tensorchord/pgvecto-rs
               tag: pg16-v0.2.1
-              pullPolicy: IfNotExists
             envFrom:
               - secretRef:
                   name: *secrets
@@ -69,7 +67,6 @@ spec:
             image:
               repository: docker.io/library/redis
               tag: 7
-              pullPolicy: IfNotExists
       ml:
         dependsOn:
           - main
@@ -82,7 +79,6 @@ spec:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
               tag: v1.131.3
-              pullPolicy: IfNotExists
             envFrom:
               - secretRef:
                   name: immich-secrets
