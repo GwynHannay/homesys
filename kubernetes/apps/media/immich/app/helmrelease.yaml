@@ -135,12 +135,13 @@ spec:
             main:
               - path: /usr/src/app/upload
                 subPath: immich/upload
-            ml:
-              - path: /cache
-                subPath: immich/models
             postgresql:
               - path: /var/lib/postgresql/data
                 subPath: immich/pgdata
+          ml:
+            ml:
+              - path: /cache
+                subPath: immich/models
       nas:
         existingClaim: nas-volume-media
         globalMounts:
