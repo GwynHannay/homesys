@@ -143,3 +143,8 @@ spec:
             postgresql:
               - path: /var/lib/postgresql/data
                 subPath: immich/pgdata
+      nas:
+        existingClaim: nas-volume-media
+        globalMounts:
+          - path: /nas
+            subPath: *app
