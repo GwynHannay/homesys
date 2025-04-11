@@ -76,7 +76,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-      containers:
+        containers:
           ml:
             enable: false
             image:
