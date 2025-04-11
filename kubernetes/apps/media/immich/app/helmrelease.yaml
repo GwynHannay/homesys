@@ -46,6 +46,22 @@ spec:
                 memory: 250Mi
               limits:
                 memory: 2500Mi
+
+          ml:
+            dependsOn:
+              - main
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v1.131.3
+            envFrom:
+              - secretRef:
+                  name: *secrets
+              - configMapRef:
+                  name: *config
+            resources:
+              requests:
+                cpu: 15m
+                memory: 250Mi
           
           postgresql:
             name: postgresql
@@ -57,36 +73,12 @@ spec:
                   name: *secrets
               - configMapRef:
                   name: *config
-            # securityContext:
-            #   runAsUser: 999
-            #   allowPrivilegeEscalation: false
           
           redis:
             name: redis
             image:
               repository: docker.io/library/redis
               tag: 7
-      ml:
-        dependsOn:
-          - main
-        annotations:
-          reloader.stakater.com/auto: "true"
-
-        containers:
-          ml:
-            image:
-              repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.131.3
-            envFrom:
-              - secretRef:
-                  name: immich-secrets
-              - configMapRef:
-                  name: immich-config
-            resources:
-              requests:
-                cpu: 15m
-                memory: 250Mi
-
 
     service:
       main:
@@ -94,11 +86,6 @@ spec:
         ports:
           http:
             port: 2283
-      ml:
-        controller: ml
-        ports:
-          http:
-            port: 3003
 
     ingress:
       main:
@@ -135,13 +122,12 @@ spec:
             main:
               - path: /usr/src/app/upload
                 subPath: immich/upload
-            postgresql:
-              - path: /var/lib/postgresql/data
-                subPath: immich/pgdata
-          ml:
             ml:
               - path: /cache
                 subPath: immich/models
+            postgresql:
+              - path: /var/lib/postgresql/data
+                subPath: immich/pgdata
       nas:
         existingClaim: nas-volume-media
         globalMounts:
