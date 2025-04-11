@@ -9,16 +9,12 @@ metadata:
 data:
   TZ: "Australia/Perth"
 
-  # Init DB
-  INIT_POSTGRES_HOST: "${NATIVE_VECTOR_HOST}"
-  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
-
   # App
   IMMICH_ENV: "production"
   IMMICH_LOG_LEVEL: "verbose"
-  DB_HOSTNAME: "${NATIVE_VECTOR_HOST}"
+  DB_HOSTNAME: localhost
   DB_DATABASE_NAME: immich
   DB_PORT: '5432'
-  REDIS_HOSTNAME: "${REDIS_HOST}"
-  IMMICH_SERVER_URL: http://immich-server.media.svc.cluster.local:2283
-  IMMICH_MACHINE_LEARNING_URL: http://immich-machine-learning.media.svc.cluster.local:3003
+  REDIS_HOSTNAME: localhost
+  IMMICH_SERVER_URL: http://localhost:2283
+  IMMICH_MACHINE_LEARNING_URL: http://localhost:3003
