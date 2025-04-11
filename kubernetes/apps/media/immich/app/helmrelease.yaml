@@ -96,10 +96,12 @@ spec:
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: 2283
       ml:
+        controller: ml
         ports:
           http:
             port: 3003
