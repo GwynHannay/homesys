@@ -147,4 +147,4 @@ spec:
         existingClaim: nas-volume-media
         globalMounts:
           - path: /nas
-            subPath: *app
+            subPath: immich
