@@ -12,3 +12,4 @@ data:
   # App
   NODE_ENV: production
   REDIS_HOST: localhost
+  REDIS_PORT: "6379"
