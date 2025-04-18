@@ -28,7 +28,6 @@ spec:
 
         containers:
           main:
-            enabled: False
             dependsOn:
               - postgresql
               - redis
