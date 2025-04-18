@@ -9,10 +9,6 @@ metadata:
 data:
   TZ: "Australia/Perth"
 
-  # Init DB
-  INIT_POSTGRES_HOST: "${NATIVE_PG_HOST}"
-  INIT_POSTGRES_SUPER_USER: "${NATIVE_USERNAME}"
-
   # App
   NODE_ENV: production
-  REDIS_HOST: "${REDIS_HOST}"
+  REDIS_HOST: "redis://localhost:6379"
