@@ -34,7 +34,7 @@ spec:
               - redis
             image:
               repository: wallabag/wallabag
-              tag: 2.6.9
+              tag: 2.6.10
             envFrom:
               - secretRef:
                   name: &secrets wallabag-secrets
