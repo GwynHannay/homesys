@@ -27,28 +27,40 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: &secrets wallabag-secrets
-              - configMapRef:
-                  name: &config wallabag-config
-
         containers:
           main:
+            enabled: False
+            dependsOn:
+              - postgresql
+              - redis
             image:
               repository: wallabag/wallabag
               tag: 2.6.9
             envFrom:
               - secretRef:
+                  name: &secrets wallabag-secrets
+              - configMapRef:
+                  name: &config wallabag-config
+          
+          postgresql:
+            name: postgresql
+            image:
+              repository: docker.io/library/postgres
+              tag: 16.1
+            envFrom:
+              - secretRef:
                   name: *secrets
               - configMapRef:
                   name: *config
+            securityContext:
+              runAsUser: 999
+              allowPrivilegeEscalation: false
+          
+          redis:
+            name: redis
+            image:
+              repository: docker.io/library/redis
+              tag: 7
 
     service:
       main:
@@ -80,6 +92,16 @@ spec:
     persistence:
       images:
         existingClaim: local-volume-self-hosted
+        advancedMounts:
+          main:
+            main:
+              - path: /var/www/wallabag/web/assets/images
+                subPath: wallabag/images
+            postgresql:
+              - path: /var/lib/postgresql/data
+                subPath: wallabag/pgdata
+      nas:
+        existingClaim: nas-volume-self-hosted
         globalMounts:
-          - path: /var/www/wallabag/web/assets
+          - path: /nas
             subPath: *app

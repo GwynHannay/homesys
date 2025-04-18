@@ -5,9 +5,6 @@ metadata:
   name: cluster-apps-wallabag
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: cluster-apps-cloudnative-pg
-    - name: cluster-apps-redis
   path: ./kubernetes/apps/self-hosted/wallabag/app
   prune: true
   sourceRef:
