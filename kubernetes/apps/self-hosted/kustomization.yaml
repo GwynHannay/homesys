@@ -8,4 +8,4 @@ resources:
   # - ./grocy/ks.yaml
   - ./homepage/ks.yaml
   - ./joplin/ks.yaml
-  # - ./wallabag/ks.yaml
+  - ./wallabag/ks.yaml
