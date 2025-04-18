@@ -29,7 +29,6 @@ spec:
 
         containers:
           main:
-            enabled: False
             dependsOn:
               - postgresql
             image:
