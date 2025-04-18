@@ -7,5 +7,5 @@ resources:
   - ./ghostfolio/ks.yaml
   # - ./grocy/ks.yaml
   - ./homepage/ks.yaml
-  # - ./joplin/ks.yaml
+  - ./joplin/ks.yaml
   - ./wallabag/ks.yaml

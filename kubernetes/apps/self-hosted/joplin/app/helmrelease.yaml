@@ -27,28 +27,33 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: &secrets joplin-secrets
-              - configMapRef:
-                  name: &config joplin-config
-
         containers:
           main:
+            enabled: False
+            dependsOn:
+              - postgresql
             image:
               repository: joplin/server
               tag: 3.0.1-beta
             envFrom:
               - secretRef:
+                  name: &secrets joplin-secrets
+              - configMapRef:
+                  name: &config joplin-config
+          
+          postgresql:
+            name: postgresql
+            image:
+              repository: docker.io/library/postgres
+              tag: 16.1
+            envFrom:
+              - secretRef:
                   name: *secrets
               - configMapRef:
                   name: *config
+            securityContext:
+              runAsUser: 999
+              allowPrivilegeEscalation: false
 
     service:
       main:
@@ -76,3 +81,17 @@ spec:
         tls:
           - hosts:
               - *host
+
+    persistence:
+      local:
+        existingClaim: local-volume-self-hosted
+        advancedMounts:
+          main:
+            postgresql:
+              - path: /var/lib/postgresql/data
+                subPath: joplin/pgdata
+      nas:
+        existingClaim: nas-volume-self-hosted
+        globalMounts:
+          - path: /nas
+            subPath: *app

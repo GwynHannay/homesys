@@ -89,6 +89,7 @@ spec:
         tls:
           - hosts:
               - *host
+              
     persistence:
       local:
         existingClaim: local-volume-self-hosted
