@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: airflow
-      version: 1.13.1
+      version: 1.15.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
