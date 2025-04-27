@@ -27,7 +27,7 @@ spec:
           main:
             image:
               repository: datasetteproject/datasette
-              tag: 0.64.5
+              tag: 0.65.1
             command:
               - "datasette"
             args:
